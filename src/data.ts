@@ -217,6 +217,14 @@ export const contentEn: Content = {
     viewAll: 'View All Projects',
     items: [
       {
+        title: 'Open-Source Portfolio Template',
+        image: 'https://i.ibb.co/FLgLXcwZ/Screenshot-2025-12-25-002653.png',
+        description: 'A fully reusable, open-source personal portfolio template built from scratch for students and researchers. Designed with React & TypeScript to provide digital empowerment and a professional identity without cost.',
+        demoLink: 'https://hassan-ahmed-portfolio.vercel.app',
+        codeLink: 'https://github.com/HassanAhmed2Ha/Hassan-Ahmed-Portfolio',
+      },
+      
+      {
         title: 'AgriTech AI Prototype',
         image: 'https://images.unsplash.com/photo-1625246333195-78d9c38ad449?auto=format&fit=crop&q=80&w=800',
         description: 'Bilingual smart irrigation decision-support system for small farmers, powered by Python and simulated IoT soil & weather data.',
