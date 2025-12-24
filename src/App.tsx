@@ -438,7 +438,7 @@ export default function App() {
         {/* Mobile Nav */}
         {menuOpen && (
             <nav className="md:hidden bg-gray-900 border-t border-gray-800 p-4 flex flex-col gap-4 text-start">
-                 {content.nav.map((item) => (
+                  {content.nav.map((item) => (
                     <a 
                         key={item.id} 
                         href={`#${item.id}`} 
@@ -560,88 +560,86 @@ export default function App() {
                         </div>
                         <h3 className="text-xl font-bold text-gray-100 mb-3 group-hover:text-amber-500 transition">{service.title}</h3>
                         <p className="text-gray-400 text-sm leading-relaxed">{service.description}</p>
-                    </Tilt3D>
+                     </Tilt3D>
                   </Reveal>
                 ))}
               </div>
             </div>
         </section>
 
-        {/* EXPERIENCE & CERTIFICATIONS */}
+        {/* EXPERIENCE SECTION - SEPARATED */}
         <section id="experience" className="py-20 bg-gray-900/50">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-             {/* EXPERIENCE TIMELINE */}
-             <h2 className="text-3xl md:text-4xl font-bold text-gray-100 text-center mb-16">
+              {/* EXPERIENCE TIMELINE */}
+              <h2 className="text-3xl md:text-4xl font-bold text-gray-100 text-center mb-16">
                 <span className="border-b-4 border-amber-500 pb-2">{content.experience.title}</span>
-             </h2>
-             
-             {/* Central Line */}
-             <div className="max-w-4xl mx-auto space-y-8 relative before:absolute before:top-0 before:bottom-0 before:w-0.5 before:bg-gradient-to-b before:from-transparent before:via-gray-600 before:to-transparent before:left-5 md:before:left-1/2 md:before:-translate-x-1/2 rtl:before:left-auto rtl:before:right-5 rtl:md:before:right-auto rtl:md:before:left-1/2">
-               {content.experience.items.map((item, idx) => (
-                 <Reveal key={idx} className="relative flex items-center justify-center w-full group">
-                   
-                   {/* Connector Dot */}
-                   <div 
-                     className="timeline-dot absolute flex items-center justify-center w-10 h-10 rounded-full border border-gray-600 bg-gray-900 group-hover:border-amber-500 group-hover:bg-amber-500/10 transition shrink-0 shadow shadow-gray-900 z-10 
+              </h2>
+              
+              {/* Central Line */}
+              <div className="max-w-4xl mx-auto space-y-8 relative before:absolute before:top-0 before:bottom-0 before:w-0.5 before:bg-gradient-to-b before:from-transparent before:via-gray-600 before:to-transparent before:left-5 md:before:left-1/2 md:before:-translate-x-1/2 rtl:before:left-auto rtl:before:right-5 rtl:md:before:right-auto rtl:md:before:left-1/2">
+                {content.experience.items.map((item, idx) => (
+                  <Reveal key={idx} className="relative flex items-center justify-center w-full group">
+                    
+                    {/* Connector Dot */}
+                    <div 
+                      className="timeline-dot absolute flex items-center justify-center w-10 h-10 rounded-full border border-gray-600 bg-gray-900 group-hover:border-amber-500 group-hover:bg-amber-500/10 transition shrink-0 shadow shadow-gray-900 z-10 
                                 left-5 rtl:right-5 -translate-x-1/2 rtl:translate-x-1/2"
-                   >
-                     <div className="w-3 h-3 bg-amber-500 rounded-full"></div>
-                   </div>
-                   
-                   {/* Card Wrapper 
-                       Alignment Logic:
-                       - Even: LTR (Left Side, Align Right), RTL (Right Side, Align Left).
-                       - Odd: LTR (Right Side, Align Left), RTL (Left Side, Align Right).
-                   */}
-                   <div className={`
+                    >
+                      <div className="w-3 h-3 bg-amber-500 rounded-full"></div>
+                    </div>
+                    
+                    {/* Card Wrapper */}
+                    <div className={`
                         w-full md:w-1/2 flex flex-col relative
                         pl-12 rtl:pl-0 rtl:pr-12 md:pl-0 rtl:md:pr-0 
                         ${idx % 2 === 0 
                             ? 'md:mr-auto md:ml-0 md:pr-16 md:pl-0 md:items-end rtl:md:ml-auto rtl:md:mr-0 rtl:md:pl-16 rtl:md:pr-0' 
                             : 'md:ml-auto md:mr-0 md:pl-16 md:pr-0 md:items-start rtl:md:mr-auto rtl:md:ml-0 rtl:md:pr-16 rtl:md:pl-0' 
                         }
-                   `}>
-                      <Tilt3D className="w-full p-6 bg-gray-800 rounded-xl border border-gray-700 hover:border-amber-500 transition shadow-lg text-start">
-                         <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-2">
-                           <h3 className="font-bold text-lg text-gray-100 group-hover:text-amber-500 transition">{item.role}</h3>
-                           <span className="text-xs font-mono text-gray-400 bg-gray-900 px-2 py-1 rounded border border-gray-700 mt-1 md:mt-0">{item.period}</span>
-                         </div>
-                         <p className="text-sm text-amber-400 font-semibold mb-3">{item.company}</p>
-                         <ul className="list-disc list-inside text-sm text-gray-400 space-y-1 marker:text-amber-500">
-                           {item.description.map((point, i) => (
-                             <li key={i}>{point}</li>
-                           ))}
-                         </ul>
-                      </Tilt3D>
-                   </div>
-                 </Reveal>
-               ))}
-             </div>
+                    `}>
+                       <Tilt3D className="w-full p-6 bg-gray-800 rounded-xl border border-gray-700 hover:border-amber-500 transition shadow-lg text-start">
+                          <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-2">
+                            <h3 className="font-bold text-lg text-gray-100 group-hover:text-amber-500 transition">{item.role}</h3>
+                            <span className="text-xs font-mono text-gray-400 bg-gray-900 px-2 py-1 rounded border border-gray-700 mt-1 md:mt-0">{item.period}</span>
+                          </div>
+                          <p className="text-sm text-amber-400 font-semibold mb-3">{item.company}</p>
+                          <ul className="list-disc list-inside text-sm text-gray-400 space-y-1 marker:text-amber-500">
+                            {item.description.map((point, i) => (
+                              <li key={i}>{point}</li>
+                            ))}
+                          </ul>
+                       </Tilt3D>
+                    </div>
+                  </Reveal>
+                ))}
+              </div>
+          </div>
+        </section>
 
-             {/* CERTIFICATIONS */}
-             <div className="mt-24">
-                <h3 className="text-2xl md:text-3xl font-bold text-gray-100 text-center mb-12">
-                   {content.certifications.title}
+        {/* CERTIFICATIONS SECTION - NEW SEPARATE SECTION WITH ID */}
+        <section id="certifications" className="py-20 bg-gray-900">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <h3 className="text-3xl md:text-4xl font-bold text-gray-100 text-center mb-16">
+                    <span className="border-b-4 border-amber-500 pb-2">{content.certifications.title}</span>
                 </h3>
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                   {content.certifications.items.map((cert, idx) => (
-                     <Reveal key={idx} className="h-full">
+                    {content.certifications.items.map((cert, idx) => (
+                      <Reveal key={idx} className="h-full">
                         <Tilt3D className="bg-gray-800 rounded-lg p-6 border border-gray-700 hover:border-amber-500 hover:shadow-lg transition flex flex-col h-full group text-start">
-                           <div className="mb-4 text-amber-500 rtl:scale-x-[-1]">
+                            <div className="mb-4 text-amber-500 rtl:scale-x-[-1]">
                               <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                           </div>
-                           <h4 className="font-bold text-gray-100 mb-2 group-hover:text-amber-500 transition line-clamp-2">{cert.title}</h4>
-                           <p className="text-sm text-gray-400 mb-1">{cert.issuer}</p>
-                           <p className="text-xs text-gray-500 mb-4">{cert.date}</p>
-                           <a href={cert.link} target="_blank" rel="noreferrer" className="mt-auto text-xs font-semibold text-amber-500 hover:text-gray-100 flex items-center gap-1 transition">
+                            </div>
+                            <h4 className="font-bold text-gray-100 mb-2 group-hover:text-amber-500 transition line-clamp-2">{cert.title}</h4>
+                            <p className="text-sm text-gray-400 mb-1">{cert.issuer}</p>
+                            <p className="text-xs text-gray-500 mb-4">{cert.date}</p>
+                            <a href={cert.link} target="_blank" rel="noreferrer" className="mt-auto text-xs font-semibold text-amber-500 hover:text-gray-100 flex items-center gap-1 transition">
                               Verify Credential <ExternalLink />
-                           </a>
+                            </a>
                         </Tilt3D>
-                     </Reveal>
-                   ))}
+                      </Reveal>
+                    ))}
                 </div>
-             </div>
-          </div>
+            </div>
         </section>
 
         {/* PROJECTS */}
@@ -679,7 +677,7 @@ export default function App() {
                             ) : (
                                project.doiLink && (
                                    <a href={project.doiLink} target="_blank" rel="noreferrer" className="flex-1 text-center py-2 rounded-lg border border-gray-600 text-gray-100 font-semibold text-sm hover:border-amber-500 hover:text-amber-500 transition btn">
-                                      DOI
+                                     DOI
                                    </a>
                                )
                             )}
@@ -769,30 +767,30 @@ export default function App() {
                       </div>
                       
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                         <div className="group">
-                            <label htmlFor="phone" className="block text-sm font-medium text-gray-400 mb-1 ml-1 rtl:mr-1 rtl:ml-0 group-focus-within:text-amber-500 transition text-start">{content.contact.placeholders.phone}</label>
-                            <input
-                              type="tel"
-                              name="phone"
-                              id="phone"
-                              value={formData.phone}
-                              onChange={handleInputChange}
-                              placeholder={content.contact.placeholders.phone}
-                              className="w-full p-3 bg-gray-900 border border-gray-600 rounded-lg text-white placeholder-gray-600 focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-transparent transition text-start"
-                            />
-                         </div>
-                         <div className="group">
-                            <label htmlFor="subject" className="block text-sm font-medium text-gray-400 mb-1 ml-1 rtl:mr-1 rtl:ml-0 group-focus-within:text-amber-500 transition text-start">{content.contact.placeholders.subject}</label>
-                            <input
-                              type="text"
-                              name="subject"
-                              id="subject"
-                              value={formData.subject}
-                              onChange={handleInputChange}
-                              placeholder={content.contact.placeholders.subject}
-                              className="w-full p-3 bg-gray-900 border border-gray-600 rounded-lg text-white placeholder-gray-600 focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-transparent transition text-start"
-                            />
-                         </div>
+                          <div className="group">
+                             <label htmlFor="phone" className="block text-sm font-medium text-gray-400 mb-1 ml-1 rtl:mr-1 rtl:ml-0 group-focus-within:text-amber-500 transition text-start">{content.contact.placeholders.phone}</label>
+                             <input
+                               type="tel"
+                               name="phone"
+                               id="phone"
+                               value={formData.phone}
+                               onChange={handleInputChange}
+                               placeholder={content.contact.placeholders.phone}
+                               className="w-full p-3 bg-gray-900 border border-gray-600 rounded-lg text-white placeholder-gray-600 focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-transparent transition text-start"
+                             />
+                          </div>
+                          <div className="group">
+                             <label htmlFor="subject" className="block text-sm font-medium text-gray-400 mb-1 ml-1 rtl:mr-1 rtl:ml-0 group-focus-within:text-amber-500 transition text-start">{content.contact.placeholders.subject}</label>
+                             <input
+                               type="text"
+                               name="subject"
+                               id="subject"
+                               value={formData.subject}
+                               onChange={handleInputChange}
+                               placeholder={content.contact.placeholders.subject}
+                               className="w-full p-3 bg-gray-900 border border-gray-600 rounded-lg text-white placeholder-gray-600 focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-transparent transition text-start"
+                             />
+                          </div>
                       </div>
                       
                       <div className="group">
