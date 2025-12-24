@@ -134,6 +134,18 @@ export const contentEn: Content = {
     title: 'Certifications',
     items: [
       {
+        title: 'Introduction to Genomic Technologies',
+        issuer: 'Johns Hopkins University (Coursera)',
+        date: 'Dec 2025',
+        link: 'https://drive.google.com/file/d/1GWnTGK-CNaxsEs10DyRgVXcSOjnTBO-F/view?usp=sharing'
+      },
+      {
+        title: 'Python for Genomic Data Science',
+        issuer: 'Johns Hopkins University (Coursera)',
+        date: 'Dec 2025',
+        link: 'https://drive.google.com/file/d/1WViQR7Lot852iQK-tVYblpD1RIqbzlAq/view?usp=sharing'
+      },
+      {
         title: 'Data Science: R Basics',
         issuer: 'HarvardX & edX',
         date: '2025',
@@ -231,12 +243,7 @@ export const contentEn: Content = {
         demoLink: 'https://hassanahmed2ha.github.io/-AgriTech-AI-Hassan-Ahmed-Prototype-/#dashboard',
         codeLink: 'https://github.com/HassanAhmed2Ha/-AgriTech-AI-Hassan-Ahmed-Prototype-?tab=readme-ov-file',
       },
-      {
-        title: 'Water Pollution Analysis',
-        image: 'https://images.unsplash.com/photo-1532094349884-543bc11b234d?auto=format&fit=crop&q=80&w=800',
-        description: 'Chemical analysis of water pollution and its public health impact, documented in an open-access preprint on Zenodo.',
-        doiLink: 'https://doi.org/10.5281/zenodo.17527523'
-      },
+      
       {
         title: 'Asteroid Impact Risk',
         image: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&q=80&w=800',
@@ -427,6 +434,18 @@ export const contentAr: Content = {
     title: 'الشهادات',
     items: [
       {
+        title: 'مقدمة في التقنيات الجينومية',
+        issuer: 'جامعة جونز هوبكنز (كورسيرا)',
+        date: 'ديسمبر 2025',
+        link: 'https://drive.google.com/file/d/1GWnTGK-CNaxsEs10DyRgVXcSOjnTBO-F/view?usp=sharing'
+      },
+      {
+        title: 'بايثون لعلم البيانات الجينومية',
+        issuer: 'جامعة جونز هوبكنز (كورسيرا)',
+        date: 'ديسمبر 2025',
+        link: 'https://drive.google.com/file/d/1WViQR7Lot852iQK-tVYblpD1RIqbzlAq/view?usp=sharing'
+      },
+      {
         title: 'علم البيانات: أساسيات R',
         issuer: 'HarvardX & edX',
         date: '2025',
@@ -517,10 +536,11 @@ export const contentAr: Content = {
         codeLink: 'https://github.com/HassanAhmed2Ha/-AgriTech-AI-Hassan-Ahmed-Prototype-?tab=readme-ov-file',
       },
       {
-        title: 'تحليل تلوث المياه',
-        image: 'https://images.unsplash.com/photo-1532094349884-543bc11b234d?auto=format&fit=crop&q=80&w=800',
-        description: 'التحليل الكيميائي لتلوث المياه وتأثيره على الصحة العامة، موثق في نسخة أولية مفتوحة الوصول على Zenodo.',
-        doiLink: 'https://doi.org/10.5281/zenodo.17527523'
+        title: 'قالب بورتفوليو مفتوح المصدر',
+        image: 'https://i.ibb.co/FLgLXcwZ/Screenshot-2025-12-25-002653.png', // ✅ تم وضع رابط الصورة الجديد هنا
+        description: 'قالب معرض أعمال شخصي مجاني ومفتوح المصدر، تم بناؤه من الصفر لخدمة الطلاب والباحثين. يهدف لتعزيز التمكين الرقمي وتوفير هوية احترافية باستخدام React وTypeScript.',
+        demoLink: 'https://hassan-ahmed-portfolio.vercel.app',
+        codeLink: 'https://github.com/HassanAhmed2Ha/Hassan-Ahmed-Portfolio',
       },
       {
         title: 'مخاطر تأثير الكويكبات',
