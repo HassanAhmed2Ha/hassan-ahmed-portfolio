@@ -5,6 +5,7 @@ export const contentEn: Content = {
     { id: 'home', label: 'Home' },
     { id: 'about', label: 'About' },
     { id: 'experience', label: 'Experience' },
+    { id: 'certifications', label: 'Certifications' },
     { id: 'projects', label: 'Projects' },
     { id: 'publications', label: 'Publications' },
     { id: 'contact', label: 'Contact' },
