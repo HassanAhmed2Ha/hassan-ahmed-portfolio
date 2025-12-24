@@ -506,7 +506,7 @@ export default function App() {
                   <div className="w-full h-full rounded-full border-4 border-gray-800 shadow-2xl bg-gray-800 relative z-10 ring-4 ring-amber-500/30 overflow-hidden flex items-center justify-center">
                     <div className="w-full h-full rounded-full overflow-hidden">
                       <img
-                        src="https://i.ibb.co/9HPvpnvP/unnamed.jpg"
+                        src="https://i.ibb.co/bgcV2HLW/image.jpg"
                         alt="Hassan Ahmed"
                         className="w-full h-full object-cover rounded-full transform hover:scale-110 transition duration-700"
                         loading="eager"
