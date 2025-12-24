@@ -12,7 +12,7 @@ export const contentEn: Content = {
   hero: {
     greeting: 'Hi there,',
     namePrefix: "I'm",
-    name: 'Hassan Ahmed',
+    name: 'Hassan Ahmed Hassan',
     role: ['Bioinformatics Researcher', 'Data Scientist', 'Erasmus+ Trainee', 'Digital Safety Advocate'],
     description: 'Bioinformatics and Data Science researcher focused on applying technology to improve public health, digital safety, and sustainable development in the MENA region.',
     btnAbout: 'About Me',
