@@ -1,3 +1,4 @@
+import emailjs from '@emailjs/browser';
 
 export interface ContactFormData {
   name: string;
@@ -7,13 +8,38 @@ export interface ContactFormData {
   message: string;
 }
 
-export async function sendMessage(formData: ContactFormData) {
-  // Simulate network delay
-  await new Promise((resolve) => setTimeout(resolve, 1000));
+// ✅ تم وضع كل مفاتيحك بشكل صحيح
+const SERVICE_ID = "service_w4uopbl";
+const TEMPLATE_ID = "template_xi12phd";
+const PUBLIC_KEY = "-FWQCDVQFrhOS5QMv";
+
+export const sendMessage = async (data: ContactFormData) => {
   
-  // Return success message directly since there is no backend
-  return { 
-    success: true, 
-    message: "Thank you! This is a demo portfolio. In a production environment, this would connect to a form service like Formspree or EmailJS." 
+  // ربط البيانات مع القالب الذي صممته
+  const templateParams = {
+    name: data.name,      // يطابق {{name}}
+    email: data.email,    // يطابق {{email}}
+    phone: data.phone,    // يطابق {{phone}}
+    title: data.subject,  // يطابق {{title}} في عنوان الرسالة
+    message: data.message // يطابق {{message}}
   };
-}
+
+  try {
+    const response = await emailjs.send(SERVICE_ID, TEMPLATE_ID, templateParams, PUBLIC_KEY);
+    
+    if (response.status === 200) {
+      return { 
+        success: true, 
+        message: "تم إرسال رسالتك بنجاح! شكراً لتواصلك." 
+      };
+    }
+  } catch (error) {
+    console.error("FAILED...", error);
+    return { 
+      success: false, 
+      message: "فشل الإرسال. يرجى التحقق من اتصالك بالإنترنت والمحاولة مجدداً." 
+    };
+  }
+  
+  return { success: false, message: "حدث خطأ غير متوقع." };
+};
