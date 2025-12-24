@@ -290,6 +290,7 @@ export const contentAr: Content = {
     { id: 'home', label: 'الرئيسية' },
     { id: 'about', label: 'نبذة' },
     { id: 'experience', label: 'الخبرات' },
+    { id: 'certifications', label: 'الشهادات' },
     { id: 'projects', label: 'المشاريع' },
     { id: 'publications', label: 'الأبحاث' },
     { id: 'contact', label: 'تواصل' },
