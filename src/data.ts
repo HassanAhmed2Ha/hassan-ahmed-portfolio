@@ -196,7 +196,7 @@ export const contentEn: Content = {
     items: [
       {
         title: 'Technical Skills',
-        description: 'Python (Pandas, NumPy, Matplotlib), Data Analysis, IoT Simulation, Figma, GitHub, R Basics.',
+        description: 'Python (Pandas,Biopython), Bioinformatics & Genomic Data Analysis, Public Health Data Analysis, Data Visualization, GitHub, R (Basics).',
         iconPath: 'M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4'
       },
       {
@@ -498,7 +498,7 @@ export const contentAr: Content = {
     items: [
       {
         title: 'المهارات التقنية',
-        description: 'بايثون (Pandas, NumPy, Matplotlib)، تحليل البيانات، محاكاة إنترنت الأشياء، Figma، GitHub، أساسيات R.',
+        description: 'بايثون (بانداز، بيوبايثون)، وتحليل البيانات الجينومية، تحليل بيانات الصحة العامة، تصور البيانات، جيت هاب، آر (الأساسيات).',
         iconPath: 'M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4'
       },
       {
