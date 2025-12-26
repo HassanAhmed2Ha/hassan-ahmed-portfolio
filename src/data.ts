@@ -17,9 +17,7 @@ export const contentEn: Content = {
     role: [ 'Bioinformatics Researcher',
   'Data Science for Public Health',
   'Applied Genomic Data Analysis'],
-    description: 'description: 
-'I work at the intersection of bioinformatics and data science, applying data-driven approaches to public health, environmental challenges, and digital safety in the MENA region.'
-.',
+    description: 'I work at the intersection of bioinformatics and data science, applying data-driven approaches to public health, environmental challenges, and digital safety in the MENA region.',
     btnAbout: 'About Me',
     btnProjects: 'View Projects',
   },
