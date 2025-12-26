@@ -201,7 +201,7 @@ export const contentEn: Content = {
       },
       {
         title: 'Research',
-        description: 'Scientific Writing, Research Methodology, Open Science Practices, Literature Review, Scenario Analysis.',
+        description: 'Research Methodology, Scientific Writing, Literature Review, Open Science Practices, Scenario Analysis.',
         iconPath: 'M12 6.253v13m0-13C10.832 5.477 9.206 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.832 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.794 5 16.5 5s3.332.477 4.5 1.253v13C19.832 18.477 18.168 18 16.5 18s-3.332.477-4.5 1.253'
       },
       {
@@ -498,12 +498,13 @@ export const contentAr: Content = {
     items: [
       {
         title: 'المهارات التقنية',
-        description: 'بايثون (بانداز، بيوبايثون)، وتحليل البيانات الجينومية، تحليل بيانات الصحة العامة، تصور البيانات، جيت هاب، آر (الأساسيات).',
+        description: 'بايثون (Pandas، Biopython)، تحليل البيانات الجينومية والمعلوماتية الحيوية، تحليل بيانات الصحة العامة، تصور البيانات، GitHub، أساسيات R.'
+',
         iconPath: 'M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4'
       },
       {
         title: 'البحث العلمي',
-        description: 'الكتابة العلمية، منهجية البحث، ممارسات العلم المفتوح، مراجعة الأدبيات، تحليل السيناريوهات.',
+        description: 'منهجية البحث، الكتابة العلمية، مراجعة الأدبيات، ممارسات العلوم المفتوحة، تحليل السيناريوهات.',
         iconPath: 'M12 6.253v13m0-13C10.832 5.477 9.206 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.832 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.794 5 16.5 5s3.332.477 4.5 1.253v13C19.832 18.477 18.168 18 16.5 18s-3.332.477-4.5 1.253'
       },
       {
