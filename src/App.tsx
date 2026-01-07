@@ -23,13 +23,13 @@ const OrcidIcon = () => (
 
 const SocialIcons = ({ className = '' }: { className?: string }) => (
   <div className={`flex gap-4 ${className}`}>
-    <a href="https://www.linkedin.com/in/hassan-ahmed2007" target="_blank" rel="noreferrer" aria-label="LinkedIn Profile" className="w-10 h-10 rounded-full flex items-center justify-center border border-gray-600 text-gray-400 hover:bg-green-500 hover:text-gray-900 hover:border-green-500 transition duration-300 transform hover:scale-110">
+    <a href="https://www.linkedin.com/in/hassan-ahmed2007" target="_blank" rel="noreferrer" aria-label="LinkedIn Profile" className="w-10 h-10 rounded-full flex items-center justify-center border border-gray-600 text-gray-400 hover:bg-amber-500 hover:text-gray-900 hover:border-amber-500 transition duration-300 transform hover:scale-110">
       <LinkedInIcon />
     </a>
-    <a href="https://github.com/HassanAhmed2Ha" target="_blank" rel="noreferrer" aria-label="GitHub Profile" className="w-10 h-10 rounded-full flex items-center justify-center border border-gray-600 text-gray-400 hover:bg-green-500 hover:text-gray-900 hover:border-green-500 transition duration-300 transform hover:scale-110">
+    <a href="https://github.com/HassanAhmed2Ha" target="_blank" rel="noreferrer" aria-label="GitHub Profile" className="w-10 h-10 rounded-full flex items-center justify-center border border-gray-600 text-gray-400 hover:bgamber-500 hover:text-gray-900 hover:border-amber-500 transition duration-300 transform hover:scale-110">
       <GitHubIcon />
     </a>
-    <a href="https://orcid.org/0009-0005-0306-0898" target="_blank" rel="noreferrer" aria-label="ORCID Profile" className="w-10 h-10 rounded-full flex items-center justify-center border border-gray-600 text-gray-400 hover:bg-amber-500 hover:text-gray-900 hover:border-green-500 transition duration-300 transform hover:scale-110">
+    <a href="https://orcid.org/0009-0005-0306-0898" target="_blank" rel="noreferrer" aria-label="ORCID Profile" className="w-10 h-10 rounded-full flex items-center justify-center border border-gray-600 text-gray-400 hover:bg-amber-500 hover:text-gray-900 hover:border-amber-500 transition duration-300 transform hover:scale-110">
       <OrcidIcon />
     </a>
   </div>
