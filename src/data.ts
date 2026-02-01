@@ -449,6 +449,7 @@ export const contentAr: Content = {
         date: 'ديسمبر 2025',
         link: 'https://drive.google.com/file/d/1nU1GLfaYrmFy8yB3a1Ee431ZmBIHHCEu/view?usp=sharing'
       },
+     {
        title: 'مقدمة في التقنيات الجينومية',
         issuer: 'جامعة جونز هوبكنز (كورسيرا)',
         date: 'ديسمبر 2025',
