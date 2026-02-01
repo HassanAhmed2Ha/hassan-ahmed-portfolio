@@ -454,7 +454,8 @@ export const contentAr: Content = {
         issuer: 'جامعة جونز هوبكنز (كورسيرا)',
         date: 'ديسمبر 2025',
         link: 'https://drive.google.com/file/d/1GWnTGK-CNaxsEs10DyRgVXcSOjnTBO-F/view?usp=sharing'
-      {
+      },
+        {
         title: 'بايثون لعلم البيانات الجينومية',
         issuer: 'جامعة جونز هوبكنز (كورسيرا)',
         date: 'ديسمبر 2025',
