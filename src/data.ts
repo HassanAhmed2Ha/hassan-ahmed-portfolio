@@ -447,7 +447,7 @@ export const contentAr: Content = {
         title: 'الإحصاء لعلوم الجينات',
         issuer: 'جامعة جونز هوبكنز (كورسيرا)',
         date: 'ديسمبر 2025',
-        link: https://drive.google.com/file/d/1nU1GLfaYrmFy8yB3a1Ee431ZmBIHHCEu/view?usp=sharing'
+        link: 'https://drive.google.com/file/d/1nU1GLfaYrmFy8yB3a1Ee431ZmBIHHCEu/view?usp=sharing'
       },
        title: 'مقدمة في التقنيات الجينومية',
         issuer: 'جامعة جونز هوبكنز (كورسيرا)',
