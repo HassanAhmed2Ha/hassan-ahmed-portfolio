@@ -136,6 +136,12 @@ export const contentEn: Content = {
     title: 'Certifications',
     items: [
       {
+        title: 'Statistics for Genomic Data Science',
+        issuer: 'Johns Hopkins University (Coursera)',
+        date: 'Dec 2025',
+        link: 'https://drive.google.com/file/d/1nU1GLfaYrmFy8yB3a1Ee431ZmBIHHCEu/view?usp=sharing'
+      },
+       {
         title: 'Introduction to Genomic Technologies',
         issuer: 'Johns Hopkins University (Coursera)',
         date: 'Dec 2025',
