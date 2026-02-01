@@ -442,7 +442,7 @@ export const contentAr: Content = {
   },
   certifications: {
     title: 'الشهادات',
-    items: [
+    items:[
       {
         title: 'الإحصاء لعلوم الجينات',
         issuer: 'جامعة جونز هوبكنز (كورسيرا)',
