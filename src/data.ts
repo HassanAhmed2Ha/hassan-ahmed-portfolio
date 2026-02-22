@@ -135,6 +135,12 @@ export const contentEn: Content = {
   certifications: {
     title: 'Certifications',
     items: [
+     {
+        title: 'NVIDIA DLI Summer Training Program: Generative AI (Beginner Level)',
+        issuer: 'Information Technology Institute (ITI)',
+        date: 'Feb 2026',
+        link: 'https://drive.google.com/file/d/1ZseW0jSZTZUz4HR2rmnOUrYA1Ewl3ErG/view?usp=sharing'
+      },
       {
         title: 'Statistics for Genomic Data Science',
         issuer: 'Johns Hopkins University (Coursera)',
@@ -443,7 +449,13 @@ export const contentAr: Content = {
   certifications: {
     title: 'الشهادات',
    items: [
-      {
+     {
+title: 'البرنامج التدريبي الصيفي من NVIDIA DLI: الذكاء الاصطناعي التوليدي (مستوى مبتدئ)',
+issuer: 'معهد تكنولوجيا المعلومات (ITI)',
+date: 'فبراير 2026',
+link: 'https://drive.google.com/file/d/1ZseW0jSZTZUz4HR2rmnOUrYA1Ewl3ErG/view?usp=sharing'
+}, 
+     {
         title: 'الإحصاء لعلوم الجينات',
         issuer: 'جامعة جونز هوبكنز (كورسيرا)',
         date: 'ديسمبر 2025',
