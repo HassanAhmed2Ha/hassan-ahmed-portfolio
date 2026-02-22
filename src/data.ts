@@ -136,7 +136,7 @@ export const contentEn: Content = {
     title: 'Certifications',
     items: [
      {
-        title: 'NVIDIA DLI Summer Training Program: Generative AI (Beginner Level)',
+        title: 'NVIDIA DLI : Generative AI (Beginner Level)',
         issuer: 'Information Technology Institute (ITI)',
         date: 'Feb 2026',
         link: 'https://drive.google.com/file/d/1ZseW0jSZTZUz4HR2rmnOUrYA1Ewl3ErG/view?usp=sharing'
