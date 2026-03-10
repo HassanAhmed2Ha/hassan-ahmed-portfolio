@@ -22,19 +22,36 @@ const OrcidIcon = () => (
 
 const SocialIcons = ({ className = '' }: { className?: string }) => (
   <div className={`flex gap-4 ${className}`}>
-    <a href="https://www.linkedin.com/in/hassan-ahmed2007" target="_blank" rel="noreferrer" aria-label="LinkedIn Profile" className="w-10 h-10 rounded-full flex items-center justify-center border border-gray-600 text-gray-400 hover:bg-amber-500 hover:text-gray-900 hover:border-amber-500 transition duration-300 transform hover:scale-110">
+    <a href="https://www.linkedin.com/in/hassan-ahmed2007" target="_blank" rel="noreferrer" aria-label="LinkedIn Profile" className="w-10 h-10 rounded-full flex items-center justify-center border border-gray-600 text-gray-400 hover:bg-amber-500 hover:text-gray-900 hover:border-amber-500 transition duration-300 transform hover:scale-110 focus-visible:ring-2 focus-visible:ring-amber-500 outline-none">
       <LinkedInIcon />
     </a>
-    <a href="https://github.com/HassanAhmed2Ha" target="_blank" rel="noreferrer" aria-label="GitHub Profile" className="w-10 h-10 rounded-full flex items-center justify-center border border-gray-600 text-gray-400 hover:bg-amber-500 hover:text-gray-900 hover:border-amber-500 transition duration-300 transform hover:scale-110">
+    <a href="https://github.com/HassanAhmed2Ha" target="_blank" rel="noreferrer" aria-label="GitHub Profile" className="w-10 h-10 rounded-full flex items-center justify-center border border-gray-600 text-gray-400 hover:bg-amber-500 hover:text-gray-900 hover:border-amber-500 transition duration-300 transform hover:scale-110 focus-visible:ring-2 focus-visible:ring-amber-500 outline-none">
       <GitHubIcon />
     </a>
-    <a href="https://orcid.org/0009-0005-0306-0898" target="_blank" rel="noreferrer" aria-label="ORCID Profile" className="w-10 h-10 rounded-full flex items-center justify-center border border-gray-600 text-gray-400 hover:bg-amber-500 hover:text-gray-900 hover:border-amber-500 transition duration-300 transform hover:scale-110">
+    <a href="https://orcid.org/0009-0005-0306-0898" target="_blank" rel="noreferrer" aria-label="ORCID Profile" className="w-10 h-10 rounded-full flex items-center justify-center border border-gray-600 text-gray-400 hover:bg-amber-500 hover:text-gray-900 hover:border-amber-500 transition duration-300 transform hover:scale-110 focus-visible:ring-2 focus-visible:ring-amber-500 outline-none">
       <OrcidIcon />
     </a>
   </div>
 );
 
-// --- UPDATED ANIMATED BACKGROUND (FAST CONNECTING PARTICLES) ---
+// --- UI COMPONENTS ---
+const ImageWithSkeleton = ({ src, alt, className }: { src: string, alt: string, className: string }) => {
+  const [loaded, setLoaded] = useState(false);
+  return (
+    <div className={`relative ${className}`}>
+      {!loaded && <div className="absolute inset-0 bg-gray-700 animate-pulse rounded-full"></div>}
+      <img 
+        src={src} 
+        alt={alt} 
+        className={`w-full h-full object-cover transform transition-all duration-700 ${loaded ? 'opacity-100 scale-100' : 'opacity-0 scale-95'}`} 
+        onLoad={() => setLoaded(true)} 
+        loading="lazy" 
+      />
+    </div>
+  );
+};
+
+// --- UPDATED ANIMATED BACKGROUND ---
 const ParticleBackground = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const mouseRef = useRef({ x: 0, y: 0, active: false });
@@ -61,8 +78,8 @@ const ParticleBackground = () => {
         particles.push({
           x: Math.random() * canvas.width,
           y: Math.random() * canvas.height,
-          vx: (Math.random() - 0.5) * 1.5, // سرعة حركة أفقية مضاعفة
-          vy: (Math.random() - 0.5) * 1.5, // سرعة حركة رأسية مضاعفة
+          vx: (Math.random() - 0.5) * 1.5, // Double horizontal speed
+          vy: (Math.random() - 0.5) * 1.5, // Double vertical speed
           size: Math.random() * 2 + 1,
         });
       }
@@ -83,14 +100,14 @@ const ParticleBackground = () => {
         ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
         ctx.fill();
 
-        // رسم الروابط بين القطع المترابطة
+        // Draw links between connected particles
         for (let j = i + 1; j < particles.length; j++) {
           const p2 = particles[j];
           const dx = p.x - p2.x;
           const dy = p.y - p2.y;
           const dist = Math.sqrt(dx * dx + dy * dy);
 
-          if (dist < 150) { // مسافة الربط
+          if (dist < 150) { // Linking distance
             ctx.beginPath();
             ctx.strokeStyle = `rgba(245, 158, 11, ${0.4 * (1 - dist / 150)})`;
             ctx.lineWidth = 0.8;
@@ -100,7 +117,7 @@ const ParticleBackground = () => {
           }
         }
 
-        // تفاعل الربط مع الماوس
+        // Mouse link interaction
         if (mouseRef.current.active) {
           const dxM = p.x - mouseRef.current.x;
           const dyM = p.y - mouseRef.current.y;
@@ -225,6 +242,11 @@ export default function App() {
   const [activeSection, setActiveSection] = useState('home');
   const [formData, setFormData] = useState<ContactFormData>({ name: '', email: '', phone: '', subject: '', message: '' });
   const [isSubmitting, setIsSubmitting] = useState(false);
+  
+  // New States for UX improvements
+  const [scrollProgress, setScrollProgress] = useState(0);
+  const [showBackToTop, setShowBackToTop] = useState(false);
+  const [toast, setToast] = useState({ show: false, message: '', type: 'success' });
 
   useEffect(() => {
     const stored = localStorage.getItem('lang') as Language;
@@ -241,6 +263,7 @@ export default function App() {
 
   useEffect(() => {
     const handleScroll = () => {
+      // Handle Active Section
       const sections = content.nav.map(item => item.id);
       const scrollPosition = window.scrollY + 100;
       for (const section of sections) {
@@ -251,12 +274,22 @@ export default function App() {
           if (scrollPosition >= offsetTop && scrollPosition < offsetTop + offsetHeight) setActiveSection(section);
         }
       }
+
+      // Handle Scroll Progress
+      const totalScroll = document.documentElement.scrollTop;
+      const windowHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      const progress = `${(totalScroll / windowHeight) * 100}%`;
+      setScrollProgress(Number(totalScroll / windowHeight) * 100);
+
+      // Handle Back To Top Button visibility
+      setShowBackToTop(totalScroll > 500);
     };
+
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, [content.nav]);
 
-  const scrollToSection = (e: React.MouseEvent<HTMLAnchorElement>, id: string) => {
+  const scrollToSection = (e: React.MouseEvent<HTMLAnchorElement | HTMLButtonElement>, id: string) => {
     e.preventDefault();
     setMenuOpen(false);
     const element = document.getElementById(id);
@@ -268,6 +301,11 @@ export default function App() {
     }
   };
 
+  const showToast = (message: string, type: 'success' | 'error') => {
+    setToast({ show: true, message, type });
+    setTimeout(() => setToast({ show: false, message: '', type: 'success' }), 4000);
+  };
+
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
     setFormData(prev => ({ ...prev, [name]: value }));
@@ -276,10 +314,19 @@ export default function App() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-    const response = await sendMessage(formData);
-    alert(response.message);
-    if (response.success) setFormData({ name: '', email: '', phone: '', subject: '', message: '' });
-    setIsSubmitting(false);
+    try {
+      const response = await sendMessage(formData);
+      if (response.success) {
+        showToast(response.message || "Message sent successfully!", 'success');
+        setFormData({ name: '', email: '', phone: '', subject: '', message: '' });
+      } else {
+        showToast(response.message || "Failed to send message.", 'error');
+      }
+    } catch (error) {
+      showToast("An error occurred while sending the message.", 'error');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const fontClass = lang === 'ar' ? "font-['Cairo']" : "font-['Plus_Jakarta_Sans']";
@@ -287,35 +334,50 @@ export default function App() {
   return (
     <div className={`min-h-screen flex flex-col ${fontClass} overflow-x-hidden bg-gray-900 text-gray-100 relative pt-20 transition-all duration-300 antialiased`} dir={lang === 'ar' ? 'rtl' : 'ltr'}>
       
+      {/* Toast Notification */}
+      <div className={`fixed top-24 left-1/2 transform -translate-x-1/2 z-50 transition-all duration-300 ${toast.show ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-4 pointer-events-none'}`}>
+        <div className={`px-6 py-3 rounded-full shadow-lg font-semibold text-sm flex items-center gap-2 ${toast.type === 'success' ? 'bg-green-500 text-white' : 'bg-red-500 text-white'}`}>
+          {toast.type === 'success' ? (
+            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path></svg>
+          ) : (
+            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+          )}
+          {toast.message}
+        </div>
+      </div>
+
       {/* Header */}
       <header className="fixed top-0 left-0 right-0 z-50 bg-gray-900/90 backdrop-blur-md shadow-lg border-b border-gray-800 h-20">
+        {/* Scroll Progress Bar */}
+        <div className="absolute bottom-0 left-0 h-0.5 bg-amber-500 transition-all duration-150 ease-out" style={{ width: `${scrollProgress}%` }}></div>
+        
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center h-full">
-          <a href="#home" onClick={(e) => scrollToSection(e, 'home')} className="text-2xl md:text-3xl font-bold tracking-tight text-gray-100 hover:text-amber-500 transition">
-            {lang === 'en' ? 'Hassan.' : 'حسن.'}
+          <a href="#home" onClick={(e) => scrollToSection(e, 'home')} className="text-2xl md:text-3xl font-bold tracking-tight text-gray-100 hover:text-amber-500 transition focus-visible:ring-2 focus-visible:ring-amber-500 outline-none rounded">
+            {lang === 'en' ? 'Hassan.' : 'Hassan.'}
           </a>
           <nav className="hidden md:flex gap-6 text-sm font-medium">
             {content.nav.map((item) => (
-              <a key={item.id} href={`#${item.id}`} onClick={(e) => scrollToSection(e, item.id)} className={`transition-all duration-200 p-2 rounded-lg relative group cursor-pointer ${activeSection === item.id ? 'text-amber-500 font-bold' : 'text-gray-300 hover:text-amber-500'}`}>
+              <a key={item.id} href={`#${item.id}`} onClick={(e) => scrollToSection(e, item.id)} className={`transition-all duration-200 p-2 rounded-lg relative group cursor-pointer focus-visible:ring-2 focus-visible:ring-amber-500 outline-none ${activeSection === item.id ? 'text-amber-500 font-bold' : 'text-gray-300 hover:text-amber-500'}`}>
                 {item.label}
                 <span className={`absolute bottom-0 left-0 w-0 h-0.5 bg-amber-500 transition-all duration-200 group-hover:w-full ${activeSection === item.id ? 'w-full' : ''}`}></span>
               </a>
             ))}
           </nav>
           <div className="flex items-center gap-3">
-             <button onClick={() => setMenuOpen(!menuOpen)} className="md:hidden text-gray-300 hover:text-white transition">
-                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+             <button onClick={() => setMenuOpen(!menuOpen)} aria-label="Toggle Menu" className="md:hidden text-gray-300 hover:text-white transition focus-visible:ring-2 focus-visible:ring-amber-500 outline-none rounded p-1">
+                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d={menuOpen ? "M6 18L18 6M6 6l12 12" : "M4 6h16M4 12h16M4 18h16"}></path></svg>
              </button>
-            <button onClick={() => setLang('en')} className={`px-3 py-1 rounded-full text-xs md:text-sm font-semibold border transition ${lang === 'en' ? 'bg-amber-500 text-gray-900 border-amber-500' : 'text-gray-300 border-gray-600 hover:border-amber-500'}`}>EN</button>
-            <button onClick={() => setLang('ar')} className={`px-3 py-1 rounded-full text-xs md:text-sm font-semibold border transition ${lang === 'ar' ? 'bg-amber-500 text-gray-900 border-amber-500' : 'text-gray-300 border-gray-600 hover:border-amber-500'}`}>AR</button>
+            <button onClick={() => setLang('en')} className={`px-3 py-1 rounded-full text-xs md:text-sm font-semibold border transition focus-visible:ring-2 focus-visible:ring-amber-500 outline-none ${lang === 'en' ? 'bg-amber-500 text-gray-900 border-amber-500' : 'text-gray-300 border-gray-600 hover:border-amber-500'}`}>EN</button>
+            <button onClick={() => setLang('ar')} className={`px-3 py-1 rounded-full text-xs md:text-sm font-semibold border transition focus-visible:ring-2 focus-visible:ring-amber-500 outline-none ${lang === 'ar' ? 'bg-amber-500 text-gray-900 border-amber-500' : 'text-gray-300 border-gray-600 hover:border-amber-500'}`}>AR</button>
           </div>
         </div>
-        {menuOpen && (
-            <nav className="md:hidden bg-gray-900 border-t border-gray-800 p-4 flex flex-col gap-4 text-start">
-                  {content.nav.map((item) => (
-                    <a key={item.id} href={`#${item.id}`} onClick={(e) => scrollToSection(e, item.id)} className={`block p-2 rounded cursor-pointer ${activeSection === item.id ? 'bg-gray-800 text-amber-500' : 'text-gray-300'}`}>{item.label}</a>
-                ))}
-            </nav>
-        )}
+        
+        {/* Animated Mobile Menu */}
+        <nav className={`md:hidden bg-gray-900 border-t border-gray-800 flex flex-col gap-2 text-start overflow-hidden transition-all duration-300 ease-in-out ${menuOpen ? 'max-h-96 opacity-100 p-4' : 'max-h-0 opacity-0 py-0 px-4'}`}>
+            {content.nav.map((item) => (
+              <a key={item.id} href={`#${item.id}`} onClick={(e) => scrollToSection(e, item.id)} className={`block p-3 rounded-lg cursor-pointer transition-colors focus-visible:ring-2 focus-visible:ring-amber-500 outline-none ${activeSection === item.id ? 'bg-gray-800 text-amber-500 font-semibold' : 'text-gray-300 hover:bg-gray-800'}`}>{item.label}</a>
+            ))}
+        </nav>
       </header>
 
       <main className="flex-grow z-10">
@@ -335,11 +397,11 @@ export default function App() {
                 <p className="hero-subtitle text-lg text-gray-400 max-w-xl leading-relaxed mx-auto md:mx-0 text-center md:text-start">{content.hero.description}</p>
                 <div className="flex justify-center md:justify-start"><SocialIcons /></div>
                 <div className="flex flex-wrap items-center justify-center md:justify-start gap-4 pt-4">
-                  <a href="#projects" onClick={(e) => scrollToSection(e, 'projects')} className="px-8 py-3 rounded-full font-semibold text-gray-900 bg-amber-500 shadow-[0_0_15px_rgba(245,158,11,0.5)] hover:bg-amber-400 hover:-translate-y-1 transition duration-300 inline-flex items-center gap-2 cursor-pointer btn">
+                  <a href="#projects" onClick={(e) => scrollToSection(e, 'projects')} className="px-8 py-3 rounded-full font-semibold text-gray-900 bg-amber-500 shadow-[0_0_15px_rgba(245,158,11,0.5)] hover:bg-amber-400 hover:-translate-y-1 transition duration-300 inline-flex items-center gap-2 cursor-pointer btn focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-gray-900 focus-visible:ring-amber-500 outline-none">
                     <span>{content.hero.btnProjects}</span>
                     <ExternalLink />
                   </a>
-                  <a href="#about" onClick={(e) => scrollToSection(e, 'about')} className="px-6 py-3 rounded-full font-semibold border border-amber-500 text-amber-500 hover:bg-amber-500 hover:text-gray-900 transition duration-300 cursor-pointer inline-flex items-center gap-2 btn">
+                  <a href="#about" onClick={(e) => scrollToSection(e, 'about')} className="px-6 py-3 rounded-full font-semibold border border-amber-500 text-amber-500 hover:bg-amber-500 hover:text-gray-900 transition duration-300 cursor-pointer inline-flex items-center gap-2 btn focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-gray-900 focus-visible:ring-amber-500 outline-none">
                     <span>{content.hero.btnAbout}</span>
                     <ChevronRight />
                   </a>
@@ -349,10 +411,8 @@ export default function App() {
                 <div className="relative w-72 h-72 md:w-96 md:h-96 animate-float">
                   <div className="absolute -inset-10 bg-amber-500/20 blur-3xl rounded-full pointer-events-none"></div>
                   <div className="absolute -inset-4 bg-amber-500/30 blur-2xl rounded-full pointer-events-none animate-pulse"></div>
-                  <div className="w-full h-full rounded-full border-4 border-gray-800 shadow-2xl bg-gray-800 relative z-10 ring-4 ring-amber-500/30 overflow-hidden flex items-center justify-center">
-                    <div className="w-full h-full rounded-full overflow-hidden">
-                      <img src="https://i.ibb.co/jvcKX6VZ/Gemini-Generated-Image-vx2w4cvx-2w4cvx2w.png" alt="Hassan Ahmed" className="w-full h-full object-cover rounded-full transform hover:scale-110 transition duration-700" loading="eager" />
-                    </div>
+                  <div className="w-full h-full rounded-full border-4 border-gray-800 shadow-2xl bg-gray-800 relative z-10 ring-4 ring-amber-500/30 flex items-center justify-center p-1">
+                    <ImageWithSkeleton src="https://i.ibb.co/jvcKX6VZ/Gemini-Generated-Image-vx2w4cvx-2w4cvx2w.png" alt="Hassan Ahmed" className="rounded-full w-full h-full overflow-hidden" />
                   </div>
                 </div>
               </div>
@@ -368,7 +428,7 @@ export default function App() {
                    <div className="absolute top-0 right-0 rtl:left-0 rtl:right-auto w-20 h-20 bg-amber-500 blur-3xl opacity-10 rounded-full"></div>
                    <p className="text-lg text-gray-300 mb-6 leading-relaxed" dangerouslySetInnerHTML={{ __html: content.about.p1 }} />
                    <p className="text-lg text-gray-300 mb-8 leading-relaxed" dangerouslySetInnerHTML={{ __html: content.about.p2 }} />
-                   <a href="https://www.linkedin.com/in/hassan-ahmed2007" target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 text-amber-500 font-semibold hover:text-gray-100 transition-colors group">
+                   <a href="https://www.linkedin.com/in/hassan-ahmed2007" target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 text-amber-500 font-semibold hover:text-gray-100 transition-colors group focus-visible:ring-2 focus-visible:ring-amber-500 outline-none rounded px-2 py-1 -ml-2">
                     <span>{content.about.btnLinkedin}</span>
                     <span className="transform group-hover:translate-x-1 rtl:group-hover:-translate-x-1 transition"><ExternalLink /></span>
                   </a>
@@ -384,7 +444,7 @@ export default function App() {
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
                 {content.services.items.map((service, idx) => (
                   <Reveal key={idx} className="h-full">
-                     <Tilt3D className="bg-gray-800/60 backdrop-blur rounded-xl p-8 border border-gray-700 hover:border-amber-500 hover:bg-gray-800 transition-all duration-300 group h-full text-start">
+                     <Tilt3D className="bg-gray-800/60 backdrop-blur rounded-xl p-8 border border-gray-700 hover:border-amber-500 hover:bg-gray-800 transition-all duration-300 group h-full text-start cursor-default">
                         <div className="w-14 h-14 bg-gray-900 rounded-lg flex items-center justify-center mb-6 group-hover:scale-110 transition duration-300 border border-gray-700 group-hover:border-amber-500 rtl:scale-x-[-1]">
                             <svg className="w-8 h-8 text-amber-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d={service.iconPath}></path></svg>
                         </div>
@@ -435,7 +495,7 @@ export default function App() {
                             <h4 className="font-bold text-gray-100 mb-2 group-hover:text-amber-500 transition line-clamp-2">{cert.title}</h4>
                             <p className="text-sm text-gray-400 mb-1">{cert.issuer}</p>
                             <p className="text-xs text-gray-500 mb-4">{cert.date}</p>
-                            <a href={cert.link} target="_blank" rel="noreferrer" className="mt-auto text-xs font-semibold text-amber-500 hover:text-gray-100 flex items-center gap-1 transition">Verify Credential <ExternalLink /></a>
+                            <a href={cert.link} target="_blank" rel="noreferrer" className="mt-auto text-xs font-semibold text-amber-500 hover:text-gray-100 flex items-center gap-1 transition focus-visible:ring-2 focus-visible:ring-amber-500 outline-none rounded p-1 w-fit">Verify Credential <ExternalLink /></a>
                         </Tilt3D>
                       </Reveal>
                     ))}
@@ -452,18 +512,18 @@ export default function App() {
                   <Reveal key={idx} className="h-full">
                      <Tilt3D className="bg-gray-800 rounded-2xl border border-gray-700 overflow-hidden hover:shadow-[0_10px_30px_-10px_rgba(245,158,11,0.3)] hover:scale-105 hover:border-amber-500/50 relative transition-all duration-300 flex flex-col group h-full text-start">
                         <div className="relative overflow-hidden h-52">
-                          <img src={project.image} alt={project.title} className="w-full h-full object-cover transform group-hover:scale-110 transition duration-700" loading="lazy" />
-                          <div className="absolute inset-0 bg-gradient-to-t from-gray-900 to-transparent opacity-80"></div>
+                          <ImageWithSkeleton src={project.image} alt={project.title} className="w-full h-full object-cover transform group-hover:scale-110 transition duration-700" />
+                          <div className="absolute inset-0 bg-gradient-to-t from-gray-900 to-transparent opacity-80 pointer-events-none"></div>
                         </div>
                         <div className="p-6 flex flex-col flex-grow relative">
                           <h3 className="text-2xl font-bold text-gray-100 mb-2 group-hover:text-amber-500 transition">{project.title}</h3>
                           <p className="text-gray-400 mb-6 flex-grow text-sm leading-relaxed line-clamp-3">{project.description}</p>
                           <div className="flex flex-wrap gap-3 mt-auto">
-                            {project.demoLink && <a href={project.demoLink} target="_blank" rel="noreferrer" className="flex-1 text-center py-2 rounded-lg bg-amber-500 text-gray-900 font-semibold text-sm hover:bg-amber-400 transition shadow-lg btn">Demo</a>}
+                            {project.demoLink && <a href={project.demoLink} target="_blank" rel="noreferrer" className="flex-1 text-center py-2 rounded-lg bg-amber-500 text-gray-900 font-semibold text-sm hover:bg-amber-400 transition shadow-lg btn focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-gray-800 focus-visible:ring-amber-500 outline-none">Demo</a>}
                             {project.codeLink ? (
-                              <a href={project.codeLink} target="_blank" rel="noreferrer" className="flex-1 text-center py-2 rounded-lg border border-gray-600 text-gray-100 font-semibold text-sm hover:border-amber-500 hover:text-amber-500 transition btn">Code</a>
+                              <a href={project.codeLink} target="_blank" rel="noreferrer" className="flex-1 text-center py-2 rounded-lg border border-gray-600 text-gray-100 font-semibold text-sm hover:border-amber-500 hover:text-amber-500 transition btn focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-gray-800 focus-visible:ring-amber-500 outline-none">Code</a>
                             ) : project.doiLink && (
-                              <a href={project.doiLink} target="_blank" rel="noreferrer" className="flex-1 text-center py-2 rounded-lg border border-gray-600 text-gray-100 font-semibold text-sm hover:border-amber-500 hover:text-amber-500 transition btn">DOI</a>
+                              <a href={project.doiLink} target="_blank" rel="noreferrer" className="flex-1 text-center py-2 rounded-lg border border-gray-600 text-gray-100 font-semibold text-sm hover:border-amber-500 hover:text-amber-500 transition btn focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-gray-800 focus-visible:ring-amber-500 outline-none">DOI</a>
                             )}
                           </div>
                         </div>
@@ -472,7 +532,7 @@ export default function App() {
                 ))}
               </div>
               <div className="text-center mt-12">
-                <a href="https://github.com/HassanAhmed2Ha" target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 text-gray-400 hover:text-amber-500 transition-colors font-semibold">
+                <a href="https://github.com/HassanAhmed2Ha" target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 text-gray-400 hover:text-amber-500 transition-colors font-semibold focus-visible:ring-2 focus-visible:ring-amber-500 outline-none rounded px-3 py-2">
                   <span>{content.projects.viewAll}</span>
                   <ExternalLink />
                 </a>
@@ -492,7 +552,7 @@ export default function App() {
                           <h3 className="text-xl font-bold text-gray-100 mb-2">{pub.title}</h3>
                           <p className="text-xs text-amber-500 font-mono mb-3 uppercase tracking-wider">{pub.meta}</p>
                           <p className="text-gray-300 mb-4 text-sm leading-relaxed">{pub.description}</p>
-                          <a href={`https://doi.org/${pub.doi}`} target="_blank" rel="noreferrer" className="text-gray-400 hover:text-amber-500 text-sm inline-flex items-center gap-1 transition">
+                          <a href={`https://doi.org/${pub.doi}`} target="_blank" rel="noreferrer" className="text-gray-400 hover:text-amber-500 text-sm inline-flex items-center gap-1 transition focus-visible:ring-2 focus-visible:ring-amber-500 outline-none rounded p-1 w-fit">
                             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"></path></svg>
                             DOI: {pub.doi}
                           </a>
@@ -514,29 +574,29 @@ export default function App() {
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div className="group">
                             <label htmlFor="name" className="block text-sm font-medium text-gray-400 mb-1 text-start">{content.contact.placeholders.name}</label>
-                            <input type="text" name="name" id="name" value={formData.name} onChange={handleInputChange} placeholder={content.contact.placeholders.name} className="w-full p-3 bg-gray-900 border border-gray-600 rounded-lg text-white focus:ring-2 focus:ring-amber-500 outline-none text-start" required />
+                            <input type="text" name="name" id="name" value={formData.name} onChange={handleInputChange} placeholder={content.contact.placeholders.name} className="w-full p-3 bg-gray-900 border border-gray-600 rounded-lg text-white focus:ring-2 focus:ring-amber-500 outline-none text-start transition-shadow" required />
                         </div>
                         <div className="group">
                             <label htmlFor="email" className="block text-sm font-medium text-gray-400 mb-1 text-start">{content.contact.placeholders.email}</label>
-                            <input type="email" name="email" id="email" value={formData.email} onChange={handleInputChange} placeholder={content.contact.placeholders.email} className="w-full p-3 bg-gray-900 border border-gray-600 rounded-lg text-white focus:ring-2 focus:ring-amber-500 outline-none text-start" required />
+                            <input type="email" name="email" id="email" value={formData.email} onChange={handleInputChange} placeholder={content.contact.placeholders.email} className="w-full p-3 bg-gray-900 border border-gray-600 rounded-lg text-white focus:ring-2 focus:ring-amber-500 outline-none text-start transition-shadow" required />
                         </div>
                       </div>
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                           <div className="group">
                              <label htmlFor="phone" className="block text-sm font-medium text-gray-400 mb-1 text-start">{content.contact.placeholders.phone}</label>
-                             <input type="tel" name="phone" id="phone" value={formData.phone} onChange={handleInputChange} placeholder={content.contact.placeholders.phone} className="w-full p-3 bg-gray-900 border border-gray-600 rounded-lg text-white focus:ring-2 focus:ring-amber-500 outline-none text-start" />
+                             <input type="tel" name="phone" id="phone" value={formData.phone} onChange={handleInputChange} placeholder={content.contact.placeholders.phone} className="w-full p-3 bg-gray-900 border border-gray-600 rounded-lg text-white focus:ring-2 focus:ring-amber-500 outline-none text-start transition-shadow" />
                           </div>
                           <div className="group">
                              <label htmlFor="subject" className="block text-sm font-medium text-gray-400 mb-1 text-start">{content.contact.placeholders.subject}</label>
-                             <input type="text" name="subject" id="subject" value={formData.subject} onChange={handleInputChange} placeholder={content.contact.placeholders.subject} className="w-full p-3 bg-gray-900 border border-gray-600 rounded-lg text-white focus:ring-2 focus:ring-amber-500 outline-none text-start" />
+                             <input type="text" name="subject" id="subject" value={formData.subject} onChange={handleInputChange} placeholder={content.contact.placeholders.subject} className="w-full p-3 bg-gray-900 border border-gray-600 rounded-lg text-white focus:ring-2 focus:ring-amber-500 outline-none text-start transition-shadow" />
                           </div>
                       </div>
                       <div className="group">
                         <label htmlFor="message" className="block text-sm font-medium text-gray-400 mb-1 text-start">{content.contact.placeholders.message}</label>
-                        <textarea name="message" id="message" value={formData.message} onChange={handleInputChange} placeholder={content.contact.placeholders.message} rows={5} className="w-full p-3 bg-gray-900 border border-gray-600 rounded-lg text-white focus:ring-2 focus:ring-amber-500 outline-none text-start" required></textarea>
+                        <textarea name="message" id="message" value={formData.message} onChange={handleInputChange} placeholder={content.contact.placeholders.message} rows={5} className="w-full p-3 bg-gray-900 border border-gray-600 rounded-lg text-white focus:ring-2 focus:ring-amber-500 outline-none text-start transition-shadow resize-y" required></textarea>
                       </div>
                       <div className="text-center pt-2">
-                        <button type="submit" disabled={isSubmitting} className="w-full md:w-auto px-10 py-3 rounded-full font-bold text-gray-900 bg-amber-500 hover:bg-amber-400 transition-all disabled:opacity-50 inline-flex items-center justify-center gap-2 btn">
+                        <button type="submit" disabled={isSubmitting} className="w-full md:w-auto px-10 py-3 rounded-full font-bold text-gray-900 bg-amber-500 hover:bg-amber-400 transition-all disabled:opacity-50 inline-flex items-center justify-center gap-2 btn focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-gray-800 focus-visible:ring-amber-500 outline-none">
                           <span>{isSubmitting ? 'Sending...' : content.contact.btnSend}</span>
                           <svg className="w-5 h-5 rtl:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path></svg>
                         </button>
@@ -560,7 +620,7 @@ export default function App() {
           <div className="space-y-6">
              <h3 className="text-lg font-bold text-gray-100 uppercase">{content.footer.col2Title}</h3>
              <ul className="text-gray-400 space-y-3 text-sm">
-                {content.nav.map(item => <li key={item.id}><a href={`#${item.id}`} onClick={(e) => scrollToSection(e, item.id)} className="hover:text-amber-500 transition-colors block w-fit mx-auto md:mx-0">{item.label}</a></li>)}
+                {content.nav.map(item => <li key={item.id}><a href={`#${item.id}`} onClick={(e) => scrollToSection(e, item.id)} className="hover:text-amber-500 transition-colors block w-fit mx-auto md:mx-0 focus-visible:ring-2 focus-visible:ring-amber-500 outline-none rounded p-1 -ml-1">{item.label}</a></li>)}
              </ul>
           </div>
           <div className="space-y-6">
@@ -577,10 +637,25 @@ export default function App() {
         </div>
       </footer>
 
-      {/* Floating Action Button */}
-      <a href="#contact" onClick={(e) => scrollToSection(e, 'contact')} className="fixed bottom-6 right-6 rtl:right-auto rtl:left-6 w-14 h-14 bg-amber-500 rounded-full flex items-center justify-center shadow-lg z-40 text-gray-900 hover:scale-110 transition-all cursor-pointer" aria-label="Contact">
-        <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M18 10c0 3.866-3.582 7-8 7a8.841 8.841 0 01-4.083-.98L2 17l1.338-3.13C2.42 12.552 2 11.234 2 10c0-3.866 3.582-7 8-7s8 3.134 8 7z" clipRule="evenodd"></path></svg>
-      </a>
+      {/* Floating Action / Back to Top Button */}
+      <div className="fixed bottom-6 right-6 rtl:right-auto rtl:left-6 flex flex-col gap-3 z-40">
+        <button 
+          onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} 
+          className={`w-12 h-12 bg-gray-800 border border-gray-700 text-amber-500 rounded-full flex items-center justify-center shadow-lg hover:bg-gray-700 transition-all duration-300 focus-visible:ring-2 focus-visible:ring-amber-500 outline-none ${showBackToTop ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0 pointer-events-none'}`}
+          aria-label="Back to top"
+        >
+          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 15l7-7 7 7"></path></svg>
+        </button>
+        
+        <a 
+          href="#contact" 
+          onClick={(e) => scrollToSection(e, 'contact')} 
+          className="w-14 h-14 bg-amber-500 text-gray-900 rounded-full flex items-center justify-center shadow-lg hover:scale-110 transition-all duration-300 focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-gray-900 focus-visible:ring-amber-500 outline-none" 
+          aria-label="Contact"
+        >
+          <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M18 10c0 3.866-3.582 7-8 7a8.841 8.841 0 01-4.083-.98L2 17l1.338-3.13C2.42 12.552 2 11.234 2 10c0-3.866 3.582-7 8-7s8 3.134 8 7z" clipRule="evenodd"></path></svg>
+        </a>
+      </div>
     </div>
   );
 }
