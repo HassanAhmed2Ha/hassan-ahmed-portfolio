@@ -35,15 +35,15 @@ const SocialIcons = ({ className = '' }: { className?: string }) => (
 );
 
 // --- UI COMPONENTS ---
-const ImageWithSkeleton = ({ src, alt, className }: { src: string, alt: string, className: string }) => {
+const ImageWithSkeleton = ({ src, alt, className = '', imageClassName = '' }: { src: string, alt: string, className?: string, imageClassName?: string }) => {
   const [loaded, setLoaded] = useState(false);
   return (
     <div className={`relative ${className}`}>
-      {!loaded && <div className="absolute inset-0 bg-gray-700 animate-pulse rounded-full"></div>}
+      {!loaded && <div className="absolute inset-0 bg-gray-700 animate-pulse"></div>}
       <img 
         src={src} 
         alt={alt} 
-        className={`w-full h-full object-cover transform transition-all duration-700 ${loaded ? 'opacity-100 scale-100' : 'opacity-0 scale-95'}`} 
+        className={`w-full h-full object-cover transition-all duration-700 ease-out ${loaded ? 'opacity-100' : 'opacity-0'} ${imageClassName}`} 
         onLoad={() => setLoaded(true)} 
         loading="lazy" 
       />
@@ -51,7 +51,7 @@ const ImageWithSkeleton = ({ src, alt, className }: { src: string, alt: string, 
   );
 };
 
-// --- UPDATED ANIMATED BACKGROUND ---
+// --- BACKGROUND ---
 const ParticleBackground = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const mouseRef = useRef({ x: 0, y: 0, active: false });
@@ -78,8 +78,8 @@ const ParticleBackground = () => {
         particles.push({
           x: Math.random() * canvas.width,
           y: Math.random() * canvas.height,
-          vx: (Math.random() - 0.5) * 1.5, // Double horizontal speed
-          vy: (Math.random() - 0.5) * 1.5, // Double vertical speed
+          vx: (Math.random() - 0.5) * 1.5,
+          vy: (Math.random() - 0.5) * 1.5,
           size: Math.random() * 2 + 1,
         });
       }
@@ -100,14 +100,13 @@ const ParticleBackground = () => {
         ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
         ctx.fill();
 
-        // Draw links between connected particles
         for (let j = i + 1; j < particles.length; j++) {
           const p2 = particles[j];
           const dx = p.x - p2.x;
           const dy = p.y - p2.y;
           const dist = Math.sqrt(dx * dx + dy * dy);
 
-          if (dist < 150) { // Linking distance
+          if (dist < 150) {
             ctx.beginPath();
             ctx.strokeStyle = `rgba(245, 158, 11, ${0.4 * (1 - dist / 150)})`;
             ctx.lineWidth = 0.8;
@@ -117,7 +116,6 @@ const ParticleBackground = () => {
           }
         }
 
-        // Mouse link interaction
         if (mouseRef.current.active) {
           const dxM = p.x - mouseRef.current.x;
           const dyM = p.y - mouseRef.current.y;
@@ -191,7 +189,7 @@ const Typewriter = ({ words }: { words: string[] }) => {
   }, [subIndex, index, reverse, words]);
 
   return (
-    <span className="text-amber-500 inline-block text-start" dir="auto">
+    <span className="text-amber-500 inline-block text-start font-extrabold" dir="auto">
       {words[index].substring(0, subIndex)}
       <span className={`inline-block w-0.5 h-6 mx-1 bg-amber-500 align-middle transition-opacity ${blink ? 'opacity-100' : 'opacity-0'}`}></span>
     </span>
@@ -243,7 +241,6 @@ export default function App() {
   const [formData, setFormData] = useState<ContactFormData>({ name: '', email: '', phone: '', subject: '', message: '' });
   const [isSubmitting, setIsSubmitting] = useState(false);
   
-  // New States for UX improvements
   const [scrollProgress, setScrollProgress] = useState(0);
   const [showBackToTop, setShowBackToTop] = useState(false);
   const [toast, setToast] = useState({ show: false, message: '', type: 'success' });
@@ -263,7 +260,6 @@ export default function App() {
 
   useEffect(() => {
     const handleScroll = () => {
-      // Handle Active Section
       const sections = content.nav.map(item => item.id);
       const scrollPosition = window.scrollY + 100;
       for (const section of sections) {
@@ -275,13 +271,9 @@ export default function App() {
         }
       }
 
-      // Handle Scroll Progress
       const totalScroll = document.documentElement.scrollTop;
       const windowHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-      const progress = `${(totalScroll / windowHeight) * 100}%`;
       setScrollProgress(Number(totalScroll / windowHeight) * 100);
-
-      // Handle Back To Top Button visibility
       setShowBackToTop(totalScroll > 500);
     };
 
@@ -332,11 +324,11 @@ export default function App() {
   const fontClass = lang === 'ar' ? "font-['Cairo']" : "font-['Plus_Jakarta_Sans']";
 
   return (
-    <div className={`min-h-screen flex flex-col ${fontClass} overflow-x-hidden bg-gray-900 text-gray-100 relative pt-20 transition-all duration-300 antialiased`} dir={lang === 'ar' ? 'rtl' : 'ltr'}>
+    <div className={`min-h-screen flex flex-col ${fontClass} overflow-x-hidden bg-gray-900 text-gray-100 relative pt-20 transition-all duration-300 subpixel-antialiased font-medium`} dir={lang === 'ar' ? 'rtl' : 'ltr'}>
       
       {/* Toast Notification */}
       <div className={`fixed top-24 left-1/2 transform -translate-x-1/2 z-50 transition-all duration-300 ${toast.show ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-4 pointer-events-none'}`}>
-        <div className={`px-6 py-3 rounded-full shadow-lg font-semibold text-sm flex items-center gap-2 ${toast.type === 'success' ? 'bg-green-500 text-white' : 'bg-red-500 text-white'}`}>
+        <div className={`px-6 py-3 rounded-full shadow-lg font-bold text-sm flex items-center gap-2 ${toast.type === 'success' ? 'bg-green-500 text-white' : 'bg-red-500 text-white'}`}>
           {toast.type === 'success' ? (
             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path></svg>
           ) : (
@@ -348,16 +340,15 @@ export default function App() {
 
       {/* Header */}
       <header className="fixed top-0 left-0 right-0 z-50 bg-gray-900/90 backdrop-blur-md shadow-lg border-b border-gray-800 h-20">
-        {/* Scroll Progress Bar */}
         <div className="absolute bottom-0 left-0 h-0.5 bg-amber-500 transition-all duration-150 ease-out" style={{ width: `${scrollProgress}%` }}></div>
         
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center h-full">
-          <a href="#home" onClick={(e) => scrollToSection(e, 'home')} className="text-2xl md:text-3xl font-bold tracking-tight text-gray-100 hover:text-amber-500 transition focus-visible:ring-2 focus-visible:ring-amber-500 outline-none rounded">
-            {lang === 'en' ? 'Hassan.' : 'Hassan.'}
+          <a href="#home" onClick={(e) => scrollToSection(e, 'home')} className="text-2xl md:text-3xl font-extrabold tracking-tight text-gray-100 hover:text-amber-500 transition focus-visible:ring-2 focus-visible:ring-amber-500 outline-none rounded">
+            Hassan.
           </a>
-          <nav className="hidden md:flex gap-6 text-sm font-medium">
+          <nav className="hidden md:flex gap-6 text-sm font-bold">
             {content.nav.map((item) => (
-              <a key={item.id} href={`#${item.id}`} onClick={(e) => scrollToSection(e, item.id)} className={`transition-all duration-200 p-2 rounded-lg relative group cursor-pointer focus-visible:ring-2 focus-visible:ring-amber-500 outline-none ${activeSection === item.id ? 'text-amber-500 font-bold' : 'text-gray-300 hover:text-amber-500'}`}>
+              <a key={item.id} href={`#${item.id}`} onClick={(e) => scrollToSection(e, item.id)} className={`transition-all duration-200 p-2 rounded-lg relative group cursor-pointer focus-visible:ring-2 focus-visible:ring-amber-500 outline-none ${activeSection === item.id ? 'text-amber-500' : 'text-gray-300 hover:text-amber-500'}`}>
                 {item.label}
                 <span className={`absolute bottom-0 left-0 w-0 h-0.5 bg-amber-500 transition-all duration-200 group-hover:w-full ${activeSection === item.id ? 'w-full' : ''}`}></span>
               </a>
@@ -367,15 +358,15 @@ export default function App() {
              <button onClick={() => setMenuOpen(!menuOpen)} aria-label="Toggle Menu" className="md:hidden text-gray-300 hover:text-white transition focus-visible:ring-2 focus-visible:ring-amber-500 outline-none rounded p-1">
                 <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d={menuOpen ? "M6 18L18 6M6 6l12 12" : "M4 6h16M4 12h16M4 18h16"}></path></svg>
              </button>
-            <button onClick={() => setLang('en')} className={`px-3 py-1 rounded-full text-xs md:text-sm font-semibold border transition focus-visible:ring-2 focus-visible:ring-amber-500 outline-none ${lang === 'en' ? 'bg-amber-500 text-gray-900 border-amber-500' : 'text-gray-300 border-gray-600 hover:border-amber-500'}`}>EN</button>
-            <button onClick={() => setLang('ar')} className={`px-3 py-1 rounded-full text-xs md:text-sm font-semibold border transition focus-visible:ring-2 focus-visible:ring-amber-500 outline-none ${lang === 'ar' ? 'bg-amber-500 text-gray-900 border-amber-500' : 'text-gray-300 border-gray-600 hover:border-amber-500'}`}>AR</button>
+            <button onClick={() => setLang('en')} className={`px-3 py-1 rounded-full text-xs md:text-sm font-bold border transition focus-visible:ring-2 focus-visible:ring-amber-500 outline-none ${lang === 'en' ? 'bg-amber-500 text-gray-900 border-amber-500' : 'text-gray-300 border-gray-600 hover:border-amber-500'}`}>EN</button>
+            <button onClick={() => setLang('ar')} className={`px-3 py-1 rounded-full text-xs md:text-sm font-bold border transition focus-visible:ring-2 focus-visible:ring-amber-500 outline-none ${lang === 'ar' ? 'bg-amber-500 text-gray-900 border-amber-500' : 'text-gray-300 border-gray-600 hover:border-amber-500'}`}>AR</button>
           </div>
         </div>
         
         {/* Animated Mobile Menu */}
         <nav className={`md:hidden bg-gray-900 border-t border-gray-800 flex flex-col gap-2 text-start overflow-hidden transition-all duration-300 ease-in-out ${menuOpen ? 'max-h-96 opacity-100 p-4' : 'max-h-0 opacity-0 py-0 px-4'}`}>
             {content.nav.map((item) => (
-              <a key={item.id} href={`#${item.id}`} onClick={(e) => scrollToSection(e, item.id)} className={`block p-3 rounded-lg cursor-pointer transition-colors focus-visible:ring-2 focus-visible:ring-amber-500 outline-none ${activeSection === item.id ? 'bg-gray-800 text-amber-500 font-semibold' : 'text-gray-300 hover:bg-gray-800'}`}>{item.label}</a>
+              <a key={item.id} href={`#${item.id}`} onClick={(e) => scrollToSection(e, item.id)} className={`block p-3 rounded-lg cursor-pointer font-bold transition-colors focus-visible:ring-2 focus-visible:ring-amber-500 outline-none ${activeSection === item.id ? 'bg-gray-800 text-amber-500' : 'text-gray-300 hover:bg-gray-800'}`}>{item.label}</a>
             ))}
         </nav>
       </header>
@@ -387,32 +378,37 @@ export default function App() {
             <ParticleBackground />
             <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
               <Reveal className="space-y-6 md:space-y-8 order-2 md:order-1 text-center md:text-start">
-                <p className="text-xl md:text-2xl text-amber-500 font-semibold tracking-wide text-center md:text-start">{content.hero.greeting}</p>
-                <h1 className="hero-title text-gray-100 leading-tight text-center md:text-start">
+                <p className="text-xl md:text-2xl text-amber-500 font-bold tracking-wide text-center md:text-start">{content.hero.greeting}</p>
+                <h1 className="hero-title text-gray-100 font-extrabold leading-tight text-center md:text-start tracking-wide">
                   {content.hero.namePrefix} <span className="text-gray-100">{content.hero.name}</span>
                 </h1>
-                <div className="text-2xl md:text-3xl font-bold text-gray-300 h-10 text-center md:text-start">
+                <div className="text-2xl md:text-3xl font-extrabold text-gray-300 h-10 text-center md:text-start">
                    <Typewriter words={content.hero.role} />
                 </div>
-                <p className="hero-subtitle text-lg text-gray-400 max-w-xl leading-relaxed mx-auto md:mx-0 text-center md:text-start">{content.hero.description}</p>
+                <p className="hero-subtitle text-lg font-medium text-gray-400 max-w-xl leading-relaxed mx-auto md:mx-0 text-center md:text-start">{content.hero.description}</p>
                 <div className="flex justify-center md:justify-start"><SocialIcons /></div>
                 <div className="flex flex-wrap items-center justify-center md:justify-start gap-4 pt-4">
-                  <a href="#projects" onClick={(e) => scrollToSection(e, 'projects')} className="px-8 py-3 rounded-full font-semibold text-gray-900 bg-amber-500 shadow-[0_0_15px_rgba(245,158,11,0.5)] hover:bg-amber-400 hover:-translate-y-1 transition duration-300 inline-flex items-center gap-2 cursor-pointer btn focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-gray-900 focus-visible:ring-amber-500 outline-none">
+                  <a href="#projects" onClick={(e) => scrollToSection(e, 'projects')} className="px-8 py-3 rounded-full font-bold text-gray-900 bg-amber-500 shadow-[0_0_15px_rgba(245,158,11,0.5)] hover:bg-amber-400 hover:-translate-y-1 transition duration-300 inline-flex items-center gap-2 cursor-pointer btn focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-gray-900 focus-visible:ring-amber-500 outline-none">
                     <span>{content.hero.btnProjects}</span>
                     <ExternalLink />
                   </a>
-                  <a href="#about" onClick={(e) => scrollToSection(e, 'about')} className="px-6 py-3 rounded-full font-semibold border border-amber-500 text-amber-500 hover:bg-amber-500 hover:text-gray-900 transition duration-300 cursor-pointer inline-flex items-center gap-2 btn focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-gray-900 focus-visible:ring-amber-500 outline-none">
+                  <a href="#about" onClick={(e) => scrollToSection(e, 'about')} className="px-6 py-3 rounded-full font-bold border border-amber-500 text-amber-500 hover:bg-amber-500 hover:text-gray-900 transition duration-300 cursor-pointer inline-flex items-center gap-2 btn focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-gray-900 focus-visible:ring-amber-500 outline-none">
                     <span>{content.hero.btnAbout}</span>
                     <ChevronRight />
                   </a>
                 </div>
               </Reveal>
               <div className="flex justify-center items-center p-4 md:p-8 order-1 md:order-2">
-                <div className="relative w-72 h-72 md:w-96 md:h-96 animate-float">
+                <div className="relative w-80 h-80 md:w-[32rem] md:h-[32rem] animate-float">
                   <div className="absolute -inset-10 bg-amber-500/20 blur-3xl rounded-full pointer-events-none"></div>
                   <div className="absolute -inset-4 bg-amber-500/30 blur-2xl rounded-full pointer-events-none animate-pulse"></div>
-                  <div className="w-full h-full rounded-full border-4 border-gray-800 shadow-2xl bg-gray-800 relative z-10 ring-4 ring-amber-500/30 flex items-center justify-center p-1">
-                    <ImageWithSkeleton src="https://i.ibb.co/jvcKX6VZ/Gemini-Generated-Image-vx2w4cvx-2w4cvx2w.png" alt="Hassan Ahmed" className="rounded-full w-full h-full overflow-hidden" />
+                  <div className="w-full h-full rounded-full border-4 border-gray-800 shadow-2xl bg-gray-800 relative z-10 ring-4 ring-amber-500/30 flex items-center justify-center p-1 overflow-hidden">
+                    <ImageWithSkeleton 
+                      src="https://i.ibb.co/jvcKX6VZ/Gemini-Generated-Image-vx2w4cvx-2w4cvx2w.png" 
+                      alt="Hassan Ahmed" 
+                      className="rounded-full w-full h-full overflow-hidden" 
+                      imageClassName="transform scale-110 hover:scale-100" 
+                    />
                   </div>
                 </div>
               </div>
@@ -422,13 +418,13 @@ export default function App() {
         {/* ABOUT */}
         <section id="about" className="py-20 bg-gray-900/50">
             <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-              <h2 className="text-3xl md:text-4xl font-bold text-gray-100 text-center mb-10"><span className="border-b-4 border-amber-500 pb-2">{content.about.title}</span></h2>
+              <h2 className="text-3xl md:text-4xl font-extrabold text-gray-100 text-center mb-10 tracking-wide"><span className="border-b-4 border-amber-500 pb-2">{content.about.title}</span></h2>
               <Reveal className="w-full">
                 <Tilt3D className="bg-gray-800/80 backdrop-blur-sm rounded-2xl p-8 md:p-12 border border-gray-700 shadow-2xl relative overflow-hidden text-start">
                    <div className="absolute top-0 right-0 rtl:left-0 rtl:right-auto w-20 h-20 bg-amber-500 blur-3xl opacity-10 rounded-full"></div>
-                   <p className="text-lg text-gray-300 mb-6 leading-relaxed" dangerouslySetInnerHTML={{ __html: content.about.p1 }} />
-                   <p className="text-lg text-gray-300 mb-8 leading-relaxed" dangerouslySetInnerHTML={{ __html: content.about.p2 }} />
-                   <a href="https://www.linkedin.com/in/hassan-ahmed2007" target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 text-amber-500 font-semibold hover:text-gray-100 transition-colors group focus-visible:ring-2 focus-visible:ring-amber-500 outline-none rounded px-2 py-1 -ml-2">
+                   <p className="text-lg font-medium text-gray-300 mb-6 leading-relaxed" dangerouslySetInnerHTML={{ __html: content.about.p1 }} />
+                   <p className="text-lg font-medium text-gray-300 mb-8 leading-relaxed" dangerouslySetInnerHTML={{ __html: content.about.p2 }} />
+                   <a href="https://www.linkedin.com/in/hassan-ahmed2007" target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 text-amber-500 font-bold hover:text-gray-100 transition-colors group focus-visible:ring-2 focus-visible:ring-amber-500 outline-none rounded px-2 py-1 -ml-2">
                     <span>{content.about.btnLinkedin}</span>
                     <span className="transform group-hover:translate-x-1 rtl:group-hover:-translate-x-1 transition"><ExternalLink /></span>
                   </a>
@@ -440,7 +436,7 @@ export default function App() {
         {/* SERVICES (SKILLS) */}
         <section id="services" className="py-20">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-              <h2 className="text-3xl md:text-4xl font-bold text-gray-100 text-center mb-16"><span className="border-b-4 border-amber-500 pb-2">{content.services.title}</span></h2>
+              <h2 className="text-3xl md:text-4xl font-extrabold text-gray-100 text-center mb-16 tracking-wide"><span className="border-b-4 border-amber-500 pb-2">{content.services.title}</span></h2>
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
                 {content.services.items.map((service, idx) => (
                   <Reveal key={idx} className="h-full">
@@ -448,8 +444,8 @@ export default function App() {
                         <div className="w-14 h-14 bg-gray-900 rounded-lg flex items-center justify-center mb-6 group-hover:scale-110 transition duration-300 border border-gray-700 group-hover:border-amber-500 rtl:scale-x-[-1]">
                             <svg className="w-8 h-8 text-amber-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d={service.iconPath}></path></svg>
                         </div>
-                        <h3 className="text-xl font-bold text-gray-100 mb-3 group-hover:text-amber-500 transition">{service.title}</h3>
-                        <p className="text-gray-400 text-sm leading-relaxed">{service.description}</p>
+                        <h3 className="text-xl font-extrabold text-gray-100 mb-3 group-hover:text-amber-500 transition">{service.title}</h3>
+                        <p className="text-gray-400 text-sm font-medium leading-relaxed">{service.description}</p>
                      </Tilt3D>
                   </Reveal>
                 ))}
@@ -460,7 +456,7 @@ export default function App() {
         {/* EXPERIENCE */}
         <section id="experience" className="py-20 bg-gray-900/50">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-              <h2 className="text-3xl md:text-4xl font-bold text-gray-100 text-center mb-16"><span className="border-b-4 border-amber-500 pb-2">{content.experience.title}</span></h2>
+              <h2 className="text-3xl md:text-4xl font-extrabold text-gray-100 text-center mb-16 tracking-wide"><span className="border-b-4 border-amber-500 pb-2">{content.experience.title}</span></h2>
               <div className="max-w-4xl mx-auto space-y-8 relative before:absolute before:top-0 before:bottom-0 before:w-0.5 before:bg-gradient-to-b before:from-transparent before:via-gray-600 before:to-transparent before:left-5 md:before:left-1/2 md:before:-translate-x-1/2 rtl:before:left-auto rtl:before:right-5 rtl:md:before:right-auto rtl:md:before:left-1/2">
                 {content.experience.items.map((item, idx) => (
                   <Reveal key={idx} className="relative flex items-center justify-center w-full group">
@@ -468,11 +464,11 @@ export default function App() {
                     <div className={`w-full md:w-1/2 flex flex-col relative pl-12 rtl:pl-0 rtl:pr-12 md:pl-0 rtl:md:pr-0 ${idx % 2 === 0 ? 'md:mr-auto md:ml-0 md:pr-16 md:pl-0 md:items-end rtl:md:ml-auto rtl:md:mr-0 rtl:md:pl-16 rtl:md:pr-0' : 'md:ml-auto md:mr-0 md:pl-16 md:pr-0 md:items-start rtl:md:mr-auto rtl:md:ml-0 rtl:md:pr-16 rtl:md:pl-0'}`}>
                        <Tilt3D className="w-full p-6 bg-gray-800 rounded-xl border border-gray-700 hover:border-amber-500 transition shadow-lg text-start">
                           <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-2">
-                            <h3 className="font-bold text-lg text-gray-100 group-hover:text-amber-500 transition">{item.role}</h3>
-                            <span className="text-xs font-mono text-gray-400 bg-gray-900 px-2 py-1 rounded border border-gray-700 mt-1 md:mt-0">{item.period}</span>
+                            <h3 className="font-extrabold text-lg text-gray-100 group-hover:text-amber-500 transition">{item.role}</h3>
+                            <span className="text-xs font-mono font-bold text-gray-400 bg-gray-900 px-2 py-1 rounded border border-gray-700 mt-1 md:mt-0">{item.period}</span>
                           </div>
-                          <p className="text-sm text-amber-400 font-semibold mb-3">{item.company}</p>
-                          <ul className="list-disc list-inside text-sm text-gray-400 space-y-1 marker:text-amber-500">
+                          <p className="text-sm text-amber-400 font-bold mb-3">{item.company}</p>
+                          <ul className="list-disc list-inside text-sm font-medium text-gray-400 space-y-1 marker:text-amber-500">
                             {item.description.map((point, i) => <li key={i}>{point}</li>)}
                           </ul>
                        </Tilt3D>
@@ -486,16 +482,16 @@ export default function App() {
         {/* CERTIFICATIONS */}
         <section id="certifications" className="py-20 bg-gray-900">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <h3 className="text-3xl md:text-4xl font-bold text-gray-100 text-center mb-16"><span className="border-b-4 border-amber-500 pb-2">{content.certifications.title}</span></h3>
+                <h3 className="text-3xl md:text-4xl font-extrabold text-gray-100 text-center mb-16 tracking-wide"><span className="border-b-4 border-amber-500 pb-2">{content.certifications.title}</span></h3>
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
                     {content.certifications.items.map((cert, idx) => (
                       <Reveal key={idx} className="h-full">
                         <Tilt3D className="bg-gray-800 rounded-lg p-6 border border-gray-700 hover:border-amber-500 transition flex flex-col h-full group text-start">
                             <div className="mb-4 text-amber-500 rtl:scale-x-[-1]"><svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg></div>
-                            <h4 className="font-bold text-gray-100 mb-2 group-hover:text-amber-500 transition line-clamp-2">{cert.title}</h4>
-                            <p className="text-sm text-gray-400 mb-1">{cert.issuer}</p>
-                            <p className="text-xs text-gray-500 mb-4">{cert.date}</p>
-                            <a href={cert.link} target="_blank" rel="noreferrer" className="mt-auto text-xs font-semibold text-amber-500 hover:text-gray-100 flex items-center gap-1 transition focus-visible:ring-2 focus-visible:ring-amber-500 outline-none rounded p-1 w-fit">Verify Credential <ExternalLink /></a>
+                            <h4 className="font-extrabold text-gray-100 mb-2 group-hover:text-amber-500 transition line-clamp-2">{cert.title}</h4>
+                            <p className="text-sm font-medium text-gray-400 mb-1">{cert.issuer}</p>
+                            <p className="text-xs font-medium text-gray-500 mb-4">{cert.date}</p>
+                            <a href={cert.link} target="_blank" rel="noreferrer" className="mt-auto text-xs font-bold text-amber-500 hover:text-gray-100 flex items-center gap-1 transition focus-visible:ring-2 focus-visible:ring-amber-500 outline-none rounded p-1 w-fit">Verify Credential <ExternalLink /></a>
                         </Tilt3D>
                       </Reveal>
                     ))}
@@ -506,24 +502,29 @@ export default function App() {
         {/* PROJECTS */}
         <section id="projects" className="py-20">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-               <h2 className="text-3xl md:text-4xl font-bold text-gray-100 text-center mb-16"><span className="border-b-4 border-amber-500 pb-2">{content.projects.title}</span></h2>
+               <h2 className="text-3xl md:text-4xl font-extrabold text-gray-100 text-center mb-16 tracking-wide"><span className="border-b-4 border-amber-500 pb-2">{content.projects.title}</span></h2>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                 {content.projects.items.map((project, idx) => (
                   <Reveal key={idx} className="h-full">
                      <Tilt3D className="bg-gray-800 rounded-2xl border border-gray-700 overflow-hidden hover:shadow-[0_10px_30px_-10px_rgba(245,158,11,0.3)] hover:scale-105 hover:border-amber-500/50 relative transition-all duration-300 flex flex-col group h-full text-start">
                         <div className="relative overflow-hidden h-52">
-                          <ImageWithSkeleton src={project.image} alt={project.title} className="w-full h-full object-cover transform group-hover:scale-110 transition duration-700" />
+                          <ImageWithSkeleton 
+                            src={project.image} 
+                            alt={project.title} 
+                            className="w-full h-full overflow-hidden" 
+                            imageClassName="transform hover:scale-110" 
+                          />
                           <div className="absolute inset-0 bg-gradient-to-t from-gray-900 to-transparent opacity-80 pointer-events-none"></div>
                         </div>
                         <div className="p-6 flex flex-col flex-grow relative">
-                          <h3 className="text-2xl font-bold text-gray-100 mb-2 group-hover:text-amber-500 transition">{project.title}</h3>
-                          <p className="text-gray-400 mb-6 flex-grow text-sm leading-relaxed line-clamp-3">{project.description}</p>
+                          <h3 className="text-2xl font-extrabold text-gray-100 mb-2 group-hover:text-amber-500 transition">{project.title}</h3>
+                          <p className="text-gray-400 mb-6 flex-grow text-sm font-medium leading-relaxed line-clamp-3">{project.description}</p>
                           <div className="flex flex-wrap gap-3 mt-auto">
-                            {project.demoLink && <a href={project.demoLink} target="_blank" rel="noreferrer" className="flex-1 text-center py-2 rounded-lg bg-amber-500 text-gray-900 font-semibold text-sm hover:bg-amber-400 transition shadow-lg btn focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-gray-800 focus-visible:ring-amber-500 outline-none">Demo</a>}
+                            {project.demoLink && <a href={project.demoLink} target="_blank" rel="noreferrer" className="flex-1 text-center py-2 rounded-lg bg-amber-500 text-gray-900 font-bold text-sm hover:bg-amber-400 transition shadow-lg btn focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-gray-800 focus-visible:ring-amber-500 outline-none">Demo</a>}
                             {project.codeLink ? (
-                              <a href={project.codeLink} target="_blank" rel="noreferrer" className="flex-1 text-center py-2 rounded-lg border border-gray-600 text-gray-100 font-semibold text-sm hover:border-amber-500 hover:text-amber-500 transition btn focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-gray-800 focus-visible:ring-amber-500 outline-none">Code</a>
+                              <a href={project.codeLink} target="_blank" rel="noreferrer" className="flex-1 text-center py-2 rounded-lg border border-gray-600 text-gray-100 font-bold text-sm hover:border-amber-500 hover:text-amber-500 transition btn focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-gray-800 focus-visible:ring-amber-500 outline-none">Code</a>
                             ) : project.doiLink && (
-                              <a href={project.doiLink} target="_blank" rel="noreferrer" className="flex-1 text-center py-2 rounded-lg border border-gray-600 text-gray-100 font-semibold text-sm hover:border-amber-500 hover:text-amber-500 transition btn focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-gray-800 focus-visible:ring-amber-500 outline-none">DOI</a>
+                              <a href={project.doiLink} target="_blank" rel="noreferrer" className="flex-1 text-center py-2 rounded-lg border border-gray-600 text-gray-100 font-bold text-sm hover:border-amber-500 hover:text-amber-500 transition btn focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-gray-800 focus-visible:ring-amber-500 outline-none">DOI</a>
                             )}
                           </div>
                         </div>
@@ -532,7 +533,7 @@ export default function App() {
                 ))}
               </div>
               <div className="text-center mt-12">
-                <a href="https://github.com/HassanAhmed2Ha" target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 text-gray-400 hover:text-amber-500 transition-colors font-semibold focus-visible:ring-2 focus-visible:ring-amber-500 outline-none rounded px-3 py-2">
+                <a href="https://github.com/HassanAhmed2Ha" target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 text-gray-400 hover:text-amber-500 transition-colors font-bold focus-visible:ring-2 focus-visible:ring-amber-500 outline-none rounded px-3 py-2">
                   <span>{content.projects.viewAll}</span>
                   <ExternalLink />
                 </a>
@@ -543,16 +544,16 @@ export default function App() {
         {/* PUBLICATIONS */}
         <section id="publications" className="py-20 bg-gray-900/50">
              <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-               <h2 className="text-3xl md:text-4xl font-bold text-gray-100 text-center mb-16"><span className="border-b-4 border-amber-500 pb-2">{content.publications.title}</span></h2>
+               <h2 className="text-3xl md:text-4xl font-extrabold text-gray-100 text-center mb-16 tracking-wide"><span className="border-b-4 border-amber-500 pb-2">{content.publications.title}</span></h2>
               <div className="space-y-6">
                 {content.publications.items.map((pub, idx) => (
                   <Reveal key={idx} className="w-full">
                      <Tilt3D className="bg-gray-800/40 backdrop-blur rounded-xl p-6 border-l-4 rtl:border-l-0 rtl:border-r-4 border-amber-500 hover:bg-gray-800 transition duration-300 text-start">
                         <div className="flex flex-col">
-                          <h3 className="text-xl font-bold text-gray-100 mb-2">{pub.title}</h3>
-                          <p className="text-xs text-amber-500 font-mono mb-3 uppercase tracking-wider">{pub.meta}</p>
-                          <p className="text-gray-300 mb-4 text-sm leading-relaxed">{pub.description}</p>
-                          <a href={`https://doi.org/${pub.doi}`} target="_blank" rel="noreferrer" className="text-gray-400 hover:text-amber-500 text-sm inline-flex items-center gap-1 transition focus-visible:ring-2 focus-visible:ring-amber-500 outline-none rounded p-1 w-fit">
+                          <h3 className="text-xl font-extrabold text-gray-100 mb-2">{pub.title}</h3>
+                          <p className="text-xs text-amber-500 font-mono font-bold mb-3 uppercase tracking-wider">{pub.meta}</p>
+                          <p className="text-gray-300 mb-4 text-sm font-medium leading-relaxed">{pub.description}</p>
+                          <a href={`https://doi.org/${pub.doi}`} target="_blank" rel="noreferrer" className="text-gray-400 font-bold hover:text-amber-500 text-sm inline-flex items-center gap-1 transition focus-visible:ring-2 focus-visible:ring-amber-500 outline-none rounded p-1 w-fit">
                             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"></path></svg>
                             DOI: {pub.doi}
                           </a>
@@ -567,36 +568,36 @@ export default function App() {
         {/* CONTACT */}
         <section id="contact" className="py-20">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-              <h2 className="text-3xl md:text-4xl font-bold text-gray-100 text-center mb-16"><span className="border-b-4 border-amber-500 pb-2">{content.contact.title}</span></h2>
+              <h2 className="text-3xl md:text-4xl font-extrabold text-gray-100 text-center mb-16 tracking-wide"><span className="border-b-4 border-amber-500 pb-2">{content.contact.title}</span></h2>
               <Reveal className="max-w-2xl mx-auto">
                 <Tilt3D className="bg-gray-800 p-8 rounded-2xl shadow-2xl border border-gray-700">
                     <form onSubmit={handleSubmit} className="space-y-6">
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div className="group">
-                            <label htmlFor="name" className="block text-sm font-medium text-gray-400 mb-1 text-start">{content.contact.placeholders.name}</label>
-                            <input type="text" name="name" id="name" value={formData.name} onChange={handleInputChange} placeholder={content.contact.placeholders.name} className="w-full p-3 bg-gray-900 border border-gray-600 rounded-lg text-white focus:ring-2 focus:ring-amber-500 outline-none text-start transition-shadow" required />
+                            <label htmlFor="name" className="block text-sm font-bold text-gray-400 mb-1 text-start">{content.contact.placeholders.name}</label>
+                            <input type="text" name="name" id="name" value={formData.name} onChange={handleInputChange} placeholder={content.contact.placeholders.name} className="w-full p-3 bg-gray-900 border border-gray-600 rounded-lg text-white focus:ring-2 focus:ring-amber-500 outline-none text-start font-medium transition-shadow" required />
                         </div>
                         <div className="group">
-                            <label htmlFor="email" className="block text-sm font-medium text-gray-400 mb-1 text-start">{content.contact.placeholders.email}</label>
-                            <input type="email" name="email" id="email" value={formData.email} onChange={handleInputChange} placeholder={content.contact.placeholders.email} className="w-full p-3 bg-gray-900 border border-gray-600 rounded-lg text-white focus:ring-2 focus:ring-amber-500 outline-none text-start transition-shadow" required />
+                            <label htmlFor="email" className="block text-sm font-bold text-gray-400 mb-1 text-start">{content.contact.placeholders.email}</label>
+                            <input type="email" name="email" id="email" value={formData.email} onChange={handleInputChange} placeholder={content.contact.placeholders.email} className="w-full p-3 bg-gray-900 border border-gray-600 rounded-lg text-white focus:ring-2 focus:ring-amber-500 outline-none text-start font-medium transition-shadow" required />
                         </div>
                       </div>
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                           <div className="group">
-                             <label htmlFor="phone" className="block text-sm font-medium text-gray-400 mb-1 text-start">{content.contact.placeholders.phone}</label>
-                             <input type="tel" name="phone" id="phone" value={formData.phone} onChange={handleInputChange} placeholder={content.contact.placeholders.phone} className="w-full p-3 bg-gray-900 border border-gray-600 rounded-lg text-white focus:ring-2 focus:ring-amber-500 outline-none text-start transition-shadow" />
+                             <label htmlFor="phone" className="block text-sm font-bold text-gray-400 mb-1 text-start">{content.contact.placeholders.phone}</label>
+                             <input type="tel" name="phone" id="phone" value={formData.phone} onChange={handleInputChange} placeholder={content.contact.placeholders.phone} className="w-full p-3 bg-gray-900 border border-gray-600 rounded-lg text-white focus:ring-2 focus:ring-amber-500 outline-none text-start font-medium transition-shadow" />
                           </div>
                           <div className="group">
-                             <label htmlFor="subject" className="block text-sm font-medium text-gray-400 mb-1 text-start">{content.contact.placeholders.subject}</label>
-                             <input type="text" name="subject" id="subject" value={formData.subject} onChange={handleInputChange} placeholder={content.contact.placeholders.subject} className="w-full p-3 bg-gray-900 border border-gray-600 rounded-lg text-white focus:ring-2 focus:ring-amber-500 outline-none text-start transition-shadow" />
+                             <label htmlFor="subject" className="block text-sm font-bold text-gray-400 mb-1 text-start">{content.contact.placeholders.subject}</label>
+                             <input type="text" name="subject" id="subject" value={formData.subject} onChange={handleInputChange} placeholder={content.contact.placeholders.subject} className="w-full p-3 bg-gray-900 border border-gray-600 rounded-lg text-white focus:ring-2 focus:ring-amber-500 outline-none text-start font-medium transition-shadow" />
                           </div>
                       </div>
                       <div className="group">
-                        <label htmlFor="message" className="block text-sm font-medium text-gray-400 mb-1 text-start">{content.contact.placeholders.message}</label>
-                        <textarea name="message" id="message" value={formData.message} onChange={handleInputChange} placeholder={content.contact.placeholders.message} rows={5} className="w-full p-3 bg-gray-900 border border-gray-600 rounded-lg text-white focus:ring-2 focus:ring-amber-500 outline-none text-start transition-shadow resize-y" required></textarea>
+                        <label htmlFor="message" className="block text-sm font-bold text-gray-400 mb-1 text-start">{content.contact.placeholders.message}</label>
+                        <textarea name="message" id="message" value={formData.message} onChange={handleInputChange} placeholder={content.contact.placeholders.message} rows={5} className="w-full p-3 bg-gray-900 border border-gray-600 rounded-lg text-white focus:ring-2 focus:ring-amber-500 outline-none text-start font-medium transition-shadow resize-y" required></textarea>
                       </div>
                       <div className="text-center pt-2">
-                        <button type="submit" disabled={isSubmitting} className="w-full md:w-auto px-10 py-3 rounded-full font-bold text-gray-900 bg-amber-500 hover:bg-amber-400 transition-all disabled:opacity-50 inline-flex items-center justify-center gap-2 btn focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-gray-800 focus-visible:ring-amber-500 outline-none">
+                        <button type="submit" disabled={isSubmitting} className="w-full md:w-auto px-10 py-3 rounded-full font-extrabold text-gray-900 bg-amber-500 hover:bg-amber-400 transition-all disabled:opacity-50 inline-flex items-center justify-center gap-2 btn focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-gray-800 focus-visible:ring-amber-500 outline-none">
                           <span>{isSubmitting ? 'Sending...' : content.contact.btnSend}</span>
                           <svg className="w-5 h-5 rtl:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path></svg>
                         </button>
@@ -613,26 +614,26 @@ export default function App() {
       <footer className="bg-gray-900 border-t border-gray-800 py-16 relative z-10 mt-auto text-center md:text-start">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
           <div className="space-y-6 lg:col-span-2">
-            <h3 className="text-3xl font-bold text-gray-100">Hassan<span className="text-amber-500">.</span></h3>
-            <p className="text-gray-400 text-base max-w-sm mx-auto md:mx-0">{content.footer.col1Text}</p>
+            <h3 className="text-3xl font-extrabold text-gray-100 tracking-wide">Hassan<span className="text-amber-500">.</span></h3>
+            <p className="text-gray-400 text-base font-medium max-w-sm mx-auto md:mx-0">{content.footer.col1Text}</p>
             <div className="flex justify-center md:justify-start"><SocialIcons className="gap-5" /></div>
           </div>
           <div className="space-y-6">
-             <h3 className="text-lg font-bold text-gray-100 uppercase">{content.footer.col2Title}</h3>
-             <ul className="text-gray-400 space-y-3 text-sm">
+             <h3 className="text-lg font-extrabold text-gray-100 uppercase tracking-wide">{content.footer.col2Title}</h3>
+             <ul className="text-gray-400 space-y-3 text-sm font-bold">
                 {content.nav.map(item => <li key={item.id}><a href={`#${item.id}`} onClick={(e) => scrollToSection(e, item.id)} className="hover:text-amber-500 transition-colors block w-fit mx-auto md:mx-0 focus-visible:ring-2 focus-visible:ring-amber-500 outline-none rounded p-1 -ml-1">{item.label}</a></li>)}
              </ul>
           </div>
           <div className="space-y-6">
-            <h3 className="text-lg font-bold text-gray-100 uppercase">{content.footer.col3Title}</h3>
-            <ul className="text-gray-400 space-y-4 text-sm">
+            <h3 className="text-lg font-extrabold text-gray-100 uppercase tracking-wide">{content.footer.col3Title}</h3>
+            <ul className="text-gray-400 space-y-4 text-sm font-bold">
                 <li className="flex items-center justify-center md:justify-start gap-3"><span>{content.footer.contactInfo.phone}</span></li>
                 <li className="flex items-center justify-center md:justify-start gap-3"><span>{content.footer.contactInfo.email}</span></li>
                 <li className="flex items-center justify-center md:justify-start gap-3"><span>{content.footer.contactInfo.location}</span></li>
             </ul>
           </div>
         </div>
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-gray-500 mt-16 pt-8 border-t border-gray-800 text-sm">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-gray-500 font-bold mt-16 pt-8 border-t border-gray-800 text-sm">
           <p>{content.footer.copyright}</p>
         </div>
       </footer>
