@@ -64,7 +64,6 @@ export const contentEn: Content = {
           'Receiving mentorship in research methodology and academic writing.'
         ]
       },
-      
       {
         role: 'Core Team Member (Data & Research)',
         company: 'Neuroverse Youth Power',
@@ -238,6 +237,8 @@ export const contentEn: Content = {
         description: 'A full-stack medical AI system for real-time breast tumor classification. Built with TensorFlow, FastAPI, and React, integrating SHAP to provide feature-level clinical interpretability and resolve the AI black-box problem.',
         demoLink: 'https://tumor-diagnosis-frontend.vercel.app',
         codeLink: 'https://github.com/HassanAhmed2Ha/NeuroScan-AI',
+        type: 'Machine Learning',
+        tags: ['Python', 'TensorFlow', 'FastAPI', 'React', 'SHAP']
       },
       {
         title: 'Open-Source Portfolio Template',
@@ -245,8 +246,9 @@ export const contentEn: Content = {
         description: 'A fully reusable, open-source personal portfolio template built from scratch for students and researchers. Designed with React & TypeScript to provide digital empowerment and a professional identity without cost.',
         demoLink: 'https://hassan-ahmed-portfolio.vercel.app',
         codeLink: 'https://github.com/HassanAhmed2Ha/Hassan-Ahmed-Portfolio',
-      },
-      
+        type: 'Web Development',
+        tags: ['React', 'TypeScript', 'Tailwind CSS']
+      }
     ]
   },
   publications: {
@@ -256,19 +258,22 @@ export const contentEn: Content = {
         title: 'Chemical Analysis of Water Pollution and Its Impact on Public Health',
         meta: '2025 — Environmental Health',
         description: 'Explores chemical contaminants in water resources and their long-term risks on community health.',
-        doi: '10.5281/zenodo.17527523'
+        doi: '10.5281/zenodo.17527523',
+        tags: ['Environmental Health', 'Data Analysis', 'Public Health']
       },
       {
         title: 'An Integrated Framework for Asteroid Impact Risk Assessment',
         meta: '2025 — Space Safety & Risk Modeling',
         description: 'Proposes a structured risk assessment framework combining data, scenario modeling, and decision-support.',
-        doi: '10.5281/zenodo.17527414'
+        doi: '10.5281/zenodo.17527414',
+        tags: ['Risk Modeling', 'Data Visualization', 'Space Safety']
       },
       {
         title: 'Integrated Consciousness: AI Impact on Human Cognitive Autonomy',
         meta: '2025 — AI Ethics & Cognition',
         description: 'Examines how advanced AI systems interact with human cognition and autonomy, highlighting risks and safeguards.',
-        doi: '10.5281/zenodo.17527597'
+        doi: '10.5281/zenodo.17527597',
+        tags: ['AI Ethics', 'Cognitive Science', 'Human-AI Interaction']
       }
     ]
   },
@@ -288,7 +293,7 @@ export const contentEn: Content = {
     col1Text: 'Bioinformatics & Data Science Researcher. Keep rising. Let’s collaborate on meaningful, data-driven impact.',
     col2Title: 'Quick Links',
     col3Title: 'Contact Info',
-    copyright: '© 2025 Hassan Ahmed Hassan Zaki. All rights reserved.',
+    copyright: '© 2026 Hassan Ahmed Hassan Zaki. All rights reserved.',
     contactInfo: {
       phone: '+20 122 982 6538',
       email: 'hassanahmed07.e9@gmail.com',
@@ -361,7 +366,6 @@ export const contentAr: Content = {
           'تلقي الإرشاد في منهجية البحث والكتابة الأكاديمية.'
         ]
       },
-      
       {
         role: 'عضو الفريق الأساسي (البيانات والأبحاث)',
         company: 'Neuroverse Youth Power',
@@ -535,16 +539,18 @@ link: 'https://drive.google.com/file/d/1ZseW0jSZTZUz4HR2rmnOUrYA1Ewl3ErG/view?us
         description: 'نظام ذكاء اصطناعي طبي متكامل لتصنيف أورام الثدي لحظياً. تم بناؤه باستخدام TensorFlow و FastAPI و React، مع دمج تقنية SHAP لتوفير تفسير دقيق لقرارات النموذج وحل مشكلة الصندوق الأسود.',
         demoLink: 'https://tumor-diagnosis-frontend.vercel.app',
         codeLink: 'https://github.com/HassanAhmed2Ha/NeuroScan-AI',
+        type: 'Machine Learning',
+        tags: ['Python', 'TensorFlow', 'FastAPI', 'React', 'SHAP']
       },
-      
       {
         title: 'قالب بورتفوليو مفتوح المصدر',
         image: 'https://i.ibb.co/FLgLXcwZ/Screenshot-2025-12-25-002653.png',
         description: 'قالب معرض أعمال شخصي مجاني ومفتوح المصدر، تم بناؤه من الصفر لخدمة الطلاب والباحثين. يهدف لتعزيز التمكين الرقمي وتوفير هوية احترافية باستخدام React وTypeScript.',
         demoLink: 'https://hassan-ahmed-portfolio.vercel.app',
         codeLink: 'https://github.com/HassanAhmed2Ha/Hassan-Ahmed-Portfolio',
-      },
-      
+        type: 'Web Development',
+        tags: ['React', 'TypeScript', 'Tailwind CSS']
+      }
     ]
   },
   publications: {
@@ -554,19 +560,22 @@ link: 'https://drive.google.com/file/d/1ZseW0jSZTZUz4HR2rmnOUrYA1Ewl3ErG/view?us
         title: 'التحليل الكيميائي لتلوث المياه وتأثيره على الصحة العامة',
         meta: '2025 — الصحة البيئية',
         description: 'يستكشف الملوثات الكيميائية في موارد المياه ومخاطرها طويلة المدى على صحة المجتمع.',
-        doi: '10.5281/zenodo.17527523'
+        doi: '10.5281/zenodo.17527523',
+        tags: ['Environmental Health', 'Data Analysis', 'Public Health']
       },
       {
         title: 'إطار متكامل لتقييم مخاطر تأثير الكويكبات',
         meta: '2025 — سلامة الفضاء',
         description: 'يقترح إطاراً هيكلياً لتقييم المخاطر يجمع بين البيانات ونمذجة السيناريوهات ودعم القرار.',
-        doi: '10.5281/zenodo.17527414'
+        doi: '10.5281/zenodo.17527414',
+        tags: ['Risk Modeling', 'Data Visualization', 'Space Safety']
       },
       {
         title: 'الوعي المتكامل: تأثير الذكاء الاصطناعي على الاستقلالية المعرفية البشرية',
         meta: '2025 — أخلاقيات الذكاء الاصطناعي',
         description: 'يدرس كيفية تفاعل أنظمة الذكاء الاصطناعي المتقدمة مع الإدراك البشري، ويسلط الضوء على المخاطر والضمانات.',
-        doi: '10.5281/zenodo.17527597'
+        doi: '10.5281/zenodo.17527597',
+        tags: ['AI Ethics', 'Cognitive Science', 'Human-AI Interaction']
       }
     ]
   },
@@ -586,7 +595,7 @@ link: 'https://drive.google.com/file/d/1ZseW0jSZTZUz4HR2rmnOUrYA1Ewl3ErG/view?us
     col1Text: 'باحث في المعلوماتية الحيوية وعلوم البيانات. لنواصل الصعود. دعنا نتعاون لتحقيق تأثير هادف مدفوع بالبيانات.',
     col2Title: 'روابط سريعة',
     col3Title: 'معلومات الاتصال',
-    copyright: '© 2025 حسن أحمد حسن زكي. جميع الحقوق محفوظة.',
+    copyright: '© 2026 حسن أحمد حسن زكي. جميع الحقوق محفوظة.',
     contactInfo: {
       phone: '+20 122 982 6538',
       email: 'hassanahmed07.e9@gmail.com',
