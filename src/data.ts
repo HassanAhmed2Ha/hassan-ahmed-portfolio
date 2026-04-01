@@ -243,6 +243,13 @@ export const contentEn: Content = {
     viewAll: 'View All Projects',
     items: [
       {
+        title: 'NeuroScan AI: Explainable Tumor Classification',
+        image: 'https://images.unsplash.com/photo-1576086208222-09c4a408f1b4?auto=format&fit=crop&q=80&w=800',
+        description: 'A full-stack medical AI system for real-time breast tumor classification. Built with TensorFlow, FastAPI, and React, integrating SHAP to provide feature-level clinical interpretability and resolve the AI black-box problem.',
+        demoLink: 'https://tumor-diagnosis-frontend.vercel.app',
+        codeLink: 'https://github.com/HassanAhmed2Ha/NeuroScan-AI',
+      },
+      {
         title: 'Open-Source Portfolio Template',
         image: 'https://i.ibb.co/FLgLXcwZ/Screenshot-2025-12-25-002653.png',
         description: 'A fully reusable, open-source personal portfolio template built from scratch for students and researchers. Designed with React & TypeScript to provide digital empowerment and a professional identity without cost.',
@@ -250,20 +257,6 @@ export const contentEn: Content = {
         codeLink: 'https://github.com/HassanAhmed2Ha/Hassan-Ahmed-Portfolio',
       },
       
-      {
-        title: 'AgriTech AI Prototype',
-        image: 'https://images.unsplash.com/photo-1625246333195-78d9c38ad449?auto=format&fit=crop&q=80&w=800',
-        description: 'Bilingual smart irrigation decision-support system for small farmers, powered by Python and simulated IoT soil & weather data.',
-        demoLink: 'https://hassanahmed2ha.github.io/-AgriTech-AI-Hassan-Ahmed-Prototype-/#dashboard',
-        codeLink: 'https://github.com/HassanAhmed2Ha/-AgriTech-AI-Hassan-Ahmed-Prototype-?tab=readme-ov-file',
-      },
-      
-      {
-        title: 'Asteroid Impact Risk',
-        image: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&q=80&w=800',
-        description: 'Integrated framework for asteroid impact risk assessment, developed during the NASA International Space Apps Challenge.',
-        doiLink: 'https://doi.org/10.5281/zenodo.17527414'
-      }
     ]
   },
   publications: {
@@ -557,25 +550,21 @@ link: 'https://drive.google.com/file/d/1ZseW0jSZTZUz4HR2rmnOUrYA1Ewl3ErG/view?us
     viewAll: 'عرض جميع المشاريع',
     items: [
       {
-        title: 'نموذج AgriTech AI',
-        image: 'https://images.unsplash.com/photo-1625246333195-78d9c38ad449?auto=format&fit=crop&q=80&w=800',
-        description: 'نظام دعم قرار الري الذكي ثنائي اللغة للمزارعين الصغار، مدعوم ببايثون ومحاكاة بيانات التربة والطقس.',
-        demoLink: 'https://hassanahmed2ha.github.io/-AgriTech-AI-Hassan-Ahmed-Prototype-/#dashboard',
-        codeLink: 'https://github.com/HassanAhmed2Ha/-AgriTech-AI-Hassan-Ahmed-Prototype-?tab=readme-ov-file',
+        title: 'NeuroScan AI: تصنيف الأورام القابل للتفسير',
+        image: 'https://images.unsplash.com/photo-1576086208222-09c4a408f1b4?auto=format&fit=crop&q=80&w=800',
+        description: 'نظام ذكاء اصطناعي طبي متكامل لتصنيف أورام الثدي لحظياً. تم بناؤه باستخدام TensorFlow و FastAPI و React، مع دمج تقنية SHAP لتوفير تفسير دقيق لقرارات النموذج وحل مشكلة الصندوق الأسود.',
+        demoLink: 'https://tumor-diagnosis-frontend.vercel.app',
+        codeLink: 'https://github.com/HassanAhmed2Ha/NeuroScan-AI',
       },
+      
       {
         title: 'قالب بورتفوليو مفتوح المصدر',
-        image: 'https://i.ibb.co/FLgLXcwZ/Screenshot-2025-12-25-002653.png', // ✅ تم وضع رابط الصورة الجديد هنا
+        image: 'https://i.ibb.co/FLgLXcwZ/Screenshot-2025-12-25-002653.png',
         description: 'قالب معرض أعمال شخصي مجاني ومفتوح المصدر، تم بناؤه من الصفر لخدمة الطلاب والباحثين. يهدف لتعزيز التمكين الرقمي وتوفير هوية احترافية باستخدام React وTypeScript.',
         demoLink: 'https://hassan-ahmed-portfolio.vercel.app',
         codeLink: 'https://github.com/HassanAhmed2Ha/Hassan-Ahmed-Portfolio',
       },
-      {
-        title: 'مخاطر تأثير الكويكبات',
-        image: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&q=80&w=800',
-        description: 'إطار متكامل لتقييم مخاطر تأثير الكويكبات، تم تطويره خلال تحدي تطبيقات الفضاء الدولي من ناسا.',
-        doiLink: 'https://doi.org/10.5281/zenodo.17527414'
-      }
+      
     ]
   },
   publications: {
