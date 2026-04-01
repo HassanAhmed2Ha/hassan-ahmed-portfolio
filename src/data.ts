@@ -234,7 +234,7 @@ export const contentEn: Content = {
     items: [
       {
         title: 'NeuroScan AI: Explainable Tumor Classification',
-        image: 'url=https://ibb.co/35dKLvsP][img]https://i.ibb.co/Y4QgqXWV/Screenshot-2026-04-01-023222.png[/img][/url]',
+        image: 'https://i.ibb.co/Y4QgqXWV/Screenshot-2026-04-01-023222.png',
         description: 'A full-stack medical AI system for real-time breast tumor classification. Built with TensorFlow, FastAPI, and React, integrating SHAP to provide feature-level clinical interpretability and resolve the AI black-box problem.',
         demoLink: 'https://tumor-diagnosis-frontend.vercel.app',
         codeLink: 'https://github.com/HassanAhmed2Ha/NeuroScan-AI',
@@ -361,7 +361,7 @@ export const contentAr: Content = {
           'تلقي الإرشاد في منهجية البحث والكتابة الأكاديمية.'
         ]
       },
-     
+      
       {
         role: 'عضو الفريق الأساسي (البيانات والأبحاث)',
         company: 'Neuroverse Youth Power',
@@ -531,7 +531,7 @@ link: 'https://drive.google.com/file/d/1ZseW0jSZTZUz4HR2rmnOUrYA1Ewl3ErG/view?us
     items: [
       {
         title: 'NeuroScan AI: تصنيف الأورام القابل للتفسير',
-        image: 'url=https://ibb.co/35dKLvsP][img]https://i.ibb.co/Y4QgqXWV/Screenshot-2026-04-01-023222.png[/img][/url',
+        image: 'https://i.ibb.co/Y4QgqXWV/Screenshot-2026-04-01-023222.png',
         description: 'نظام ذكاء اصطناعي طبي متكامل لتصنيف أورام الثدي لحظياً. تم بناؤه باستخدام TensorFlow و FastAPI و React، مع دمج تقنية SHAP لتوفير تفسير دقيق لقرارات النموذج وحل مشكلة الصندوق الأسود.',
         demoLink: 'https://tumor-diagnosis-frontend.vercel.app',
         codeLink: 'https://github.com/HassanAhmed2Ha/NeuroScan-AI',
