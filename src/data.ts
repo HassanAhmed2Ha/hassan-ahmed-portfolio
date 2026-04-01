@@ -64,17 +64,7 @@ export const contentEn: Content = {
           'Receiving mentorship in research methodology and academic writing.'
         ]
       },
-      {
-        role: 'Developer & Project Lead',
-        company: 'AgriTech AI (Self-Employed)',
-        period: 'Oct 2025 – Present',
-        location: 'Alexandria/Hybrid',
-        description: [
-          'Building AgriTech AI: A bilingual smart irrigation decision-support prototype.',
-          'Implemented data analysis pipelines using Python, Pandas, and IoT simulation.',
-          'Preparing for 2026 field testing with local farmers.'
-        ]
-      },
+      
       {
         role: 'Core Team Member (Data & Research)',
         company: 'Neuroverse Youth Power',
@@ -371,17 +361,7 @@ export const contentAr: Content = {
           'تلقي الإرشاد في منهجية البحث والكتابة الأكاديمية.'
         ]
       },
-      {
-        role: 'مطور وقائد مشروع',
-        company: 'AgriTech AI (عمل حر)',
-        period: 'أكتوبر 2025 – الآن',
-        location: 'الإسكندرية/هجين',
-        description: [
-          'بناء AgriTech AI: نموذج أولي لدعم قرار الري الذكي ثنائي اللغة.',
-          'تنفيذ خطوط تحليل البيانات باستخدام Python و Pandas ومحاكاة إنترنت الأشياء.',
-          'التحضير للاختبار الميداني عام 2026 مع المزارعين المحليين.'
-        ]
-      },
+     
       {
         role: 'عضو الفريق الأساسي (البيانات والأبحاث)',
         company: 'Neuroverse Youth Power',
