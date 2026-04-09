@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+import * as Matter from 'matter-js'; // Physics library
 import { contentEn, contentAr } from './data';
 import { Content, Language } from './types';
 import { sendMessage, ContactFormData } from './contactService';
@@ -34,10 +35,10 @@ const SocialIcons = ({ className = '' }: { className?: string }) => (
   </div>
 );
 
-// --- UPDATED ANIMATED BACKGROUND: GOLDEN DNA & AI NODES ---
-const ParticleBackground = () => {
+// --- NEW DYNAMIC PHYSICS BACKGROUND: GOLDEN DNA & AI NODES ---
+const InteractiveBioAIBackground = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  const mouseRef = useRef({ x: 0, y: 0, active: false });
+  const mouseRef = useRef({ x: 0, y: 0 });
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -45,155 +46,160 @@ const ParticleBackground = () => {
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
 
-    let animationFrameId: number;
-    let time = 0;
-    let particles: { x: number; y: number; vx: number; vy: number; size: number; alpha: number }[] = [];
+    // --- PHYSICS SETUP (Matter.js) ---
+    const { Engine, Render, Runner, Bodies, Composite, Constraint } = Matter;
+    const engine = Engine.create({ gravity: { x: 0, y: 0 } });
+    const { world } = engine;
+    
+    let dnaRotation = 0;
+    let particleSystems: Matter.Body[] = [];
+    
+    // --- CANVAS SETUP ---
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
 
-    const resize = () => {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-      initAIParticles();
-    };
-
-    // Initialize floating AI data nodes
-    const initAIParticles = () => {
-      particles = [];
-      const particleCount = Math.floor((canvas.width * canvas.height) / 12000); 
-      for (let i = 0; i < particleCount; i++) {
-        particles.push({
-          x: Math.random() * canvas.width,
-          y: Math.random() * canvas.height,
-          vx: (Math.random() - 0.5) * 0.5,
-          vy: (Math.random() - 0.5) * 0.5,
-          size: Math.random() * 2 + 0.5,
-          alpha: Math.random() * 0.5 + 0.1
-        });
-      }
-    };
-
-    // Function to draw the 3D Golden DNA Helix
-    const drawDNA = () => {
-      const centerY = canvas.height / 2;
-      const amplitude = canvas.height / 3.5; 
-      const frequency = 0.006; 
-      const xSpacing = 25; 
+    // --- DNA CREATION (Physics-based bodies) ---
+    const createDNA = () => {
+      Composite.clear(world, false); // Clear previous DNA bodies
       
-      ctx.lineWidth = 1.5;
+      const numSteps = 50;
+      const helixRadius = 80;
+      const spacing = (canvas.height - 100) / numSteps;
+      const strandColorA = 'rgba(245, 158, 11, 1)'; // Golden amber
+      const strandColorB = 'rgba(56, 189, 248, 1)'; // Sky blue (for contrast)
 
-      for (let x = 0; x < canvas.width; x += xSpacing) {
-        const angle1 = x * frequency + time;
-        const angle2 = x * frequency + time + Math.PI; 
+      let bodiesA: Matter.Body[] = [];
+      let bodiesB: Matter.Body[] = [];
+      let constraints: Matter.Constraint[] = [];
 
-        const z1 = Math.cos(angle1);
-        const z2 = Math.cos(angle2);
+      for (let i = 0; i < numSteps; i++) {
+        const y = 50 + i * spacing;
+        const angle = dnaRotation + (i * 2 * Math.PI) / numSteps * 1.5;
+        const xA = canvas.width / 2 + Math.cos(angle) * helixRadius;
+        const xB = canvas.width / 2 + Math.cos(angle + Math.PI) * helixRadius;
 
-        const y1 = centerY + Math.sin(angle1) * amplitude;
-        const y2 = centerY + Math.sin(angle2) * amplitude;
-
-        const radius1 = 2.5 + (z1 * 1.5);
-        const radius2 = 2.5 + (z2 * 1.5);
-        const alpha1 = 0.4 + (z1 * 0.4);
-        const alpha2 = 0.4 + (z2 * 0.4);
-
-        // Draw connections (base pairs)
-        ctx.beginPath();
-        ctx.moveTo(x, y1);
-        ctx.lineTo(x, y2);
-        ctx.strokeStyle = `rgba(245, 158, 11, ${Math.min(alpha1, alpha2) * 0.4})`;
-        ctx.stroke();
-
-        // Draw Strand 1
-        ctx.beginPath();
-        ctx.arc(x, y1, radius1 > 0 ? radius1 : 0, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(245, 158, 11, ${alpha1})`;
-        ctx.fill();
-
-        // Draw Strand 2
-        ctx.beginPath();
-        ctx.arc(x, y2, radius2 > 0 ? radius2 : 0, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(245, 158, 11, ${alpha2})`;
-        ctx.fill();
+        const bodyA = Bodies.circle(xA, y, 4, { render: { fillStyle: strandColorA }, isStatic: true, label: 'dnaBody' });
+        const bodyB = Bodies.circle(xB, y, 4, { render: { fillStyle: strandColorB }, isStatic: true, label: 'dnaBody' });
         
-        // Interactive light effect on mouse hover over DNA
-        if (mouseRef.current.active) {
-            const dxM = x - mouseRef.current.x;
-            const dyM = ((y1 + y2) / 2) - mouseRef.current.y;
-            const distM = Math.sqrt(dxM * dxM + dyM * dyM);
-            if (distM < 180) {
-                ctx.beginPath();
-                ctx.strokeStyle = `rgba(245, 158, 11, ${0.3 * (1 - distM / 180)})`;
-                ctx.moveTo(x, (y1 + y2) / 2);
-                ctx.lineTo(mouseRef.current.x, mouseRef.current.y);
-                ctx.stroke();
-            }
-        }
+        bodiesA.push(bodyA);
+        bodiesB.push(bodyB);
+
+        const constraint = Constraint.create({ bodyA, bodyB, length: helixRadius * 2, stiffness: 0.1, render: { strokeStyle: 'rgba(245, 158, 11, 0.4)', lineWidth: 1.5 }});
+        constraints.push(constraint);
+        
+        Composite.add(world, [bodyA, bodyB, constraint]);
       }
     };
 
-    // Function to draw floating AI particles
-    const drawAIParticles = () => {
-      particles.forEach((p, i) => {
-        p.x += p.vx;
-        p.y += p.vy;
-
-        if (p.x < 0 || p.x > canvas.width) p.vx *= -1;
-        if (p.y < 0 || p.y > canvas.height) p.vy *= -1;
-
-        ctx.fillStyle = `rgba(245, 158, 11, ${p.alpha})`;
-        ctx.beginPath();
-        ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-        ctx.fill();
-
-        for (let j = i + 1; j < particles.length; j++) {
-          const p2 = particles[j];
-          const dx = p.x - p2.x;
-          const dy = p.y - p2.y;
-          const dist = Math.sqrt(dx * dx + dy * dy);
-
-          if (dist < 120) {
-            ctx.beginPath();
-            ctx.strokeStyle = `rgba(245, 158, 11, ${0.2 * (1 - dist / 120)})`;
-            ctx.lineWidth = 0.8;
-            ctx.moveTo(p.x, p.y);
-            ctx.lineTo(p2.x, p2.y);
-            ctx.stroke();
-          }
-        }
-      });
+    // --- FLOATING AI PARTICLES CREATION ---
+    const createAIParticles = () => {
+      for (let i = 0; i < 60; i++) {
+        const x = Math.random() * canvas.width;
+        const y = Math.random() * canvas.height;
+        const particle = Bodies.circle(x, y, Math.random() * 2 + 1, { render: { fillStyle: `rgba(245, 158, 11, ${Math.random() * 0.7 + 0.1})` }, label: 'aiParticle', frictionAir: 0.05 });
+        Matter.Body.setVelocity(particle, { x: (Math.random() - 0.5) * 2, y: (Math.random() - 0.5) * 2 });
+        particleSystems.push(particle);
+        Composite.add(world, particle);
+      }
     };
+
+    // --- MAIN ANIMATION LOOP ---
+    const runner = Runner.create();
+    Runner.run(runner, engine);
 
     const draw = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       
-      time -= 0.015; // Controls the rotation speed of the DNA
+      // Update DNA rotation
+      dnaRotation += 0.01;
+      createDNA(); // Recreate DNA with new rotation
       
-      drawAIParticles();
-      drawDNA();
+      // Update particles physics
+      Matter.Body.update(engine);
+      
+      // DRAW DNA base pairs connections (Hydrogen bonds)
+      Composite.allConstraints(world).forEach(c => {
+         ctx.beginPath();
+         ctx.moveTo(c.bodyA!.position.x, c.bodyA!.position.y);
+         ctx.lineTo(c.bodyB!.position.x, c.bodyB!.position.y);
+         ctx.strokeStyle = c.render!.strokeStyle as string;
+         ctx.lineWidth = c.render!.lineWidth as number;
+         ctx.stroke();
+      });
+      
+      // DRAW ALL BODIES
+      Composite.allBodies(world).forEach(b => {
+         ctx.beginPath();
+         ctx.arc(b.position.x, b.position.y, b.circleRadius!, 0, Math.PI * 2);
+         ctx.fillStyle = b.render!.fillStyle as string;
+         ctx.fill();
+         
+         if (b.label === 'aiParticle') {
+             // Draw connections to nearby particles
+             const nearbyParticles = particleSystems.filter(p => p !== b && Matter.Vector.magnitude(Matter.Vector.sub(p.position, b.position)) < 120);
+             nearbyParticles.forEach(p => {
+                 ctx.beginPath();
+                 ctx.moveTo(b.position.x, b.position.y);
+                 ctx.lineTo(p.position.x, p.position.y);
+                 ctx.strokeStyle = `rgba(245, 158, 11, ${0.3 * (1 - Matter.Vector.magnitude(Matter.Vector.sub(p.position, b.position)) / 120)})`;
+                 ctx.lineWidth = 0.8;
+                 ctx.stroke();
+             });
+         }
+      });
+      
+      // INTERACTION: Mouse attraction to AI Particles
+      if (world.bodies.length > 0) {
+         particleSystems.forEach(p => {
+             const dx = p.position.x - mouseRef.current.x;
+             const dy = p.position.y - mouseRef.current.y;
+             const dist = Math.sqrt(dx * dx + dy * dy);
+             if (dist < 250) {
+                 Matter.Body.applyForce(p, p.position, { x: -0.0001 * dx * (1 - dist / 250), y: -0.0001 * dy * (1 - dist / 250) });
+             }
+         });
+      }
 
       animationFrameId = requestAnimationFrame(draw);
     };
 
-    const handleMouseMove = (e: MouseEvent) => {
-      mouseRef.current = { x: e.clientX, y: e.clientY, active: true };
-    };
-    const handleMouseLeave = () => { mouseRef.current.active = false; };
-
-    window.addEventListener('resize', resize);
-    window.addEventListener('mousemove', handleMouseMove);
-    window.addEventListener('mouseleave', handleMouseLeave);
-    
-    resize();
+    createDNA();
+    createAIParticles();
+    let animationFrameId: number;
     draw();
 
+    // --- EVENT LISTENERS ---
+    const handleMouseMove = (e: MouseEvent) => {
+      mouseRef.current = { x: e.clientX, y: e.clientY };
+    };
+    const handleMouseLeave = () => { mouseRef.current = { x: canvas.width / 2, y: canvas.height / 2 }; }; // Reset mouse pos
+    const handleResize = () => {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+      createDNA();
+      Composite.clear(world, false); // Clear only particles, DNA is recreated
+      particleSystems = [];
+      createAIParticles();
+    };
+
+    window.addEventListener('resize', handleResize);
+    window.addEventListener('mousemove', handleMouseMove);
+    window.addEventListener('mouseleave', handleMouseLeave);
+    handleResize();
+
     return () => {
-      window.removeEventListener('resize', resize);
+      window.removeEventListener('resize', handleResize);
       window.removeEventListener('mousemove', handleMouseMove);
       window.removeEventListener('mouseleave', handleMouseLeave);
+      Composite.clear(world, true); // Clear all bodies and constraints
+      Runner.stop(runner);
+      Engine.clear(engine);
       cancelAnimationFrame(animationFrameId);
     };
   }, []);
 
-  return <canvas ref={canvasRef} className="absolute top-0 left-0 w-full h-full pointer-events-none z-0 opacity-60" />;
+  // Increased opacity for the golden DNA effect against the dark background
+  return <canvas ref={canvasRef} className="absolute top-0 left-0 w-full h-full pointer-events-none z-0 opacity-70" />;
 };
 
 // --- UTILS ---
@@ -378,7 +384,7 @@ export default function App() {
         
         {/* HERO */}
         <section id="home" className="relative py-20 md:py-32 flex items-center min-h-screen overflow-hidden">
-            <ParticleBackground />
+            <InteractiveBioAIBackground />
             <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
               <Reveal className="space-y-6 md:space-y-8 order-2 md:order-1 text-center md:text-start">
                 <p className="text-xl md:text-2xl text-amber-500 font-semibold tracking-wide text-center md:text-start">{content.hero.greeting}</p>
