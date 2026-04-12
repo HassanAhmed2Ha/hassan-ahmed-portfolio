@@ -34,7 +34,7 @@ const SocialIcons = ({ className = '' }: { className?: string }) => (
   </div>
 );
 
-// --- UPDATED ANIMATED BACKGROUND ---
+// --- HIGH DENSITY GOLDEN DNA & AI NODES BACKGROUND ---
 const ParticleBackground = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const mouseRef = useRef({ x: 0, y: 0, active: false });
@@ -45,32 +45,92 @@ const ParticleBackground = () => {
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
 
-    let particles: { x: number; y: number; vx: number; vy: number; size: number }[] = [];
     let animationFrameId: number;
+    let time = 0;
+    let particles: { x: number; y: number; vx: number; vy: number; size: number; alpha: number }[] = [];
 
     const resize = () => {
       canvas.width = window.innerWidth;
       canvas.height = window.innerHeight;
-      initParticles();
+      initAIParticles();
     };
 
-    const initParticles = () => {
+    const initAIParticles = () => {
       particles = [];
-      const particleCount = Math.floor((canvas.width * canvas.height) / 10000); 
+      // HIGH DENSITY: Increased particle count significantly by dividing by a smaller number
+      const particleCount = Math.floor((canvas.width * canvas.height) / 4500); 
       for (let i = 0; i < particleCount; i++) {
         particles.push({
           x: Math.random() * canvas.width,
           y: Math.random() * canvas.height,
-          vx: (Math.random() - 0.5) * 1.5,
-          vy: (Math.random() - 0.5) * 1.5,
-          size: Math.random() * 2 + 1,
+          vx: (Math.random() - 0.5) * 0.8,
+          vy: (Math.random() - 0.5) * 0.8,
+          size: Math.random() * 2.5 + 0.5,
+          alpha: Math.random() * 0.6 + 0.2
         });
       }
     };
 
-    const draw = () => {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
+    const drawDNA = () => {
+      const centerY = canvas.height / 2;
+      const amplitude = canvas.height / 3.5; 
+      const frequency = 0.006; 
+      // HIGH DENSITY: Reduced spacing to make the helix much tighter and dense
+      const xSpacing = 12; 
       
+      ctx.lineWidth = 1.5;
+
+      for (let x = 0; x < canvas.width; x += xSpacing) {
+        const angle1 = x * frequency + time;
+        const angle2 = x * frequency + time + Math.PI; 
+
+        const z1 = Math.cos(angle1);
+        const z2 = Math.cos(angle2);
+
+        const y1 = centerY + Math.sin(angle1) * amplitude;
+        const y2 = centerY + Math.sin(angle2) * amplitude;
+
+        const radius1 = 2.5 + (z1 * 1.5);
+        const radius2 = 2.5 + (z2 * 1.5);
+        const alpha1 = 0.5 + (z1 * 0.5);
+        const alpha2 = 0.5 + (z2 * 0.5);
+
+        // Draw connections (base pairs)
+        ctx.beginPath();
+        ctx.moveTo(x, y1);
+        ctx.lineTo(x, y2);
+        ctx.strokeStyle = `rgba(245, 158, 11, ${Math.min(alpha1, alpha2) * 0.5})`;
+        ctx.stroke();
+
+        // Draw Strand 1
+        ctx.beginPath();
+        ctx.arc(x, y1, radius1 > 0 ? radius1 : 0, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(245, 158, 11, ${alpha1})`;
+        ctx.fill();
+
+        // Draw Strand 2
+        ctx.beginPath();
+        ctx.arc(x, y2, radius2 > 0 ? radius2 : 0, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(245, 158, 11, ${alpha2})`;
+        ctx.fill();
+        
+        // Interactive light effect on mouse hover over DNA
+        if (mouseRef.current.active) {
+            const dxM = x - mouseRef.current.x;
+            const dyM = ((y1 + y2) / 2) - mouseRef.current.y;
+            const distM = Math.sqrt(dxM * dxM + dyM * dyM);
+            if (distM < 200) {
+                ctx.beginPath();
+                ctx.strokeStyle = `rgba(245, 158, 11, ${0.4 * (1 - distM / 200)})`;
+                ctx.moveTo(x, (y1 + y2) / 2);
+                ctx.lineTo(mouseRef.current.x, mouseRef.current.y);
+                ctx.stroke();
+            }
+        }
+      }
+    };
+
+    const drawAIParticles = () => {
       particles.forEach((p, i) => {
         p.x += p.vx;
         p.y += p.vy;
@@ -78,7 +138,7 @@ const ParticleBackground = () => {
         if (p.x < 0 || p.x > canvas.width) p.vx *= -1;
         if (p.y < 0 || p.y > canvas.height) p.vy *= -1;
 
-        ctx.fillStyle = 'rgba(245, 158, 11, 0.7)';
+        ctx.fillStyle = `rgba(245, 158, 11, ${p.alpha})`;
         ctx.beginPath();
         ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
         ctx.fill();
@@ -89,29 +149,26 @@ const ParticleBackground = () => {
           const dy = p.y - p2.y;
           const dist = Math.sqrt(dx * dx + dy * dy);
 
-          if (dist < 150) {
+          // HIGH DENSITY: Increased connection distance to form a richer web
+          if (dist < 160) {
             ctx.beginPath();
-            ctx.strokeStyle = `rgba(245, 158, 11, ${0.4 * (1 - dist / 150)})`;
-            ctx.lineWidth = 0.8;
+            ctx.strokeStyle = `rgba(245, 158, 11, ${0.25 * (1 - dist / 160)})`;
+            ctx.lineWidth = 1;
             ctx.moveTo(p.x, p.y);
             ctx.lineTo(p2.x, p2.y);
             ctx.stroke();
           }
         }
-
-        if (mouseRef.current.active) {
-          const dxM = p.x - mouseRef.current.x;
-          const dyM = p.y - mouseRef.current.y;
-          const distM = Math.sqrt(dxM * dxM + dyM * dyM);
-          if (distM < 200) {
-            ctx.beginPath();
-            ctx.strokeStyle = `rgba(245, 158, 11, ${0.3 * (1 - distM / 200)})`;
-            ctx.moveTo(p.x, p.y);
-            ctx.lineTo(mouseRef.current.x, mouseRef.current.y);
-            ctx.stroke();
-          }
-        }
       });
+    };
+
+    const draw = () => {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      
+      time -= 0.015; 
+      
+      drawAIParticles();
+      drawDNA();
 
       animationFrameId = requestAnimationFrame(draw);
     };
@@ -124,6 +181,7 @@ const ParticleBackground = () => {
     window.addEventListener('resize', resize);
     window.addEventListener('mousemove', handleMouseMove);
     window.addEventListener('mouseleave', handleMouseLeave);
+    
     resize();
     draw();
 
@@ -135,7 +193,7 @@ const ParticleBackground = () => {
     };
   }, []);
 
-  return <canvas ref={canvasRef} className="absolute top-0 left-0 w-full h-full pointer-events-none z-0 opacity-50" />;
+  return <canvas ref={canvasRef} className="absolute top-0 left-0 w-full h-full pointer-events-none z-0 opacity-70" />;
 };
 
 // --- UTILS ---
