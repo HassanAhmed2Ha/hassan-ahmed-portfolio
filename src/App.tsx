@@ -34,28 +34,109 @@ const SocialIcons = ({ className = '' }: { className?: string }) => (
   </div>
 );
 
-// --- NEW VIDEO BACKGROUND COMPONENT ---
-const VideoBackground = () => {
-  // Using a local URL. Ensure 'bio-video.mp4' is placed directly in the 'public' folder.
-  const localVideoUrl = "/bio-video.mp4";
+// --- UPDATED ANIMATED BACKGROUND ---
+const ParticleBackground = () => {
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+  const mouseRef = useRef({ x: 0, y: 0, active: false });
 
-  return (
-    <div className="absolute top-0 left-0 w-full h-full overflow-hidden z-0 pointer-events-none">
-      <div className="absolute inset-0 bg-gray-950/70 z-10 mix-blend-multiply"></div>
-      <video
-        autoPlay
-        loop
-        muted
-        playsInline
-        className="absolute top-0 left-0 w-full h-full object-cover opacity-80"
-      >
-        <source src={localVideoUrl} type="video/mp4" />
-        Your browser does not support the video tag.
-      </video>
-    </div>
-  );
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+    if (!ctx) return;
+
+    let particles: { x: number; y: number; vx: number; vy: number; size: number }[] = [];
+    let animationFrameId: number;
+
+    const resize = () => {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+      initParticles();
+    };
+
+    const initParticles = () => {
+      particles = [];
+      const particleCount = Math.floor((canvas.width * canvas.height) / 10000); 
+      for (let i = 0; i < particleCount; i++) {
+        particles.push({
+          x: Math.random() * canvas.width,
+          y: Math.random() * canvas.height,
+          vx: (Math.random() - 0.5) * 1.5,
+          vy: (Math.random() - 0.5) * 1.5,
+          size: Math.random() * 2 + 1,
+        });
+      }
+    };
+
+    const draw = () => {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      
+      particles.forEach((p, i) => {
+        p.x += p.vx;
+        p.y += p.vy;
+
+        if (p.x < 0 || p.x > canvas.width) p.vx *= -1;
+        if (p.y < 0 || p.y > canvas.height) p.vy *= -1;
+
+        ctx.fillStyle = 'rgba(245, 158, 11, 0.7)';
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+        ctx.fill();
+
+        for (let j = i + 1; j < particles.length; j++) {
+          const p2 = particles[j];
+          const dx = p.x - p2.x;
+          const dy = p.y - p2.y;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+
+          if (dist < 150) {
+            ctx.beginPath();
+            ctx.strokeStyle = `rgba(245, 158, 11, ${0.4 * (1 - dist / 150)})`;
+            ctx.lineWidth = 0.8;
+            ctx.moveTo(p.x, p.y);
+            ctx.lineTo(p2.x, p2.y);
+            ctx.stroke();
+          }
+        }
+
+        if (mouseRef.current.active) {
+          const dxM = p.x - mouseRef.current.x;
+          const dyM = p.y - mouseRef.current.y;
+          const distM = Math.sqrt(dxM * dxM + dyM * dyM);
+          if (distM < 200) {
+            ctx.beginPath();
+            ctx.strokeStyle = `rgba(245, 158, 11, ${0.3 * (1 - distM / 200)})`;
+            ctx.moveTo(p.x, p.y);
+            ctx.lineTo(mouseRef.current.x, mouseRef.current.y);
+            ctx.stroke();
+          }
+        }
+      });
+
+      animationFrameId = requestAnimationFrame(draw);
+    };
+
+    const handleMouseMove = (e: MouseEvent) => {
+      mouseRef.current = { x: e.clientX, y: e.clientY, active: true };
+    };
+    const handleMouseLeave = () => { mouseRef.current.active = false; };
+
+    window.addEventListener('resize', resize);
+    window.addEventListener('mousemove', handleMouseMove);
+    window.addEventListener('mouseleave', handleMouseLeave);
+    resize();
+    draw();
+
+    return () => {
+      window.removeEventListener('resize', resize);
+      window.removeEventListener('mousemove', handleMouseMove);
+      window.removeEventListener('mouseleave', handleMouseLeave);
+      cancelAnimationFrame(animationFrameId);
+    };
+  }, []);
+
+  return <canvas ref={canvasRef} className="absolute top-0 left-0 w-full h-full pointer-events-none z-0 opacity-50" />;
 };
-
 
 // --- UTILS ---
 const Typewriter = ({ words }: { words: string[] }) => {
@@ -134,7 +215,6 @@ const Reveal: React.FC<{ children: React.ReactNode; className?: string }> = ({ c
     </div>
   );
 };
-
 
 export default function App() {
   const [lang, setLang] = useState<Language>('en');
@@ -240,7 +320,7 @@ export default function App() {
         
         {/* HERO */}
         <section id="home" className="relative py-20 md:py-32 flex items-center min-h-screen overflow-hidden">
-            <VideoBackground />
+            <ParticleBackground />
             <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
               <Reveal className="space-y-6 md:space-y-8 order-2 md:order-1 text-center md:text-start">
                 <p className="text-xl md:text-2xl text-amber-500 font-semibold tracking-wide text-center md:text-start">{content.hero.greeting}</p>
@@ -278,9 +358,8 @@ export default function App() {
         </section>
 
         {/* ABOUT */}
-        <section id="about" className="relative py-20 bg-gray-900/50 overflow-hidden">
-            <VideoBackground />
-            <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <section id="about" className="py-20 bg-gray-900/50">
+            <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
               <h2 className="text-3xl md:text-4xl font-bold text-gray-100 text-center mb-10"><span className="border-b-4 border-amber-500 pb-2">{content.about.title}</span></h2>
               <Reveal className="w-full">
                 <Tilt3D className="bg-gray-800/80 backdrop-blur-sm rounded-2xl p-8 md:p-12 border border-gray-700 shadow-2xl relative overflow-hidden text-start">
