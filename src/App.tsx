@@ -36,8 +36,8 @@ const SocialIcons = ({ className = '' }: { className?: string }) => (
 
 // --- NEW VIDEO BACKGROUND COMPONENT ---
 const VideoBackground = () => {
-  // Converted GitHub blob URL to raw URL for direct video access
-  const rawVideoUrl = "https://raw.githubusercontent.com/HassanAhmed2Ha/hassan-ahmed-portfolio/main/%D8%AA%D8%AD%D9%88%D9%8A%D9%84_%D8%B5%D9%88%D8%B1%D8%A9_%D8%A5%D9%84%D9%89_%D9%81%D9%8A%D8%AF%D9%8A%D9%88_%D8%AF%D9%8A%D9%86%D8%A7%D9%85%D9%8A%D9%83%D9%8A.mp4";
+  // Using a local URL. Ensure 'bio-video.mp4' is placed directly in the 'public' folder.
+  const localVideoUrl = "/bio-video.mp4";
 
   return (
     <div className="absolute top-0 left-0 w-full h-full overflow-hidden z-0 pointer-events-none">
@@ -49,7 +49,7 @@ const VideoBackground = () => {
         playsInline
         className="absolute top-0 left-0 w-full h-full object-cover opacity-80"
       >
-        <source src={rawVideoUrl} type="video/mp4" />
+        <source src={localVideoUrl} type="video/mp4" />
         Your browser does not support the video tag.
       </video>
     </div>
