@@ -232,8 +232,15 @@ export const contentEn: Content = {
     viewAll: 'View All Projects',
     items: [
       {
+        title: 'BioPhys Refinement Lab',
+        description: 'A production-grade bioinformatics platform that transforms raw AI-predicted protein structures into docking-ready conformations using GPU-accelerated molecular dynamics.',
+        demoLink: 'https://biophys-refinement-4gj5w26hx-hassanahmed2has-projects.vercel.app',
+        codeLink: 'https://github.com/HassanAhmed2Ha/biophys-refinement-lab',
+        type: 'Computational Biology',
+        tags: ['FastAPI', 'React', 'OpenMM', 'Modal (GPU)']
+      },
+      {
         title: 'NeuroScan AI: Explainable Tumor Classification',
-        image: 'https://i.ibb.co/Y4QgqXWV/Screenshot-2026-04-01-023222.png',
         description: 'A full-stack medical AI system for real-time breast tumor classification. Built with TensorFlow, FastAPI, and React, integrating SHAP to provide feature-level clinical interpretability and resolve the AI black-box problem.',
         demoLink: 'https://tumor-diagnosis-frontend.vercel.app',
         codeLink: 'https://github.com/HassanAhmed2Ha/NeuroScan-AI',
@@ -242,7 +249,6 @@ export const contentEn: Content = {
       },
       {
         title: 'Open-Source Portfolio Template',
-        image: 'https://i.ibb.co/FLgLXcwZ/Screenshot-2025-12-25-002653.png',
         description: 'A fully reusable, open-source personal portfolio template built from scratch for students and researchers. Designed with React & TypeScript to provide digital empowerment and a professional identity without cost.',
         demoLink: 'https://hassan-ahmed-portfolio.vercel.app',
         codeLink: 'https://github.com/HassanAhmed2Ha/Hassan-Ahmed-Portfolio',
@@ -534,8 +540,15 @@ link: 'https://drive.google.com/file/d/1ZseW0jSZTZUz4HR2rmnOUrYA1Ewl3ErG/view?us
     viewAll: 'عرض جميع المشاريع',
     items: [
       {
+        title: 'BioPhys Refinement Lab',
+        description: 'منصة معلوماتية حيوية متكاملة لتحويل هياكل البروتين الأولية المتوقعة بالذكاء الاصطناعي إلى أشكال مستقرة وجاهزة للالتحام الجزيئي باستخدام ديناميكيات الجزيئات المسرعة بوحدات معالجة الرسومات (GPU).',
+        demoLink: 'https://biophys-refinement-4gj5w26hx-hassanahmed2has-projects.vercel.app',
+        codeLink: 'https://github.com/HassanAhmed2Ha/biophys-refinement-lab',
+        type: 'المعلوماتية الحيوية',
+        tags: ['FastAPI', 'React', 'OpenMM', 'Modal (GPU)']
+      },
+      {
         title: 'NeuroScan AI: تصنيف الأورام القابل للتفسير',
-        image: 'https://i.ibb.co/Y4QgqXWV/Screenshot-2026-04-01-023222.png',
         description: 'نظام ذكاء اصطناعي طبي متكامل لتصنيف أورام الثدي لحظياً. تم بناؤه باستخدام TensorFlow و FastAPI و React، مع دمج تقنية SHAP لتوفير تفسير دقيق لقرارات النموذج وحل مشكلة الصندوق الأسود.',
         demoLink: 'https://tumor-diagnosis-frontend.vercel.app',
         codeLink: 'https://github.com/HassanAhmed2Ha/NeuroScan-AI',
@@ -544,7 +557,6 @@ link: 'https://drive.google.com/file/d/1ZseW0jSZTZUz4HR2rmnOUrYA1Ewl3ErG/view?us
       },
       {
         title: 'قالب بورتفوليو مفتوح المصدر',
-        image: 'https://i.ibb.co/FLgLXcwZ/Screenshot-2025-12-25-002653.png',
         description: 'قالب معرض أعمال شخصي مجاني ومفتوح المصدر، تم بناؤه من الصفر لخدمة الطلاب والباحثين. يهدف لتعزيز التمكين الرقمي وتوفير هوية احترافية باستخدام React وTypeScript.',
         demoLink: 'https://hassan-ahmed-portfolio.vercel.app',
         codeLink: 'https://github.com/HassanAhmed2Ha/Hassan-Ahmed-Portfolio',
