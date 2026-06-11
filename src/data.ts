@@ -203,7 +203,18 @@ export const contentEn: Content = {
       demo: 'Demo',
     },
     items: [
+      
       {
+        title: 'Flood Intelligence AI',
+        description: 'A geospatial intelligence platform detecting flood extent from Sentinel-1/2 satellite imagery using a U-Net deep learning model. Features a 3D tactical HUD for wide-area damage assessment and smart SAR fallback for cloud obscuration.',
+        demoLink: 'https://flood-saas-project.pages.dev',
+        codeLink: 'https://github.com/HassanAhmed2Hassan/Flood_SaaS_Project',
+        type: 'Geospatial AI',
+        tags: ['Python', 'TensorFlow', 'FastAPI', 'Three.js', 'Earth Engine']
+      },
+      
+       
+     {
         title: 'BioPhys Refinement Lab',
         description: 'A production-grade bioinformatics platform that transforms raw AI-predicted protein structures into docking-ready conformations using GPU-accelerated molecular dynamics.',
         demoLink: 'https://biophys-refinement-4gj5w26hx-hassanahmed2has-projects.vercel.app',
