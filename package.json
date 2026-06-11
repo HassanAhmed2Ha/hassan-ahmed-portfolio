@@ -1,23 +1,80 @@
 {
   "name": "hassan-ahmed-portfolio",
+  "version": "1.0.1",
   "private": true,
-  "version": "1.0.0",
-  "type": "module",
+  "author": {
+    "name": "Hassan Ahmed",
+    "email": "",
+    "url": "https://github.com/HassanAhmed2Ha"
+  },
+  "description": "Hassan Ahmed - Bioinformatics Researcher and Full-Stack Developer",
+  "keywords": [
+    "react",
+    "next",
+    "nextjs",
+    "html",
+    "css",
+    "javascript",
+    "js",
+    "modern-ui",
+    "modern-ux",
+    "portfolio",
+    "framer-motion",
+    "3d-website",
+    "particle-effect"
+  ],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sanidhyy/modern-portfolio.git"
+  },
+  "homepage": "https://github.com/sanidhyy/modern-portfolio#readme",
+  "bugs": {
+    "url": "https://github.com/sanidhyy/modern-portfolio/issues",
+    "email": "sanidhya.verma12345@gmail.com"
+  },
+  "funding": [
+    {
+      "type": "patreon",
+      "url": "https://www.patreon.com/sanidhy"
+    },
+    {
+      "type": "Buy me a coffee",
+      "url": "https://www.buymeacoffee.com/sanidhy"
+    }
+  ],
   "scripts": {
-    "dev": "vite",
-    "build": "vite build",
-    "preview": "vite preview"
+    "dev": "NODE_OPTIONS='--trace-warnings' next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
   },
   "dependencies": {
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "@emailjs/browser": "^4.4.1"
+    "@emailjs/browser": "^4.4.1",
+    "@next/font": "^13.4.4",
+    "@next/swc-linux-x64-gnu": "^16.2.9",
+    "framer-motion": "^10.12.16",
+    "language-subtag-registry": "^0.4.2",
+    "next": "15.5.18",
+    "react": "18.2.0",
+    "react-countup": "^6.4.2",
+    "react-dom": "18.2.0",
+    "react-icons": "^4.8.0",
+    "react-tsparticles": "^2.9.3",
+    "sharp": "^0.35.0",
+    "swiper": "^12.1.2",
+    "tailwind-scrollbar": "^3.0.4",
+    "tsparticles": "^2.9.3"
   },
   "devDependencies": {
-    "@types/react": "^18.2.66",
-    "@types/react-dom": "^18.2.22",
-    "@vitejs/plugin-react": "^4.2.1",
-    "typescript": "^5.2.2",
-    "vite": "^5.2.0"
+    "@types/node": "^20.0.0",
+    "@types/react": "^18.2.0",
+    "@types/react-dom": "^18.2.0",
+    "autoprefixer": "^10.4.14",
+    "eslint": "8.41.0",
+    "eslint-config-next": "13.4.3",
+    "postcss": "^8.4.23",
+    "tailwindcss": "^3.3.2",
+    "typescript": "^5.0.0"
   }
 }

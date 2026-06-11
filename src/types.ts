@@ -1,18 +1,19 @@
 export type Language = 'en' | 'ar';
 
-export interface NavLink {
-  id: string;
-  label: string;
+export interface SkillGroup {
+  category: string;
+  items: string[];
 }
+
+
 
 export interface Project {
   title: string;
-  image: string;
   description: string;
   demoLink?: string;
   codeLink?: string;
-  codeLabel?: string;
-  doiLink?: string;
+  type: string;
+  tags: string[];
 }
 
 export interface Publication {
@@ -20,13 +21,10 @@ export interface Publication {
   meta: string;
   description: string;
   doi: string;
+  tags: string[];
 }
 
-export interface Service {
-  title: string;
-  description: string;
-  iconPath: string; // SVG path d attribute
-}
+
 
 export interface ExperienceItem {
   role: string;
@@ -44,21 +42,25 @@ export interface CertificationItem {
 }
 
 export interface Content {
-  nav: NavLink[];
+  header: {
+    logoPart1: string;
+    logoPart2: string;
+  };
+  seo: {
+    title: string;
+    description: string;
+    keywords: string[];
+  };
   hero: {
-    greeting: string;
-    namePrefix: string;
-    name: string;
+    titleLine1: string;
+    titleLine2: string;
     role: string[];
     description: string;
-    btnAbout: string;
-    btnProjects: string;
   };
   about: {
     title: string;
-    p1: string;
-    p2: string; // Using HTML string for bolding
-    btnLinkedin: string;
+    tagline: string;
+    skillGroups: SkillGroup[];
   };
   experience: {
     title: string;
@@ -66,19 +68,25 @@ export interface Content {
   };
   certifications: {
     title: string;
+    verifyLabel: string;
     items: CertificationItem[];
-  };
-  services: {
-    title: string;
-    items: Service[];
   };
   projects: {
     title: string;
+    description: string;
+    labels: {
+      code: string;
+      demo: string;
+    };
     items: Project[];
-    viewAll: string;
   };
   publications: {
     title: string;
+    description: string;
+    labels: {
+      doiPrefix: string;
+      zenodoRecord: string;
+    };
     items: Publication[];
   };
   contact: {
@@ -91,17 +99,5 @@ export interface Content {
       message: string;
     };
     btnSend: string;
-  };
-  footer: {
-    col1Title: string;
-    col1Text: string;
-    col2Title: string;
-    col3Title: string;
-    copyright: string;
-    contactInfo: {
-      phone: string;
-      email: string;
-      location: string;
-    }
   };
 }
