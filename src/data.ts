@@ -13,7 +13,7 @@ export const contentEn: Content = {
   hero: {
     titleLine1: 'Decoding Life\'s Code',
     titleLine2: 'As a ',
-    role: ['Computational Biology Student', ' Data Scientist', 'AI Enthusiast'],
+    role: [ ' Data Scientist', 'Computational Biology Student', 'AI Builder'],
     description: 'Bridging the gap between biological complexity and artificial intelligence. I build data-driven architectures to translate life\'s code into meaningful insights, committed to advancing human health and sustainability through computational innovation.',
   },
   about: {
