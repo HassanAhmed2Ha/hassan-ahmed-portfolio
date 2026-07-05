@@ -29,7 +29,7 @@ export const contentEn: Content = {
     ],
   },
   experience: {
-    title: 'Professional Experience',
+    title: 'Professional Experience & Programs ',
     items: [
       {
         role: 'Erasmus+ Mentors Academy Trainee',
