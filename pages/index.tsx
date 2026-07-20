@@ -6,6 +6,7 @@ import ProjectsBtn from "../components/ProjectsBtn";
 import Avatar from "../components/Avatar";
 import ParticlesContainer from "../components/ParticlesContainer";
 import About from "../components/sections/About";
+import TechMarquee from "../components/sections/TechMarquee";
 import Experience from "../components/sections/Experience";
 import Certifications from "../components/sections/Certifications";
 import Work from "../components/sections/Work";
@@ -143,6 +144,7 @@ const Home: React.FC = () => {
         </div>
       </section>
       <About />
+      <TechMarquee data={content.techStackMarquee} />
       <Experience />
       <Certifications />
       <Work />

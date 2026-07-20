@@ -41,11 +41,16 @@ module.exports = {
           '0%, 100%': { opacity: 0.5, filter: 'drop-shadow(0 0 10px rgba(255, 193, 7, 0.4))' },
           '50%': { opacity: 0.8, filter: 'drop-shadow(0 0 25px rgba(255, 193, 7, 0.9))' },
         },
+        marquee: {
+          '0%': { transform: 'translateX(0%)' },
+          '100%': { transform: 'translateX(-100%)' },
+        },
       },
       animation: {
         "spin-slow": "spin 6s linear infinite",
         'pulse-gold': 'pulse-gold 6s ease-in-out infinite',
         'pulse-gold-fast': 'pulse-gold 3s ease-in-out infinite',
+        marquee: 'marquee 30s linear infinite',
       },
       fontFamily: {
         sora: [`var(--font-sora)`, "sans-serif"],

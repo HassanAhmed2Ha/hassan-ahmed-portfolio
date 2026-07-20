@@ -1,5 +1,11 @@
 export type Language = 'en' | 'ar';
 
+export interface TechLogo {
+  name: string;
+  logoUrl: string;
+  inverse?: boolean;
+}
+
 export interface SkillGroup {
   category: string;
   items: string[];
@@ -62,6 +68,7 @@ export interface Content {
     tagline: string;
     skillGroups: SkillGroup[];
   };
+  techStackMarquee: TechLogo[];
   experience: {
     title: string;
     items: ExperienceItem[];
