@@ -7,14 +7,15 @@ import { contentEn as content } from "../../src/data";
 import { FiTerminal, FiBookOpen, FiUsers, FiCpu, FiTarget, FiGlobe } from "react-icons/fi";
 
 const getIconForCategory = (category: string) => {
+  const iconClass = "text-amber-500 text-lg drop-shadow-[0_0_8px_rgba(245,158,11,0.8)]";
   switch (category) {
-    case 'Technical Skills': return <FiTerminal className="text-amber-500 text-lg" />;
-    case 'Research': return <FiBookOpen className="text-amber-500 text-lg" />;
-    case 'Soft Skills': return <FiUsers className="text-amber-500 text-lg" />;
-    case 'AI Literacy & Safety': return <FiCpu className="text-amber-500 text-lg" />;
-    case 'Problem Solving': return <FiTarget className="text-amber-500 text-lg" />;
-    case 'Languages': return <FiGlobe className="text-amber-500 text-lg" />;
-    default: return <FiTerminal className="text-amber-500 text-lg" />;
+    case 'Technical Skills': return <FiTerminal className={iconClass} />;
+    case 'Research': return <FiBookOpen className={iconClass} />;
+    case 'Soft Skills': return <FiUsers className={iconClass} />;
+    case 'AI Literacy & Safety': return <FiCpu className={iconClass} />;
+    case 'Problem Solving': return <FiTarget className={iconClass} />;
+    case 'Languages': return <FiGlobe className={iconClass} />;
+    default: return <FiTerminal className={iconClass} />;
   }
 };
 
@@ -70,17 +71,17 @@ const About: React.FC = () => {
               {content.about.skillGroups.map((group, idx) => (
                 <div 
                   key={idx} 
-                  className="bg-black/40 backdrop-blur-md p-6 rounded-xl border border-white/5 hover:border-amber-500/30 transition-all duration-300 h-fit flex flex-col justify-start group/card overflow-hidden"
+                  className="bg-white/[0.02] backdrop-blur-md p-6 rounded-xl border border-white/[0.05] hover:border-amber-500/30 hover:shadow-[0_0_30px_rgba(245,158,11,0.05)] transition-all duration-300 h-fit flex flex-col justify-start group/card overflow-hidden"
                 >
                   <div className="flex items-center gap-2 mb-4">
                     {getIconForCategory(group.category)}
-                    <h3 className="text-accent font-bold uppercase tracking-wider text-sm">{group.category}</h3>
+                    <h3 className="text-accent font-bold uppercase tracking-wider text-sm drop-shadow-[0_0_8px_rgba(245,158,11,0.8)]">{group.category}</h3>
                   </div>
                   <div className="flex flex-wrap gap-2">
                     {group.items.map((skill, i) => (
                       <span 
                         key={i} 
-                        className="text-sm bg-white/5 px-3 py-1.5 rounded-full border border-white/10 hover:border-amber-500/50 hover:text-amber-400 hover:bg-white/10 hover:-translate-y-0.5 transition-all duration-300 text-white/80 shadow-sm"
+                        className="px-3 py-1.5 rounded-full text-sm font-medium bg-cyan-950/30 text-cyan-100/70 border border-cyan-900/50 hover:bg-cyan-900/50 hover:text-cyan-300 hover:border-cyan-500/50 hover:-translate-y-0.5 transition-all duration-300 shadow-sm"
                       >
                         {skill}
                       </span>
