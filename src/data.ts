@@ -46,6 +46,11 @@ export const contentEn: Content = {
     createSkill("Linux", "linux"),
     createSkill("GitHub", "github"),
     createSkill("PostgreSQL", "postgresql"),
+    createSkill("Deep Learning", "deeplearning"),
+    createSkill("NodeJS", "nodejs"),
+    createSkill("Express", "express"),
+    createSkill("Kbernetes", "kubernetes"),
+
   ],
   experience: {
     title: 'Professional Experience & Programs ',
