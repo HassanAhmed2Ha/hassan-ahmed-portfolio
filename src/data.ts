@@ -1,4 +1,10 @@
-import { Content } from './types';
+import { Content, TechLogo } from './types';
+
+const createSkill = (title: string, iconId: string): TechLogo => ({
+  name: title,
+  logoUrl: `https://skillicons.dev/icons?i=${iconId}`,
+  inverse: false,
+});
 
 export const contentEn: Content = {
   header: {
@@ -29,16 +35,16 @@ export const contentEn: Content = {
     ],
   },
   techStackMarquee: [
-    { name: 'Python', logoUrl: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/python/python-original.svg' },
-    { name: 'TensorFlow', logoUrl: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/tensorflow/tensorflow-original.svg' },
-    { name: 'PyTorch', logoUrl: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/pytorch/pytorch-original.svg' },
-    { name: 'R', logoUrl: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/r/r-original.svg' },
-    { name: 'Next.js', logoUrl: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nextjs/nextjs-original.svg', inverse: true },
-    { name: 'Tailwind CSS', logoUrl: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/tailwindcss/tailwindcss-original.svg' },
-    { name: 'Docker', logoUrl: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/docker/docker-original.svg' },
-    { name: 'FastAPI', logoUrl: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/fastapi/fastapi-original.svg' },
-    { name: 'React', logoUrl: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/react/react-original.svg' },
-    { name: 'TypeScript', logoUrl: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/typescript/typescript-original.svg' },
+    createSkill("Python", "py"),
+    createSkill("Next.js", "nextjs"),
+    createSkill("Tailwind CSS", "tailwind"),
+    createSkill("Docker", "docker"),
+    createSkill("TypeScript", "ts"),
+    createSkill("React", "react"),
+    createSkill("FastAPI", "fastapi"),
+    createSkill("TensorFlow", "tensorflow"),
+    createSkill("PyTorch", "pytorch"),
+    createSkill("Git", "git"),
   ],
   experience: {
     title: 'Professional Experience & Programs ',
