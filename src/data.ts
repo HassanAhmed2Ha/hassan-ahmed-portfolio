@@ -31,7 +31,7 @@ export const contentEn: Content = {
       { category: 'Soft Skills', items: ['Leadership', 'Intercultural Mediation', 'Team Collaboration', 'Digital Facilitation'] },
       { category: 'AI Literacy & Safety', items: ['Prompt Engineering', 'Responsible AI', 'AI Ethics', 'Multi-Agent Systems'] },
       { category: 'Problem Solving', items: ['Rapid Prototyping', 'Scenario Analysis', 'AgriTech Innovation'] },
-      { category: 'Languages', items: ['Arabic (Native)', 'English (Professional Working Proficiency)'] },
+      { category: 'Languages', items: ['Arabic (Native)', 'English (Proficient)'] },
     ],
   },
   techStackMarquee: [
