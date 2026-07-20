@@ -4,6 +4,19 @@ import { fadeIn } from "../../variants";
 import Circles from "../Circles";
 import CountUp from "react-countup";
 import { contentEn as content } from "../../src/data";
+import { FiTerminal, FiBookOpen, FiUsers, FiCpu, FiTarget, FiGlobe } from "react-icons/fi";
+
+const getIconForCategory = (category: string) => {
+  switch (category) {
+    case 'Technical Skills': return <FiTerminal className="text-amber-500 text-lg" />;
+    case 'Research': return <FiBookOpen className="text-amber-500 text-lg" />;
+    case 'Soft Skills': return <FiUsers className="text-amber-500 text-lg" />;
+    case 'AI Literacy & Safety': return <FiCpu className="text-amber-500 text-lg" />;
+    case 'Problem Solving': return <FiTarget className="text-amber-500 text-lg" />;
+    case 'Languages': return <FiGlobe className="text-amber-500 text-lg" />;
+    default: return <FiTerminal className="text-amber-500 text-lg" />;
+  }
+};
 
 const About: React.FC = () => {
   const [mousePosition, setMousePosition] = useState({ x: -1000, y: -1000 });
@@ -38,7 +51,7 @@ const About: React.FC = () => {
         </div>
 
         {/* Skills Bento Grid */}
-        <motion.div variants={fadeIn("up", 0.4)} initial="hidden" whileInView="show" className="w-full max-w-6xl mx-auto">
+        <motion.div variants={fadeIn("up", 0.4)} initial="hidden" whileInView="show" className="w-full max-w-5xl mx-auto">
           <div 
             ref={containerRef}
             onMouseMove={handleMouseMove}
@@ -53,18 +66,21 @@ const About: React.FC = () => {
               }}
             />
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 relative z-10">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 relative z-10 items-start">
               {content.about.skillGroups.map((group, idx) => (
                 <div 
                   key={idx} 
-                  className="bg-black/40 backdrop-blur-md p-6 rounded-xl border border-white/5 hover:border-amber-500/30 transition-all duration-300 h-full flex flex-col justify-start group/card overflow-hidden"
+                  className="bg-black/40 backdrop-blur-md p-6 rounded-xl border border-white/5 hover:border-amber-500/30 transition-all duration-300 h-fit flex flex-col justify-start group/card overflow-hidden"
                 >
-                  <h3 className="text-accent font-bold mb-4 uppercase tracking-wider text-sm">{group.category}</h3>
+                  <div className="flex items-center gap-2 mb-4">
+                    {getIconForCategory(group.category)}
+                    <h3 className="text-accent font-bold uppercase tracking-wider text-sm">{group.category}</h3>
+                  </div>
                   <div className="flex flex-wrap gap-2">
                     {group.items.map((skill, i) => (
                       <span 
                         key={i} 
-                        className="text-sm bg-white/5 px-3 py-1.5 rounded-full border border-white/10 hover:border-amber-500/50 hover:text-amber-400 hover:bg-amber-500/10 hover:-translate-y-0.5 transition-all duration-300 text-white/80 shadow-sm"
+                        className="text-sm bg-white/5 px-3 py-1.5 rounded-full border border-white/10 hover:border-amber-500/50 hover:text-amber-400 hover:bg-white/10 hover:-translate-y-0.5 transition-all duration-300 text-white/80 shadow-sm"
                       >
                         {skill}
                       </span>
