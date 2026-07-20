@@ -19,7 +19,7 @@ export const contentEn: Content = {
   hero: {
     titleLine1: 'Decoding Life\'s Code',
     titleLine2: 'As a ',
-    role: [ ' Data Scientist','Computational Biology Student', 'AI Builder'],
+    role: [' Data Scientist', 'Computational Biology Student', 'AI Builder'],
     description: 'Bridging the gap between biological complexity and artificial intelligence. I build data-driven architectures to translate life\'s code into meaningful insights, committed to advancing human health and sustainability through computational innovation.',
   },
   about: {
@@ -37,14 +37,15 @@ export const contentEn: Content = {
   techStackMarquee: [
     createSkill("Python", "py"),
     createSkill("Next.js", "nextjs"),
-    createSkill("Tailwind CSS", "tailwind"),
     createSkill("Docker", "docker"),
-    createSkill("TypeScript", "ts"),
-    createSkill("React", "react"),
+    createSkill("JavaScript", "js"),
     createSkill("FastAPI", "fastapi"),
     createSkill("TensorFlow", "tensorflow"),
     createSkill("PyTorch", "pytorch"),
     createSkill("Git", "git"),
+    createSkill("Linux", "linux"),
+    createSkill("GitHub", "github"),
+    createSkill("PostgreSQL", "postgresql"),
   ],
   experience: {
     title: 'Professional Experience & Programs ',
@@ -221,7 +222,7 @@ export const contentEn: Content = {
       demo: 'Demo',
     },
     items: [
-      
+
       {
         title: 'Flood Intelligence AI',
         description: 'A geospatial intelligence platform detecting flood extent from Sentinel-1/2 satellite imagery using a U-Net deep learning model. Features a 3D tactical HUD for wide-area damage assessment and smart SAR fallback for cloud obscuration.',
@@ -230,9 +231,9 @@ export const contentEn: Content = {
         type: 'Geospatial AI',
         tags: ['Python', 'TensorFlow', 'FastAPI', 'Three.js', 'Earth Engine']
       },
-      
-       
-     {
+
+
+      {
         title: 'BioPhys Refinement Lab',
         description: 'A production-grade bioinformatics platform that transforms raw AI-predicted protein structures into docking-ready conformations using GPU-accelerated molecular dynamics.',
         demoLink: 'https://biophys-refinement-4gj5w26hx-hassanahmed2has-projects.vercel.app',
