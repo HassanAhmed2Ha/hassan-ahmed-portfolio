@@ -19,17 +19,21 @@ const Avatar: React.FC<AvatarProps> = ({
     : "";
 
   return (
-    <div className={`w-full h-full flex justify-center items-end pointer-events-none select-none relative ${maskClasses}`}>
-      {/* Backlight Glow */}
-      <div className="absolute inset-0 bg-amber-500/20 blur-[80px] rounded-full -z-10" />
-      <Image
-        src="/avatar.png"
-        alt="avatar"
-        width={width}
-        height={height}
-        className={className}
-        priority
-      />
+    <div className="w-full h-full flex justify-center items-end pointer-events-none select-none relative">
+      {/* 1. The Glow (NOT masked) */}
+      <div className="absolute -inset-x-20 -inset-y-20 bg-[radial-gradient(circle_at_center,rgba(245,158,11,0.25)_0%,transparent_60%)] rounded-full -z-10 pointer-events-none" />
+
+      {/* 2. The Image (Masked) */}
+      <div className={`relative z-10 w-full h-full flex justify-center items-end ${maskClasses}`}>
+        <Image
+          src="/avatar.png"
+          alt="avatar"
+          width={width}
+          height={height}
+          className={className}
+          priority
+        />
+      </div>
     </div>
   );
 };
