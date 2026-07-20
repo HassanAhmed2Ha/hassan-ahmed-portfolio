@@ -15,11 +15,11 @@ const TechMarquee: React.FC<TechMarqueeProps> = ({ data }) => {
       {/* Marquee Container */}
       <div className="flex w-max group">
         {/* First set of items */}
-        <div className="flex animate-marquee">
+        <div className="flex animate-marquee [animation-duration:15s]">
           {data.map((item, idx) => (
             <div
               key={`${item.name}-${idx}`}
-              className="flex-shrink-0 flex flex-col items-center justify-center w-40 h-40 mx-4 rounded-2xl bg-black/40 backdrop-blur-md border border-white/5 transition-all duration-300 hover:scale-110 hover:border-cyan-500/40 hover:shadow-[0_0_30px_rgba(6,182,212,0.25)] hover:z-20 cursor-pointer relative"
+              className="flex-shrink-0 flex flex-col items-center justify-center w-40 h-40 mx-4 rounded-2xl bg-black/40 backdrop-blur-md border border-white/5 transition-all duration-300 hover:scale-110 hover:border-amber-500/50 hover:shadow-[0_0_30px_rgba(245,158,11,0.3)] hover:z-20 cursor-pointer relative"
             >
               <div className="w-16 h-16 mb-4 relative flex items-center justify-center">
                 <img
@@ -40,13 +40,13 @@ const TechMarquee: React.FC<TechMarqueeProps> = ({ data }) => {
 
         {/* Second set of items (duplicated for seamless looping) */}
         <div
-          className="flex animate-marquee"
+          className="flex animate-marquee [animation-duration:15s]"
           aria-hidden="true"
         >
           {data.map((item, idx) => (
             <div
               key={`dup-${item.name}-${idx}`}
-              className="flex-shrink-0 flex flex-col items-center justify-center w-40 h-40 mx-4 rounded-2xl bg-black/40 backdrop-blur-md border border-white/5 transition-all duration-300 hover:scale-110 hover:border-cyan-500/40 hover:shadow-[0_0_30px_rgba(6,182,212,0.25)] hover:z-20 cursor-pointer relative"
+              className="flex-shrink-0 flex flex-col items-center justify-center w-40 h-40 mx-4 rounded-2xl bg-black/40 backdrop-blur-md border border-white/5 transition-all duration-300 hover:scale-110 hover:border-amber-500/50 hover:shadow-[0_0_30px_rgba(245,158,11,0.3)] hover:z-20 cursor-pointer relative"
             >
               <div className="w-16 h-16 mb-4 relative flex items-center justify-center">
                 <img
