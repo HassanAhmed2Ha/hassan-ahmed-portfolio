@@ -26,7 +26,7 @@ export const contentEn: Content = {
     title: 'About Me',
     tagline: 'At the intersection of biology and computation, decoding life’s mechanisms to drive innovation in agriculture and neuroscience.',
     skillGroups: [
-      { category: 'Technical Skills', items: ['Python', 'Bioinformatics', 'Data Science', 'Machine Learning'] },
+      { category: 'Technical Skills', items: ['Python', 'Bioinformatics', 'Data Science', 'Machine Learning', 'Deep Learning', 'NLP', 'Data Base'] },
       { category: 'Research', items: ['Genomics', 'Transcriptomics', 'Academic Writing', 'Scientific Publishing'] },
       { category: 'Soft Skills', items: ['Leadership', 'Intercultural Mediation', 'Team Collaboration', 'Digital Facilitation'] },
       { category: 'AI Literacy & Safety', items: ['Prompt Engineering', 'Responsible AI', 'AI Ethics', 'Multi-Agent Systems'] },
