@@ -71,7 +71,7 @@ const Home: React.FC = () => {
             repeat: Infinity, 
             ease: "easeInOut" 
           }}
-          className="absolute inset-0 z-0 pointer-events-none mix-blend-color-dodge opacity-60 transition-all duration-300 animate-pulse-gold-fast"
+          className="hidden md:block absolute inset-0 z-0 pointer-events-none mix-blend-color-dodge opacity-60 transition-all duration-300 animate-pulse-gold-fast"
           style={{
             maskImage: 'radial-gradient(ellipse at 30% 50%, black 40%, transparent 75%)',
             WebkitMaskImage: 'radial-gradient(ellipse at 30% 50%, black 40%, transparent 75%)'
@@ -87,7 +87,7 @@ const Home: React.FC = () => {
         </motion.div>
         
         {/* Layer 2: Particles Container */}
-        <div className="absolute inset-0 z-1 pointer-events-none">
+        <div className="hidden md:block absolute inset-0 z-1 pointer-events-none">
           <ParticlesContainer />
         </div>
 

@@ -17,7 +17,7 @@ interface LayoutProps {
 const Layout: React.FC<LayoutProps> = ({ children }) => {
   return (
     <div
-      className={`relative min-h-screen w-full bg-primary text-white font-sans ${sora.variable}`}
+      className={`relative min-h-screen w-full overflow-x-hidden bg-primary text-white font-sans ${sora.variable}`}
     >
       {/* metadata */}
       <Head>
@@ -32,6 +32,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
         />
         <meta name="author" content="Hassan Zaki" />
         <meta name="theme-color" content="#FBBF24" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0" />
       </Head>
       <TopLeftImg />
       <Nav />

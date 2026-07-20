@@ -10,7 +10,7 @@ const WorkGrid: React.FC = () => {
       {projects.map((project, index) => (
         <div 
           key={index} 
-          className="bg-white/5 backdrop-blur-xl border border-white/10 hover:border-accent/40 hover:bg-white/10 transition-all duration-300 p-6 rounded-2xl flex flex-col justify-between h-[300px] shadow-2xl relative overflow-hidden group text-left"
+          className="bg-white/5 backdrop-blur-sm md:backdrop-blur-xl border border-white/10 hover:border-accent/40 hover:bg-white/10 transition-all duration-300 p-6 rounded-2xl flex flex-col justify-between h-[300px] shadow-2xl relative overflow-hidden group text-left"
         >
           {/* Subtle Background Glow */}
           <div className="absolute -top-12 -right-12 w-24 h-24 bg-accent/10 blur-3xl rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
