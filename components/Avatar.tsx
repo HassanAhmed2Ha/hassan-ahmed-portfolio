@@ -14,13 +14,14 @@ const Avatar: React.FC<AvatarProps> = ({
   className = "w-full h-full object-contain translate-z-0",
   applyMask = false
 }) => {
-  const maskStyles = applyMask ? {
-    WebkitMaskImage: "linear-gradient(to bottom, rgba(0,0,0,1) 60%, rgba(0,0,0,0) 100%)",
-    maskImage: "linear-gradient(to bottom, rgba(0,0,0,1) 60%, rgba(0,0,0,0) 100%)"
-  } : {};
+  const maskClasses = applyMask 
+    ? "[-webkit-mask-image:linear-gradient(to_bottom,black_60%,transparent_100%)] [mask-image:linear-gradient(to_bottom,black_60%,transparent_100%)]" 
+    : "";
 
   return (
-    <div className="w-full h-full flex justify-center items-center pointer-events-none select-none" style={maskStyles}>
+    <div className={`w-full h-full flex justify-center items-end pointer-events-none select-none relative ${maskClasses}`}>
+      {/* Backlight Glow */}
+      <div className="absolute inset-0 bg-amber-500/20 blur-[80px] rounded-full -z-10" />
       <Image
         src="/avatar.png"
         alt="avatar"
