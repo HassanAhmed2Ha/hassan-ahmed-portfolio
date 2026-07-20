@@ -49,6 +49,11 @@ export const contentEn: Content = {
     createSkill("NodeJS", "nodejs"),
     createSkill("Express", "express"),
     createSkill("Kbernetes", "kubernetes"),
+    createSkill("MongoDB", "mongodb"),
+    createSkill("GitHub Actions", "github"),
+
+
+
 
   ],
   experience: {
