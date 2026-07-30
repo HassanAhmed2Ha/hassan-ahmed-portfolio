@@ -66,6 +66,7 @@ export interface Content {
   about: {
     title: string;
     tagline: string;
+    description?: string[];
     skillGroups: SkillGroup[];
   };
   techStackMarquee: TechLogo[];

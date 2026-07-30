@@ -46,9 +46,16 @@ const About: React.FC = () => {
           <motion.h2 variants={fadeIn("down", 0.2)} initial="hidden" whileInView="show" className="h2 mb-4 text-center">
             {content.about.title} <span className="text-accent">.</span>
           </motion.h2>
-          <motion.p variants={fadeIn("down", 0.4)} initial="hidden" whileInView="show" className="max-w-3xl mx-auto text-center text-white/90 text-xl xl:text-2xl font-medium leading-relaxed">
+          <motion.p variants={fadeIn("down", 0.4)} initial="hidden" whileInView="show" className="max-w-3xl mx-auto text-center text-white/90 text-xl xl:text-2xl font-medium leading-relaxed mb-4">
             {content.about.tagline}
           </motion.p>
+          {content.about.description && (
+            <motion.div variants={fadeIn("down", 0.5)} initial="hidden" whileInView="show" className="max-w-3xl mx-auto text-center text-white/70 text-base xl:text-lg space-y-4 mb-4">
+              {content.about.description.map((paragraph, index) => (
+                <p key={index}>{paragraph}</p>
+              ))}
+            </motion.div>
+          )}
         </div>
 
         {/* Skills Bento Grid */}
