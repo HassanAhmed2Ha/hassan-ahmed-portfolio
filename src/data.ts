@@ -30,15 +30,57 @@ export const contentEn: Content = {
   },
   about: {
     title: 'About Me',
-    tagline: 'At the intersection of biology and computation, decoding life’s mechanisms to drive innovation in agriculture and neuroscience.',
-    skillGroups: [
-      { category: 'Technical Skills', items: ['Python', 'Bioinformatics', 'Data Science', 'Machine Learning', 'Deep Learning', 'Database design'] },
-      { category: 'Research', items: ['Genomics', 'Transcriptomics', 'Academic Writing', 'Scientific Publishing'] },
-      { category: 'Soft Skills', items: ['Leadership', 'Intercultural Mediation', 'Team Collaboration', 'Digital Facilitation'] },
-      { category: 'AI Literacy & Safety', items: ['Prompt Engineering', 'Responsible AI', 'AI Ethics', 'Multi-Agent Systems'] },
-      { category: 'Problem Solving', items: ['Rapid Prototyping', 'Scenario Analysis', 'AgriTech Innovation'] },
-      { category: 'Languages', items: ['Arabic (Native)', 'English (Proficient)'] },
+
+    tagline:
+      'I build intelligent systems where artificial intelligence, software engineering, and computational biology converge to solve meaningful scientific challenges.',
+
+    description: [
+      'My work focuses on designing end-to-end AI systems that transform complex scientific data into practical tools for research and real-world decision-making. By combining artificial intelligence, computational biology, and software engineering, I develop scalable solutions across healthcare, agriculture, and environmental science.',
+
+      'Rather than building isolated machine learning models, I enjoy engineering complete AI systems—from data acquisition and engineering to model development, backend infrastructure, deployment, and user-facing applications. I believe impactful AI requires both scientific understanding and strong software engineering.',
+
+      'My long-term goal is to contribute to research and industry by developing intelligent technologies that accelerate scientific discovery while making advanced AI more accessible to researchers, organizations, and communities.'
     ],
+
+    skillGroups: [
+
+      {
+        category: 'Core Expertise',
+        items: [
+          'Artificial Intelligence',
+          'Machine Learning',
+          'Computational Biology',
+          'Software Engineering',
+          'Data Science',
+          'Scientific Research'
+        ]
+      },
+
+      {
+        category: 'Research Interests',
+        items: [
+          'Bioinformatics',
+          'Healthcare AI',
+          'Precision Agriculture',
+          'Environmental Intelligence',
+          'Scientific Computing',
+          'Generative AI'
+        ]
+      },
+
+      {
+        category: 'Technologies',
+        items: [
+          'Python',
+          'FastAPI',
+          'PyTorch',
+          'TensorFlow',
+          'Docker',
+          'SQL'
+        ]
+      }
+
+    ]
   },
   techStackMarquee: [
     createSkill("Python", "py"),
