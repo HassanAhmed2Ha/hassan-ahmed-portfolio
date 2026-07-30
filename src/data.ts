@@ -17,10 +17,16 @@ export const contentEn: Content = {
     keywords: ["Bioinformatics", "AI", "Computational Biology", "Python", "Data Science", "Hassan Zaki"],
   },
   hero: {
-    titleLine1: 'Decoding Life\'s Code',
-    titleLine2: 'As a ',
-    role: [' Data Scientist', 'Computational Biology Student', 'AI Builder'],
-    description: 'Bridging the gap between biological complexity and artificial intelligence. I build data-driven architectures to translate life\'s code into meaningful insights, committed to advancing human health and sustainability through computational innovation.',
+    titleLine1: 'Engineering AI for',
+    titleLine2: '',
+    role: [
+      'Life Sciences',
+      'Scientific Discovery',
+      'Real-World Impact'
+    ],
+
+    description:
+      'I build end-to-end AI systems that transform complex scientific data into scalable, production-ready solutions. Combining artificial intelligence, machine learning, software engineering, and computational biology, I develop intelligent technologies for healthcare, agriculture, and environmental science—turning scientific challenges into practical tools that drive discovery and real-world impact.'
   },
   about: {
     title: 'About Me',
