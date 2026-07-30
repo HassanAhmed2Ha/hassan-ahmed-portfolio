@@ -57,97 +57,61 @@ export const contentEn: Content = {
 
   ],
   experience: {
-    title: 'Professional Experience & Programs ',
+    title: 'Professional Experience',
     items: [
+
       {
-        role: 'Erasmus+ Mentors Academy Trainee',
-        company: 'New Regeneration Project (EU)',
-        period: 'Nov 2025 – Present',
-        location: 'Remote',
+        role: 'Artificial Intelligence Committee Member',
+        company: 'IEEE SSCS Alexandria University Student Chapter',
+        period: 'Feb 2026 – Present',
+        location: 'Egypt · Hybrid',
         description: [
-          'Selected for the New Regeneration Mentors Academy (Erasmus+ ID: 101193651).',
-          'Participating in a 6-month capacity-building program for youth mentors in Europe and MENA.',
-          'Training in digital facilitation, intercultural mediation, and civic tech.',
-          'Preparing to support future youth cohorts in virtual academy delivery.'
+          'Develop AI systems using Machine Learning, Deep Learning, and Generative AI for real-world engineering applications.',
+          'Build production-oriented software through collaborative engineering projects and structured technical training.',
+          'Apply modern software engineering practices across the complete AI development lifecycle, from experimentation to deployment.',
+          'Collaborate with multidisciplinary teams to transform research concepts into scalable AI solutions.'
         ]
       },
-      {
-        role: 'Google Gemini Student Ambassador',
-        company: 'BasharSoft (WUZZUF / Forasna)',
-        period: 'Oct 2025',
-        location: 'Hybrid',
-        description: [
-          'Facilitated access to Gemini Pro for over 800 students in Egypt.',
-          'Delivered guidance on responsible AI use and digital wellbeing.',
-          'Contributed to one of the largest student-led AI awareness initiatives in the region.'
-        ]
-      },
+
       {
         role: 'Research Cohort Member',
-        company: 'Misr El Kheir Foundation (MEK)',
-        period: 'Oct 2025 – Present',
+        company: 'Misr El Kheir Foundation',
+        period: 'Oct 2025 – Mar 2026',
         location: 'Remote',
         description: [
-          'Selected via competitive national process for the Social Science Research Track.',
-          'Building a research portfolio for peer-reviewed publication.',
-          'Receiving mentorship in research methodology and academic writing.'
+          'Selected through a competitive national research program focused on developing future interdisciplinary researchers.',
+          'Built practical expertise in research methodology, academic writing, literature review, and evidence-based analysis.',
+          'Designed research questions, evaluated scientific literature, and translated ideas into structured study designs.',
+          'Prepared for future peer-reviewed publications through mentorship and collaborative research training.'
         ]
       },
+
       {
-        role: 'Core Team Member (Data & Research)',
-        company: 'Neuroverse Youth Power',
-        period: 'Oct 2025 – Present',
-        location: 'Remote',
+        role: 'Research & Community Engagement Facilitator',
+        company: 'Save the Children International',
+        period: 'Jul 2025 – Dec 2025',
+        location: 'Alexandria, Egypt · Hybrid',
         description: [
-          'Supporting Data & Research Committee with Python-based analysis.',
-          'Developing learner analytics to enhance neuroscience education standards.',
-          'Collaborating with multidisciplinary youth teams on STEM innovation.'
+          'Conducted participatory community research to investigate digital safety challenges affecting young people.',
+          'Contributed to developing an evidence-based policy paper by transforming research findings into actionable recommendations.',
+          'Designed and independently delivered a critical-thinking workshop for 25 school teachers to strengthen digital resilience.',
+          'Collaborated with multidisciplinary teams to convert research outcomes into practical community interventions.'
         ]
       },
+
       {
-        role: 'GreenAura Ambassador',
-        company: 'GreenAura Ambassadors Program',
-        period: 'Aug 2025 – Nov 2025',
-        location: 'Remote',
-        description: [
-          'Led community climate action projects and facilitated workshops for 50+ participants.',
-          'Mentored by experts from Stanford and Johns Hopkins University.',
-          'Certified as an Ambassador for sustainable living interventions.'
-        ]
-      },
-      {
-        role: 'Youth Team Leader',
-        company: 'Save the Children International (Safe-Surf)',
-        period: 'Jul 2025 – Present',
+        role: 'Google Gemini Student Ambassador',
+        company: 'BasharSoft',
+        period: 'Oct 2025 – Dec 2025',
         location: 'Hybrid',
         description: [
-          'Leading community digital safety initiatives targeting school teachers.',
-          'Designed workshops on addressing harmful online content and behavioral impacts.',
-          'Collaborating with educators to align with UNICEF digital safety frameworks.'
-        ]
-      },
-      {
-        role: 'Galactic Problem Solver',
-        company: 'NASA International Space Apps Challenge',
-        period: 'Oct 2025 – Nov 2025',
-        location: 'Remote',
-        description: [
-          'Completed a global scientific problem-solving track in a 48-hour sprint.',
-          'Applied rapid prototyping and scenario analysis using Python.',
-          'Developed analytical insights for space-related challenges.'
-        ]
-      },
-      {
-        role: 'Future M.Ds+ in STEM Scholar',
-        company: 'MedSTEMPowered',
-        period: 'Jul 2025 – Sep 2025',
-        location: 'Remote',
-        description: [
-          'Completed competitive program with Excellence.',
-          'Engaged in 6 hours of medical shadowing and research literacy training.',
-          'Developed skills in clinical reasoning and scientific communication.'
+          'Promoted practical adoption of Generative AI across Egyptian universities through structured outreach and technical guidance.',
+          'Evaluated AI-generated content and designed Arabic prompting strategies for educational use cases.',
+          'Supported more than 800 university students in effectively using Google Gemini Advanced.',
+          'Recognized among the program’s top-performing ambassadors for outreach impact and community engagement.'
         ]
       }
+
     ]
   },
   certifications: {
