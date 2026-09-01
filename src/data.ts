@@ -436,14 +436,18 @@ export const contentEn: Content = {
   },
   contact: {
     title: 'Get in Touch & Collaborate',
-    description: 'Direct channel for research inquiries, foundational ML benchmark evaluations, and scientific AI initiatives.',
-    btnSend: 'Send Transmission',
+    description: 'Direct channel for research collaborations, foundational AI system engineering, and high-impact scientific initiatives.',
+    directEmail: 'hassan.ahmed.2007.alex@gmail.com',
+    location: 'Alexandria, Egypt (UTC+2)',
+    availability: 'Available for Deep Tech & AI Collaborations',
+    responseTime: '< 24 Hours Response Time',
     placeholders: {
-      name: 'Full Name',
+      name: 'Full Name / Institution',
       email: 'Email Address',
       phone: 'Phone Number (Optional)',
-      subject: 'Subject / Topic',
-      message: 'Proposal or Message'
-    }
+      subject: 'Collaboration Scope / Topic',
+      message: 'Share your research objectives, technical challenge, or project proposal...'
+    },
+    btnSend: 'Send Transmission'
   }
 };

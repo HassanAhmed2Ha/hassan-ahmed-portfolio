@@ -137,6 +137,10 @@ export interface Content {
   contact: {
     title: string;
     description?: string;
+    directEmail?: string;
+    location?: string;
+    availability?: string;
+    responseTime?: string;
     placeholders: {
       name: string;
       email: string;
