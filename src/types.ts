@@ -138,6 +138,9 @@ export interface Content {
     title: string;
     description?: string;
     directEmail?: string;
+    phone?: string;
+    whatsapp?: string;
+    whatsappUrl?: string;
     location?: string;
     availability?: string;
     responseTime?: string;

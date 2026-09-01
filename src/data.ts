@@ -438,13 +438,16 @@ export const contentEn: Content = {
     title: 'Get in Touch & Collaborate',
     description: 'Direct channel for research collaborations, foundational AI system engineering, and high-impact scientific initiatives.',
     directEmail: 'hassanahmed07.e9@gmail.com',
+    phone: '+20 122 092 6538',
+    whatsapp: '+20 122 092 6538',
+    whatsappUrl: 'https://wa.me/201220926538',
     location: 'Alexandria, Egypt (UTC+2)',
     availability: 'Available for Deep Tech & AI Collaborations',
     responseTime: '< 24 Hours Response Time',
     placeholders: {
       name: 'Full Name / Institution',
       email: 'Email Address',
-      phone: 'Phone Number (Optional)',
+      phone: '+20 122 092 6538',
       subject: 'Collaboration Scope / Topic',
       message: 'Share your research objectives, technical challenge, or project proposal...'
     },

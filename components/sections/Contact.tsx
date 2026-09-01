@@ -8,7 +8,8 @@ import {
   RiErrorWarningLine, 
   RiFileCopyLine,
   RiCheckLine,
-  RiArrowRightUpLine
+  RiArrowRightUpLine,
+  RiWhatsappLine
 } from "react-icons/ri";
 import Circles from "../Circles";
 import emailjs from "@emailjs/browser";
@@ -16,7 +17,8 @@ import { contentEn as content } from "../../src/data";
 
 const Contact: React.FC = () => {
   const [isLoading, setIsLoading] = useState(false);
-  const [copied, setCopied] = useState(false);
+  const [copiedEmail, setCopiedEmail] = useState(false);
+  const [copiedPhone, setCopiedPhone] = useState(false);
   const [status, setStatus] = useState<{
     type: "success" | "error" | null;
     message: string | null;
@@ -32,9 +34,16 @@ const Contact: React.FC = () => {
   const handleCopyEmail = () => {
     if (content.contact.directEmail) {
       navigator.clipboard.writeText(content.contact.directEmail);
-      setCopied(true);
-      setTimeout(() => setCopied(false), 2500);
+      setCopiedEmail(true);
+      setTimeout(() => setCopiedEmail(false), 2500);
     }
+  };
+
+  const handleCopyPhone = () => {
+    const rawNumber = content.contact.phone || "+201220926538";
+    navigator.clipboard.writeText(rawNumber);
+    setCopiedPhone(true);
+    setTimeout(() => setCopiedPhone(false), 2500);
   };
 
   const handleChange = (
@@ -142,39 +151,89 @@ const Contact: React.FC = () => {
             viewport={{ once: true, amount: 0.15 }}
             className="lg:col-span-5 space-y-10"
           >
-            {/* Stream 01: Direct Email Transmission */}
-            <div className="space-y-3">
+            {/* Stream 01: Direct Email & WhatsApp Transmissions */}
+            <div className="space-y-6">
               <div className="flex items-baseline gap-3">
                 <span className="font-mono text-xs font-bold text-accent tracking-widest">01</span>
-                <span className="font-mono text-xs uppercase tracking-widest text-white/40 font-semibold">Direct Channel</span>
+                <span className="font-mono text-xs uppercase tracking-widest text-white/40 font-semibold">Direct Transmission Channels</span>
               </div>
               
-              <div className="pt-1">
+              {/* Email Block */}
+              <div className="space-y-2">
+                <span className="text-[11px] font-mono uppercase tracking-wider text-white/40 block">Email Inquiries</span>
                 <a
                   href={`mailto:${content.contact.directEmail}`}
-                  className="text-xl md:text-2xl font-serif italic text-white hover:text-amber-200 transition-colors block break-all font-normal"
+                  className="text-lg md:text-xl font-serif italic text-white hover:text-amber-200 transition-colors block break-all font-normal"
                 >
                   {content.contact.directEmail}
                 </a>
+
+                <div className="flex items-center gap-x-3 pt-0.5">
+                  <button
+                    onClick={handleCopyEmail}
+                    className="inline-flex items-center gap-x-1.5 px-3 py-1 rounded-full bg-white/[0.04] border border-white/10 hover:border-accent/40 text-xs font-mono text-white/70 hover:text-accent transition-colors"
+                  >
+                    {copiedEmail ? (
+                      <>
+                        <RiCheckLine className="text-emerald-400" />
+                        <span className="text-emerald-400">Copied Email</span>
+                      </>
+                    ) : (
+                      <>
+                        <RiFileCopyLine />
+                        <span>Copy Email</span>
+                      </>
+                    )}
+                  </button>
+                </div>
               </div>
 
-              <div className="flex items-center gap-x-3 pt-1">
-                <button
-                  onClick={handleCopyEmail}
-                  className="inline-flex items-center gap-x-1.5 px-3 py-1 rounded-full bg-white/[0.04] border border-white/10 hover:border-accent/40 text-xs font-mono text-white/70 hover:text-accent transition-colors"
+              {/* WhatsApp Block */}
+              <div className="space-y-2 pt-2">
+                <span className="text-[11px] font-mono uppercase tracking-wider text-emerald-400/80 flex items-center gap-x-1.5 font-semibold">
+                  <RiWhatsappLine className="text-base text-emerald-400" />
+                  <span>WhatsApp Direct & Calls</span>
+                </span>
+                
+                <a
+                  href={content.contact.whatsappUrl || "https://wa.me/201220926538"}
+                  target="_blank"
+                  rel="noreferrer noopener"
+                  className="text-lg md:text-xl font-mono text-white hover:text-emerald-300 transition-colors block font-medium group"
                 >
-                  {copied ? (
-                    <>
-                      <RiCheckLine className="text-emerald-400" />
-                      <span className="text-emerald-400">Copied to Clipboard</span>
-                    </>
-                  ) : (
-                    <>
-                      <RiFileCopyLine />
-                      <span>Copy Email Address</span>
-                    </>
-                  )}
-                </button>
+                  <span className="group-hover:underline decoration-emerald-400/50 underline-offset-4">
+                    {content.contact.whatsapp || "+20 122 092 6538"}
+                  </span>
+                </a>
+
+                <div className="flex items-center gap-x-3 pt-0.5">
+                  <a
+                    href={content.contact.whatsappUrl || "https://wa.me/201220926538"}
+                    target="_blank"
+                    rel="noreferrer noopener"
+                    className="inline-flex items-center gap-x-1.5 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/30 hover:border-emerald-400 text-xs font-mono text-emerald-400 hover:text-emerald-300 transition-colors"
+                  >
+                    <RiWhatsappLine />
+                    <span>Chat on WhatsApp ↗</span>
+                  </a>
+
+                  <button
+                    onClick={handleCopyPhone}
+                    className="inline-flex items-center gap-x-1.5 px-3 py-1 rounded-full bg-white/[0.04] border border-white/10 hover:border-accent/40 text-xs font-mono text-white/70 hover:text-accent transition-colors"
+                  >
+                    {copiedPhone ? (
+                      <>
+                        <RiCheckLine className="text-emerald-400" />
+                        <span className="text-emerald-400">Copied Number</span>
+                      </>
+                    ) : (
+                      <>
+                        <RiFileCopyLine />
+                        <span>Copy Number</span>
+                      </>
+                    )}
+                  </button>
+                </div>
               </div>
             </div>
 
@@ -208,7 +267,7 @@ const Contact: React.FC = () => {
             <div className="space-y-3 pt-6 border-t border-white/10">
               <div className="flex items-baseline gap-3">
                 <span className="font-mono text-xs font-bold text-accent tracking-widest">03</span>
-                <span className="font-mono text-xs uppercase tracking-widest text-white/40 font-semibold">Research Profiles</span>
+                <span className="font-mono text-xs uppercase tracking-widest text-white/40 font-semibold">Research Profiles & Direct Line</span>
               </div>
 
               <div className="flex flex-wrap items-center gap-x-6 gap-y-3 pt-1 text-sm font-mono">
@@ -240,6 +299,17 @@ const Contact: React.FC = () => {
                 >
                   <span>ORCID</span>
                   <RiArrowRightUpLine className="text-white/40 group-hover:text-accent transition-colors" />
+                </a>
+
+                <a
+                  href={content.contact.whatsappUrl || "https://wa.me/201220926538"}
+                  target="_blank"
+                  rel="noreferrer noopener"
+                  className="text-emerald-400/90 hover:text-emerald-300 flex items-center gap-x-1.5 transition-colors group font-semibold"
+                >
+                  <RiWhatsappLine />
+                  <span>WhatsApp</span>
+                  <RiArrowRightUpLine className="text-emerald-400/50 group-hover:text-emerald-300 transition-colors" />
                 </a>
               </div>
             </div>
