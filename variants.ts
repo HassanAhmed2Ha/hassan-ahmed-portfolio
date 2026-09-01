@@ -1,15 +1,10 @@
-export const fadeIn = (direction: "up" | "down" | "left" | "right", delay: number) => {
+export const fadeIn = (direction: "up" | "down" | "left" | "right", delay: number = 0) => {
+  const scaledDelay = Math.min(delay * 0.35, 0.15);
   return {
     hidden: {
-      y: direction === "up" ? 80 : direction === "down" ? -80 : 0,
+      y: direction === "up" ? 24 : direction === "down" ? -24 : 0,
       opacity: 0,
-      x: direction === "left" ? 80 : direction === "right" ? -80 : 0,
-      transition: {
-        type: "tween",
-        duration: 1.5,
-        delay: delay,
-        ease: [0.25, 0.6, 0.3, 0.8],
-      },
+      x: direction === "left" ? 24 : direction === "right" ? -24 : 0,
     },
     show: {
       y: 0,
@@ -17,9 +12,9 @@ export const fadeIn = (direction: "up" | "down" | "left" | "right", delay: numbe
       opacity: 1,
       transition: {
         type: "tween",
-        duration: 1.4,
-        delay: delay,
-        ease: [0.25, 0.25, 0.25, 0.75],
+        duration: 0.45,
+        delay: scaledDelay,
+        ease: [0.16, 1, 0.3, 1],
       },
     },
   };

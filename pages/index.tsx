@@ -9,15 +9,14 @@ import { contentEn as content } from "../src/data";
 
 import About from "../components/sections/About";
 import TechMarquee from "../components/sections/TechMarquee";
+import Experience from "../components/sections/Experience";
+import Certifications from "../components/sections/Certifications";
+import Work from "../components/sections/Work";
+import OpenScience from "../components/sections/OpenScience";
+import Publications from "../components/sections/Publications";
+import Contact from "../components/sections/Contact";
 
-// Dynamic Code-Splitting for Heavy Below-the-fold Sections
 const ParticlesContainer = dynamic(() => import("../components/ParticlesContainer"), { ssr: false });
-const Experience = dynamic(() => import("../components/sections/Experience"), { ssr: true });
-const Certifications = dynamic(() => import("../components/sections/Certifications"), { ssr: true });
-const Work = dynamic(() => import("../components/sections/Work"), { ssr: true });
-const OpenScience = dynamic(() => import("../components/sections/OpenScience"), { ssr: true });
-const Publications = dynamic(() => import("../components/sections/Publications"), { ssr: true });
-const Contact = dynamic(() => import("../components/sections/Contact"), { ssr: true });
 
 const Typewriter: React.FC<{ words: string[] }> = ({ words }) => {
   const [index, setIndex] = useState(0);
