@@ -70,16 +70,16 @@ const Home: React.FC = () => {
           }}
         />
         
-        {/* Layer 1.5: Massive Floating DNA Hologram (Organic Movement & Soft Vertical Fade) */}
+        {/* Layer 1.5: Massive Floating DNA Hologram (Tilted Diagonal Floating Motion) */}
         <motion.div
           animate={{ 
-            y: [0, -15, 0], 
-            x: [0, 10, -10, 0],
-            rotate: [0, 2, -2, 0],
-            scale: [1, 1.03, 1]
+            y: [0, -35, 0], 
+            x: [0, 25, 0],
+            rotate: [-6, -1, -6],
+            scale: [1, 1.04, 1]
           }}
           transition={{ 
-            duration: 6, 
+            duration: 7, 
             repeat: Infinity, 
             ease: "easeInOut" 
           }}
