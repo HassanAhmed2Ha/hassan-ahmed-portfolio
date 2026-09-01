@@ -56,10 +56,16 @@ const Home: React.FC = () => {
   return (
     <main className="w-full flex flex-col">
       <section id="home" className="min-h-screen flex items-center justify-start relative overflow-hidden w-full bg-primary pt-24 pb-16 xl:py-0">
-        {/* Layer 1: Background Explosion — fire-gold, Hero-only, no global bleed */}
-        <div className="absolute inset-0 z-0 bg-explosion bg-cover bg-center bg-no-repeat mix-blend-screen opacity-60 saturate-150 brightness-110 translate-z-0" />
+        {/* Layer 1: Background Explosion — Smoothly feathered to 0% at bottom */}
+        <div 
+          className="absolute inset-0 z-0 bg-explosion bg-cover bg-center bg-no-repeat mix-blend-screen opacity-60 saturate-150 brightness-110 translate-z-0 pointer-events-none" 
+          style={{
+            maskImage: 'linear-gradient(to bottom, black 35%, rgba(0,0,0,0.5) 65%, transparent 92%)',
+            WebkitMaskImage: 'linear-gradient(to bottom, black 35%, rgba(0,0,0,0.5) 65%, transparent 92%)',
+          }}
+        />
         
-        {/* Layer 1.5: Massive Floating DNA Hologram (Organic Movement) */}
+        {/* Layer 1.5: Massive Floating DNA Hologram (Organic Movement & Soft Vertical Fade) */}
         <motion.div
           animate={{ 
             y: [0, -15, 0], 
@@ -74,8 +80,8 @@ const Home: React.FC = () => {
           }}
           className="hidden md:block absolute inset-0 z-0 pointer-events-none mix-blend-color-dodge opacity-60 transition-all duration-300 animate-pulse-gold-fast"
           style={{
-            maskImage: 'radial-gradient(ellipse at 30% 50%, black 40%, transparent 75%)',
-            WebkitMaskImage: 'radial-gradient(ellipse at 30% 50%, black 40%, transparent 75%)'
+            maskImage: 'radial-gradient(ellipse at 30% 45%, black 25%, transparent 65%)',
+            WebkitMaskImage: 'radial-gradient(ellipse at 30% 45%, black 25%, transparent 65%)'
           }}
         >
           <Image
@@ -148,24 +154,6 @@ const Home: React.FC = () => {
             <ProjectsBtn />
           </motion.div>
         </div>
-
-        {/* ── Seamless Bottom Atmospheric Gradient Bleed to About ── */}
-        <div className="absolute bottom-0 left-0 right-0 h-44 bg-gradient-to-b from-transparent via-primary/60 to-primary pointer-events-none z-10" />
-
-        {/* ── Kinetic Continuity Nexus Beacon ── */}
-        <motion.div 
-          initial={{ opacity: 0, y: -5 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 1.2, duration: 1 }}
-          className="absolute bottom-4 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center gap-1.5 pointer-events-none select-none opacity-50 hover:opacity-100 transition-opacity"
-        >
-          <span className="text-[10px] font-mono tracking-[0.25em] text-accent/70 uppercase">Discover</span>
-          <motion.div 
-            animate={{ y: [0, 6, 0] }}
-            transition={{ duration: 2.2, repeat: Infinity, ease: "easeInOut" }}
-            className="w-[1.5px] h-6 bg-gradient-to-b from-accent via-accent/40 to-transparent rounded-full shadow-[0_0_8px_rgba(251,191,36,0.6)]"
-          />
-        </motion.div>
       </section>
       <About />
       <TechMarquee data={content.techStackMarquee} />

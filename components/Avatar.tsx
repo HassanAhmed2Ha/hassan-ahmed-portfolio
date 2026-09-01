@@ -15,13 +15,13 @@ const Avatar: React.FC<AvatarProps> = ({
   applyMask = false
 }) => {
   const maskClasses = applyMask 
-    ? "[-webkit-mask-image:linear-gradient(to_bottom,black_60%,transparent_100%)] [mask-image:linear-gradient(to_bottom,black_60%,transparent_100%)]" 
+    ? "[-webkit-mask-image:linear-gradient(to_bottom,black_35%,rgba(0,0,0,0.7)_60%,transparent_92%)] [mask-image:linear-gradient(to_bottom,black_35%,rgba(0,0,0,0.7)_60%,transparent_92%)]" 
     : "";
 
   return (
     <div className="w-full h-full flex justify-center items-end pointer-events-none select-none relative">
       {/* 1. The Glow (NOT masked) */}
-      <div className="absolute -inset-x-20 -inset-y-20 bg-[radial-gradient(circle_at_center,rgba(245,158,11,0.25)_0%,transparent_60%)] rounded-full -z-10 pointer-events-none" />
+      <div className="absolute -inset-x-12 -inset-y-12 bg-[radial-gradient(circle_at_center,rgba(245,158,11,0.18)_0%,transparent_60%)] rounded-full -z-10 pointer-events-none" />
 
       {/* 2. The Image (Masked) */}
       <div className={`relative z-10 w-full h-full flex justify-center items-end ${maskClasses}`}>
