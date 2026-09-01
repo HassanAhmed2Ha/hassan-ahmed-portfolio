@@ -437,7 +437,7 @@ export const contentEn: Content = {
   contact: {
     title: 'Get in Touch & Collaborate',
     description: 'Direct channel for research collaborations, foundational AI system engineering, and high-impact scientific initiatives.',
-    directEmail: 'hassan.ahmed.2007.alex@gmail.com',
+    directEmail: 'hassanahmed07.e9@gmail.com',
     location: 'Alexandria, Egypt (UTC+2)',
     availability: 'Available for Deep Tech & AI Collaborations',
     responseTime: '< 24 Hours Response Time',
