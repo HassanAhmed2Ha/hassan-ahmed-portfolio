@@ -2,28 +2,23 @@ import React from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import { fadeIn } from "../../variants";
-import Tilt3D from "../Tilt3D";
 import Circles from "../Circles";
 import { contentEn as content } from "../../src/data";
+import { RiBriefcaseLine, RiBuilding4Line, RiCalendarLine, RiMapPinLine } from "react-icons/ri";
+
 const Experience: React.FC = () => {
   return (
     <section id="experience" className="relative w-full overflow-hidden min-h-screen py-24 pb-32 z-20">
       <Circles />
       
-      {/* Seamless Continuous DNA Backbone (Enhanced Bioluminescence) */}
-      {/* Increased wrapper opacity from 40 to 65 for a stronger glow presence */}
-      <div className="absolute inset-y-0 left-1/2 -translate-x-1/2 z-0 pointer-events-none opacity-[0.65] mix-blend-screen overflow-hidden w-[800px] max-w-full">
-
-        {/* Layer 1.1: Linear Gradient Masking for smooth fade top/bottom */}
-        <div className="absolute inset-0 z-10 bg-gradient-to-t from-primary via-transparent to-primary/80 opacity-70"></div>
-        
-        {/* Unified Motion Wrapper */}
+      {/* Seamless Continuous DNA Backbone */}
+      <div className="absolute inset-y-0 left-1/2 -translate-x-1/2 z-0 pointer-events-none opacity-[0.45] mix-blend-screen overflow-hidden w-[800px] max-w-full">
+        <div className="absolute inset-0 z-10 bg-gradient-to-t from-primary via-transparent to-primary opacity-80" />
         <motion.div 
           className="relative w-full h-full"
           animate={{ y: [0, -15, 0] }}
           transition={{ duration: 15, repeat: Infinity, ease: "easeInOut" }}
         >
-          {/* DNA Image with powerful lighting filters applied */}
           <Image 
             src="/tall_dna.png"
             alt="Full Genomic Spine" 
@@ -32,76 +27,105 @@ const Experience: React.FC = () => {
             priority 
           />
         </motion.div>
-
       </div>
 
       <div className="container mx-auto px-4 xl:px-0 relative z-10">
         {/* Title */}
-        <motion.h2
-          variants={fadeIn("down", 0.2)}
-          initial="hidden"
-          whileInView="show" viewport={{ once: true, amount: 0.15 }}
-          exit="hidden"
-          className="h2 text-center mb-16"
-        >
-          {content.experience.title}
-        </motion.h2>
-        {/* Timeline Container */}
-        <div className="max-w-5xl mx-auto space-y-12 relative before:absolute before:top-0 before:bottom-0 before:w-[2px] before:bg-gradient-to-b before:from-transparent before:via-white/20 before:to-transparent before:left-4 md:before:left-1/2 md:before:-translate-x-1/2    ">
+        <div className="text-center flex w-full flex-col items-center mb-16">
+          <motion.h2
+            variants={fadeIn("down", 0.2)}
+            initial="hidden"
+            whileInView="show" 
+            viewport={{ once: true, amount: 0.15 }}
+            exit="hidden"
+            className="h2 text-center"
+          >
+            Trajectory & <span className="font-serif italic font-normal text-accent">Career Milestones</span>
+          </motion.h2>
+          <motion.p
+            variants={fadeIn("down", 0.3)}
+            initial="hidden"
+            whileInView="show" 
+            viewport={{ once: true, amount: 0.15 }}
+            exit="hidden"
+            className="max-w-2xl mx-auto text-white/70 text-sm md:text-base leading-relaxed text-center font-sans font-normal"
+          >
+            Applied research roles, software engineering initiatives, and computational leadership milestones.
+          </motion.p>
+        </div>
+
+        {/* Editorial Career Horizon Stream (Cardless & Always Open) */}
+        <div className="max-w-5xl mx-auto border-t border-white/10">
           {content.experience.items.map((item, idx) => {
-            const isEven = idx % 2 === 0;
+            const expNum = String(idx + 1).padStart(2, "0");
             return (
               <motion.div
                 key={idx}
-                variants={fadeIn(isEven ? "right" : "left", 0.2)}
+                variants={fadeIn("up", 0.15 * idx)}
                 initial="hidden"
                 whileInView="show"
                 viewport={{ once: true, amount: 0.1 }}
-                className="relative flex flex-col md:flex-row items-center justify-between w-full group"
+                className="py-10 md:py-14 border-b border-white/10 relative group transition-colors duration-300"
               >
-                {/* Timeline Dot */}
-                <div className="absolute left-4 md:left-1/2     -translate-x-1/2  flex items-center justify-center w-8 h-8 rounded-full border border-white/20 bg-primary group-hover:border-accent group-hover:bg-accent/10 transition-all duration-300 shadow-[0_0_10px_rgba(0,0,0,0.5)] z-20">
-                  <div className="w-2.5 h-2.5 bg-accent rounded-full group-hover:scale-125 transition-transform duration-300" />
-                </div>
-                {/* Content Block */}
-                <div
-                  className={`w-full md:w-[45%] flex flex-col relative pl-12 md:pl-0    ${
-                    isEven
-                      ? "md:mr-auto md:ml-0 md:items-end text-left md:text-right    "
-                      : "md:ml-auto md:mr-0 md:items-start text-left md:text-left    "
-                  }`}
-                >
-                  <Tilt3D className="w-full">
-                    <div className="liquid-glass p-6 rounded-2xl border border-white/10 hover:border-accent/30 transition-all duration-300 shadow-2xl text-left  relative overflow-hidden">
-                      {/* corner background glow blobs */}
-                      <div className="absolute -top-10 -right-10 w-24 h-24 bg-accent/5 blur-2xl rounded-full" />
-                      <div className="absolute -bottom-10 -left-10 w-24 h-24 bg-accent/5 blur-2xl rounded-full" />
-                      {/* Header info */}
-                      <div className="flex flex-col sm:flex-row justify-between sm:items-center gap-y-2 mb-4 border-b border-white/10 pb-3">
-                        <div>
-                          <h3 className="font-bold text-lg text-white group-hover:text-accent transition duration-300">
-                            {item.role}
-                          </h3>
-                          <p className="text-sm text-accent font-medium mt-1">
-                            {item.company}
-                          </p>
-                        </div>
-                        <span className="text-[11px] font-mono text-white/50 bg-white/5 border border-white/10 px-2.5 py-1 rounded-full self-start sm:self-center">
-                          {item.period}
+                {/* Ambient Backlight on Hover */}
+                <div className="pointer-events-none absolute -top-8 left-1/4 w-96 h-64 bg-accent/5 rounded-full blur-[90px] opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+
+                {/* Horizon Header: Number + Role + Org + Period */}
+                <div className="flex flex-col md:flex-row md:items-baseline justify-between gap-4 md:gap-8 mb-6">
+                  
+                  {/* Left: Monogram Index & Role Title */}
+                  <div className="flex items-baseline gap-4 md:gap-6 flex-1">
+                    <span className="font-mono text-base md:text-lg font-bold tracking-widest text-accent shrink-0">
+                      {expNum}
+                    </span>
+                    
+                    <div className="space-y-1.5 flex-1">
+                      <h3 className="text-2xl md:text-3xl lg:text-[34px] font-serif italic font-normal tracking-tight text-white group-hover:text-amber-200 transition-colors">
+                        {item.role}
+                      </h3>
+                      
+                      <div className="flex items-center gap-x-3 flex-wrap text-xs md:text-sm font-mono text-white/60">
+                        <span className="text-white/90 font-medium flex items-center gap-x-1.5">
+                          <RiBuilding4Line className="text-accent text-sm" />
+                          <span>{item.company}</span>
                         </span>
+                        {item.location && (
+                          <>
+                            <span className="text-white/20">•</span>
+                            <span className="flex items-center gap-x-1">
+                              <RiMapPinLine className="text-white/40" />
+                              <span>{item.location}</span>
+                            </span>
+                          </>
+                        )}
                       </div>
-                      {/* Details list */}
-                      <ul className="space-y-2 text-sm text-white/60 list-none pl-0">
-                        {item.description.map((point, i) => (
-                          <li key={i} className="relative pl-5  ">
-                            {/* custom bullet dot */}
-                            <span className="absolute left-0   top-2 w-1.5 h-1.5 bg-accent rounded-full opacity-70" />
-                            {point}
-                          </li>
-                        ))}
-                      </ul>
                     </div>
-                  </Tilt3D>
+                  </div>
+
+                  {/* Right: Period Pill Badge */}
+                  <div className="shrink-0 self-start md:self-baseline">
+                    <span className="inline-flex items-center gap-x-2 px-3.5 py-1.5 rounded-full bg-white/[0.04] border border-white/10 text-xs font-mono text-white/80 group-hover:border-accent/30 transition-colors">
+                      <RiCalendarLine className="text-accent" />
+                      <span>{item.period}</span>
+                    </span>
+                  </div>
+                </div>
+
+                {/* Always-Open Milestone Breakthroughs */}
+                <div className="pl-0 md:pl-12 space-y-3 pt-2">
+                  <ul className="space-y-2.5">
+                    {item.description.map((point, i) => (
+                      <motion.li
+                        key={i}
+                        whileHover={{ x: 4 }}
+                        transition={{ duration: 0.15 }}
+                        className="flex items-start gap-x-3.5 text-sm md:text-base text-white/75 font-sans leading-relaxed"
+                      >
+                        <span className="w-1.5 h-1.5 rounded-full mt-2 shrink-0 bg-accent shadow-[0_0_8px_rgba(251,191,36,0.8)]" />
+                        <span>{point}</span>
+                      </motion.li>
+                    ))}
+                  </ul>
                 </div>
               </motion.div>
             );
@@ -111,4 +135,5 @@ const Experience: React.FC = () => {
     </section>
   );
 };
+
 export default Experience;

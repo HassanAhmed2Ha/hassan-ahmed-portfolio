@@ -53,7 +53,11 @@ module.exports = {
         marquee: 'marquee 30s linear infinite',
       },
       fontFamily: {
-        sora: [`var(--font-sora)`, "sans-serif"],
+        sans: ["var(--font-sans)", "sans-serif"],
+        heading: ["var(--font-heading)", "sans-serif"],
+        sora: ["var(--font-heading)", "sans-serif"],
+        mono: ["var(--font-mono)", "monospace"],
+        serif: ["var(--font-serif)", "serif"],
       },
     },
   },

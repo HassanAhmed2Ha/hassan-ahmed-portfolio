@@ -1,90 +1,54 @@
-import { contentEn as content } from "../src/data";
 import React from "react";
-import { RiFileList3Line, RiExternalLinkLine, RiShieldFlashLine } from "react-icons/ri";
+import { motion } from "framer-motion";
+import { RiMailSendLine } from "react-icons/ri";
+import { contentEn } from "../src/data";
 
 const PublicationGrid: React.FC = () => {
-  const publications = content.publications.items;
+  const { publications } = contentEn;
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 w-full">
-      {publications.map((pub, index) => {
-        const zenodoId = pub.doi.split(".").pop();
-        const zenodoUrl = `https://zenodo.org/record/${zenodoId}`;
-        const doiUrl = `https://doi.org/${pub.doi}`;
+    <div className="w-full max-w-4xl mx-auto flex flex-col items-center text-center py-6 relative">
+      {/* Ambient background soft glow */}
+      <div className="pointer-events-none absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-accent/10 rounded-full blur-[120px]" />
 
-        return (
-          <div 
-            key={index} 
-            className="bg-white/5 backdrop-blur-sm md:backdrop-blur-xl border border-white/10 hover:border-accent/40 hover:bg-white/10 transition-all duration-300 p-6 rounded-2xl flex flex-col justify-between h-[300px] shadow-2xl relative overflow-hidden group text-left"
-          >
-            {/* Background glow blob */}
-            <div className="absolute -top-12 -right-12 w-24 h-24 bg-accent/10 blur-3xl rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-            
-            <div>
-              {/* Header info */}
-              <div className="flex items-center justify-between mb-3">
-                <span className="text-[10px] font-mono text-white/50 bg-white/5 border border-white/10 px-2.5 py-1 rounded-full uppercase tracking-widest">
-                  {pub.meta}
-                </span>
-                <div className="w-7 h-7 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-accent group-hover:bg-accent/10 transition-colors duration-300">
-                  <RiFileList3Line className="text-sm" />
-                </div>
-              </div>
+      {/* Monumental Philosophical Statement */}
+      <motion.blockquote
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.2 }}
+        transition={{ duration: 0.5, delay: 0.1 }}
+        className="text-2xl sm:text-4xl md:text-5xl lg:text-[44px] font-serif italic text-white leading-[1.35] tracking-tight font-normal max-w-4xl relative z-10"
+      >
+        &ldquo;{publications.quote}&rdquo;
+      </motion.blockquote>
 
-              {/* Title */}
-              <h3 className="text-base font-bold text-white mb-2 group-hover:text-accent transition duration-300 line-clamp-3">
-                {pub.title}
-              </h3>
+      {/* Explanatory Synthesis Subtext */}
+      <motion.p
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.2 }}
+        transition={{ duration: 0.5, delay: 0.2 }}
+        className="text-sm md:text-base text-white/70 font-sans leading-relaxed max-w-2xl mt-8 font-normal relative z-10"
+      >
+        {publications.subtext}
+      </motion.p>
 
-              {/* Description */}
-              <p className="text-white/60 text-xs leading-relaxed line-clamp-3">
-                {pub.description}
-              </p>
-            </div>
-
-            {/* Footer and DOI Badge */}
-            <div className="mt-4 space-y-4">
-              {/* Tags */}
-              <div className="flex flex-wrap gap-1.5">
-                {pub.tags.map((tag, tagIndex) => (
-                  <span
-                    key={tagIndex}
-                    className="text-[9px] font-mono px-2 py-0.5 rounded-full bg-white/5 border border-white/10 text-white/70"
-                  >
-                    {tag}
-                  </span>
-                ))}
-              </div>
-
-              {/* Links & DOI badge */}
-              <div className="flex flex-col sm:flex-row gap-y-2 justify-between items-start sm:items-center border-t border-white/10 pt-4">
-                {/* DOI tag */}
-                <a
-                  href={doiUrl}
-                  target="_blank"
-                  rel="noreferrer noopener"
-                  className="inline-flex items-center gap-x-1 px-2.5 py-1.5 rounded-full bg-accent/5 hover:bg-accent/10 border border-accent/20 text-accent text-[9px] font-mono transition duration-300"
-                >
-                  <RiShieldFlashLine />
-                  <span>{content.publications.labels.doiPrefix} {pub.doi}</span>
-                </a>
-
-                {/* Zenodo redirect */}
-                <a
-                  href={zenodoUrl}
-                  target="_blank"
-                  rel="noreferrer noopener"
-                  className="text-[10px] font-semibold text-white/70 hover:text-white bg-white/5 hover:bg-white/10 border border-white/10 px-2.5 py-1.5 rounded-full flex items-center gap-x-1 transition duration-300 group/link"
-                >
-                  <span>{content.publications.labels.zenodoRecord}</span>
-                  <RiExternalLinkLine className="text-xs transform group-hover/link:translate-x-0.5 rtl:group-hover/link:-translate-x-0.5 transition duration-300" />
-                </a>
-              </div>
-            </div>
-
-          </div>
-        );
-      })}
+      {/* Early Access Action Button */}
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.2 }}
+        transition={{ duration: 0.5, delay: 0.3 }}
+        className="mt-10 relative z-10 flex flex-col sm:flex-row items-center gap-4"
+      >
+        <a
+          href={publications.ctaLink}
+          className="inline-flex items-center gap-x-2 px-6 py-3 rounded-full bg-accent hover:bg-amber-400 text-primary text-xs font-mono font-bold shadow-[0_0_25px_rgba(251,191,36,0.3)] hover:scale-105 transition-all duration-200"
+        >
+          <RiMailSendLine className="text-base" />
+          <span>{publications.ctaText}</span>
+        </a>
+      </motion.div>
     </div>
   );
 };

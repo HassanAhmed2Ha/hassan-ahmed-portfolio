@@ -1,23 +1,44 @@
-import React from "react";
-import { Sora } from "next/font/google";
+import { Plus_Jakarta_Sans, Inter, JetBrains_Mono, Newsreader } from "next/font/google";
 import Head from "next/head";
 import Header from "./Header";
 import Nav from "./Nav";
 import TopLeftImg from "./TopLeftImg";
 import { contentEn as content } from "../src/data";
-// setup fonts
-const sora = Sora({
+
+// Setup High-Precision DeepTech Typography Stack
+const plusJakarta = Plus_Jakarta_Sans({
   subsets: ["latin"],
-  variable: "--font-sora",
-  weight: ["100", "200", "300", "400", "500", "600", "700", "800"],
+  variable: "--font-heading",
+  weight: ["400", "500", "600", "700", "800"],
 });
+
+const inter = Inter({
+  subsets: ["latin"],
+  variable: "--font-sans",
+  weight: ["300", "400", "500", "600"],
+});
+
+const jetbrainsMono = JetBrains_Mono({
+  subsets: ["latin"],
+  variable: "--font-mono",
+  weight: ["400", "500", "600", "700"],
+  style: ["normal", "italic"],
+});
+
+const newsreader = Newsreader({
+  subsets: ["latin"],
+  variable: "--font-serif",
+  style: ["italic"],
+  weight: ["400", "500", "600"],
+});
+
 interface LayoutProps {
   children: React.ReactNode;
 }
 const Layout: React.FC<LayoutProps> = ({ children }) => {
   return (
     <div
-      className={`relative min-h-screen w-full overflow-x-hidden bg-primary text-white font-sans ${sora.variable}`}
+      className={`relative min-h-screen w-full overflow-x-hidden bg-primary text-white font-sans ${inter.variable} ${plusJakarta.variable} ${jetbrainsMono.variable} ${newsreader.variable}`}
     >
       {/* metadata */}
       <Head>

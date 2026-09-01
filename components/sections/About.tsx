@@ -1,104 +1,160 @@
-import React, { useState, useRef } from "react";
+import React from "react";
 import { motion } from "framer-motion";
 import { fadeIn } from "../../variants";
 import Circles from "../Circles";
-import CountUp from "react-countup";
-import { contentEn as content } from "../../src/data";
-import { FiTerminal, FiBookOpen, FiUsers, FiCpu, FiTarget, FiGlobe } from "react-icons/fi";
+import { contentEn } from "../../src/data";
+import { 
+  RiBrainLine, 
+  RiServerLine, 
+  RiCloudLine,
+  RiFlaskLine, 
+  RiCodeSSlashLine
+} from "react-icons/ri";
 
-const getIconForCategory = (category: string) => {
-  const iconClass = "text-amber-500 text-lg drop-shadow-[0_0_8px_rgba(245,158,11,0.8)]";
-  switch (category) {
-    case 'Technical Skills': return <FiTerminal className={iconClass} />;
-    case 'Research': return <FiBookOpen className={iconClass} />;
-    case 'Soft Skills': return <FiUsers className={iconClass} />;
-    case 'AI Literacy & Safety': return <FiCpu className={iconClass} />;
-    case 'Problem Solving': return <FiTarget className={iconClass} />;
-    case 'Languages': return <FiGlobe className={iconClass} />;
-    default: return <FiTerminal className={iconClass} />;
+const getDomainIcon = (iconType: string) => {
+  switch (iconType) {
+    case 'brain':
+      return <RiBrainLine className="text-xl text-accent" />;
+    case 'server':
+      return <RiServerLine className="text-xl text-accent" />;
+    case 'cloud':
+      return <RiCloudLine className="text-xl text-accent" />;
+    case 'flask':
+    default:
+      return <RiFlaskLine className="text-xl text-accent" />;
   }
 };
 
 const About: React.FC = () => {
-  const [mousePosition, setMousePosition] = useState({ x: -1000, y: -1000 });
-  const containerRef = useRef<HTMLDivElement>(null);
-
-  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    if (!containerRef.current) return;
-    const rect = containerRef.current.getBoundingClientRect();
-    setMousePosition({
-      x: e.clientX - rect.left,
-      y: e.clientY - rect.top,
-    });
-  };
-
-  const handleMouseLeave = () => {
-    setMousePosition({ x: -1000, y: -1000 });
-  };
+  const { about } = contentEn;
+  const domains = about.competencyDomains;
 
   return (
-    <section id="about" className="min-h-screen py-24 relative z-20 w-full text-center xl:text-left">
+    <section id="about" className="min-h-screen py-24 relative z-20 w-full">
       <Circles />
 
-      <div className="container mx-auto h-full flex flex-col items-center gap-y-8 relative z-10 px-4 xl:px-0">
-        {/* Text Section */}
-        <div className="w-full flex flex-col justify-center items-center">
-          <motion.h2 variants={fadeIn("down", 0.2)} initial="hidden" whileInView="show" className="h2 mb-4 text-center">
-            {content.about.title} <span className="text-accent">.</span>
+      <div className="container mx-auto h-full flex flex-col items-center gap-y-12 relative z-10 px-4 xl:px-0">
+        
+        {/* Section Header */}
+        <div className="w-full flex flex-col justify-center items-center text-center max-w-4xl">
+          <motion.h2 
+            variants={fadeIn("down", 0.2)} 
+            initial="hidden" 
+            whileInView="show" 
+            viewport={{ once: true, amount: 0.15 }}
+            className="h2 mb-4"
+          >
+            Scientific Identity & <span className="font-serif italic font-normal text-accent">Core Competencies</span>
           </motion.h2>
-          <motion.p variants={fadeIn("down", 0.4)} initial="hidden" whileInView="show" className="max-w-3xl mx-auto text-center text-white/90 text-xl xl:text-2xl font-medium leading-relaxed mb-4">
-            {content.about.tagline}
+          
+          <motion.p 
+            variants={fadeIn("down", 0.3)} 
+            initial="hidden" 
+            whileInView="show" 
+            viewport={{ once: true, amount: 0.15 }}
+            className="text-lg md:text-xl text-white/90 font-sans font-medium leading-relaxed mb-4 max-w-3xl"
+          >
+            {about.tagline}
           </motion.p>
-          {content.about.description && (
-            <motion.div variants={fadeIn("down", 0.5)} initial="hidden" whileInView="show" className="max-w-3xl mx-auto text-center text-white/70 text-base xl:text-lg space-y-4 mb-4">
-              {content.about.description.map((paragraph, index) => (
-                <p key={index}>{paragraph}</p>
-              ))}
-            </motion.div>
-          )}
+          
+          {about.description && about.description.map((para, pIdx) => (
+            <motion.p 
+              key={pIdx}
+              variants={fadeIn("down", 0.4)} 
+              initial="hidden" 
+              whileInView="show" 
+              viewport={{ once: true, amount: 0.15 }}
+              className="text-sm md:text-base text-white/70 font-sans font-normal leading-relaxed max-w-2xl"
+            >
+              {para}
+            </motion.p>
+          ))}
         </div>
 
-        {/* Skills Bento Grid */}
-        <motion.div variants={fadeIn("up", 0.4)} initial="hidden" whileInView="show" className="w-full max-w-5xl mx-auto">
-          <div 
-            ref={containerRef}
-            onMouseMove={handleMouseMove}
-            onMouseLeave={handleMouseLeave}
-            className="relative group/grid rounded-2xl"
-          >
-            {/* Mouse-Tracking Spotlight */}
-            <div 
-              className="pointer-events-none absolute -inset-px z-20 transition-opacity duration-300 opacity-0 group-hover/grid:opacity-100 rounded-2xl"
-              style={{
-                background: `radial-gradient(600px circle at ${mousePosition.x}px ${mousePosition.y}px, rgba(245, 158, 11, 0.15), transparent 40%)`
-              }}
-            />
+        {/* 4 Core Competency & Systems Pillars (Cardless Open Architecture) */}
+        <div className="w-full max-w-5xl mx-auto border-t border-white/10">
+          {domains.map((domain, idx) => (
+            <motion.div
+              key={domain.id}
+              variants={fadeIn("up", 0.15 * idx)}
+              initial="hidden"
+              whileInView="show"
+              viewport={{ once: true, amount: 0.1 }}
+              className="py-10 md:py-12 border-b border-white/10 relative group transition-colors duration-300"
+            >
+              {/* Ambient Hover Backlight Glow */}
+              <div className="pointer-events-none absolute -top-8 left-1/3 w-96 h-64 bg-accent/5 rounded-full blur-[100px] opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 relative z-10 items-start">
-              {content.about.skillGroups.map((group, idx) => (
-                <div 
-                  key={idx} 
-                  className="bg-white/[0.02] backdrop-blur-md p-6 rounded-xl border border-white/[0.05] hover:border-amber-500/30 hover:shadow-[0_0_30px_rgba(245,158,11,0.05)] transition-all duration-300 h-fit flex flex-col justify-start group/card overflow-hidden"
-                >
-                  <div className="flex items-center gap-2 mb-4">
-                    {getIconForCategory(group.category)}
-                    <h3 className="text-accent font-bold uppercase tracking-wider text-sm drop-shadow-[0_0_8px_rgba(245,158,11,0.8)]">{group.category}</h3>
+              {/* Pillar Header */}
+              <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 md:gap-6 mb-8">
+                
+                {/* Integrated Icon + Monogram Index + Title */}
+                <div className="flex items-start md:items-center gap-4 md:gap-5 flex-1">
+                  <div className="w-12 h-12 rounded-2xl bg-white/[0.03] border border-white/10 flex items-center justify-center shrink-0 group-hover:border-accent/40 group-hover:bg-accent/10 transition-all duration-300 shadow-sm">
+                    {getDomainIcon(domain.iconType)}
                   </div>
-                  <div className="flex flex-wrap gap-2">
-                    {group.items.map((skill, i) => (
-                      <span 
-                        key={i} 
-                        className="px-3 py-1.5 rounded-full text-sm font-medium bg-cyan-950/30 text-cyan-100/70 border border-cyan-900/50 hover:bg-cyan-900/50 hover:text-cyan-300 hover:border-cyan-500/50 hover:-translate-y-0.5 transition-all duration-300 shadow-sm"
-                      >
-                        {skill}
+
+                  <div className="space-y-1.5 flex-1">
+                    <div className="flex items-center gap-x-2.5 flex-wrap">
+                      <span className="font-mono text-xs md:text-sm font-bold tracking-widest text-accent">
+                        {domain.number}
                       </span>
-                    ))}
+                      <span className="text-white/20">•</span>
+                      <h3 className="text-xl md:text-2xl lg:text-3xl font-serif italic font-normal tracking-tight text-white group-hover:text-amber-200 transition-colors">
+                        {domain.title}
+                      </h3>
+                    </div>
+                    
+                    <p className="text-xs md:text-sm font-mono text-white/50">
+                      {domain.subtitle}
+                    </p>
                   </div>
                 </div>
-              ))}
-            </div>
-          </div>
-        </motion.div>
+
+              </div>
+
+              {/* Competencies Grid Stream */}
+              <div className="pl-0 md:pl-16 space-y-6">
+                
+                {/* Key Capabilities */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+                  {domain.competencies.map((comp, cIdx) => (
+                    <motion.div
+                      key={cIdx}
+                      whileHover={{ x: 4 }}
+                      transition={{ duration: 0.15 }}
+                      className="p-3.5 rounded-xl bg-white/[0.02] border border-white/[0.06] hover:border-accent/30 hover:bg-white/[0.04] transition-all flex items-center gap-x-3"
+                    >
+                      <span className="w-1.5 h-1.5 rounded-full bg-accent shrink-0 shadow-[0_0_6px_rgba(251,191,36,0.8)]" />
+                      <span className="text-xs md:text-sm font-sans text-white/90 leading-snug">
+                        {comp}
+                      </span>
+                    </motion.div>
+                  ))}
+                </div>
+
+                {/* Framework & Tool Arsenal */}
+                <div className="flex flex-wrap items-center gap-x-2.5 gap-y-2 pt-2 text-xs font-mono text-white/40">
+                  <span className="text-white/30 uppercase tracking-widest font-semibold flex items-center gap-x-1.5">
+                    <RiCodeSSlashLine className="text-accent text-sm" />
+                    <span>Primary Stack:</span>
+                  </span>
+                  {domain.tools.map((tool, tIdx) => (
+                    <span key={tool} className="flex items-center gap-x-2.5">
+                      <span className="text-white/80 hover:text-accent transition-colors font-medium">
+                        {tool}
+                      </span>
+                      {tIdx < domain.tools.length - 1 && <span className="text-white/20">•</span>}
+                    </span>
+                  ))}
+                </div>
+
+              </div>
+
+            </motion.div>
+          ))}
+        </div>
+
       </div>
     </section>
   );

@@ -11,7 +11,15 @@ export interface SkillGroup {
   items: string[];
 }
 
-
+export interface CompetencyDomain {
+  id: string;
+  number: string;
+  title: string;
+  subtitle: string;
+  iconType: 'brain' | 'server' | 'cloud' | 'flask';
+  competencies: string[];
+  tools: string[];
+}
 
 export interface Project {
   title: string;
@@ -20,6 +28,13 @@ export interface Project {
   codeLink?: string;
   type: string;
   tags: string[];
+  highlights?: string[];
+  metrics?: { label: string; value: string }[];
+  image?: string;
+  videoUrl?: string;
+  status?: string;
+  accentColor?: string;
+  peekCapsule?: string;
 }
 
 export interface Publication {
@@ -30,7 +45,33 @@ export interface Publication {
   tags: string[];
 }
 
+export interface OpenScienceData {
+  sectionTitle: string;
+  sectionSubtitle: string;
+  itemNumber: string;
+  title: string;
+  subtitle: string;
+  repoId: string;
+  repoUrl: string;
+  status: string;
+  peekCapsule: string;
+  description: string;
+  metrics: { label: string; value: string }[];
+  highlights: string[];
+  tags: string[];
+  bibtexCitation: string;
+  orcid: string;
+  orcidUrl: string;
+}
 
+export interface PublicationsData {
+  sectionTitle: string;
+  sectionSubtitle: string;
+  quote: string;
+  subtext: string;
+  ctaText: string;
+  ctaLink: string;
+}
 
 export interface ExperienceItem {
   role: string;
@@ -68,14 +109,17 @@ export interface Content {
     tagline: string;
     description?: string[];
     skillGroups: SkillGroup[];
+    competencyDomains: CompetencyDomain[];
   };
   techStackMarquee: TechLogo[];
   experience: {
     title: string;
+    description?: string;
     items: ExperienceItem[];
   };
   certifications: {
     title: string;
+    description?: string;
     verifyLabel: string;
     items: CertificationItem[];
   };
@@ -88,17 +132,11 @@ export interface Content {
     };
     items: Project[];
   };
-  publications: {
-    title: string;
-    description: string;
-    labels: {
-      doiPrefix: string;
-      zenodoRecord: string;
-    };
-    items: Publication[];
-  };
+  openScience: OpenScienceData;
+  publications: PublicationsData;
   contact: {
     title: string;
+    description?: string;
     placeholders: {
       name: string;
       email: string;

@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { fadeIn } from "../../variants";
-import { RiSendPlaneFill, RiLoader5Line, RiCheckboxCircleLine, RiErrorWarningLine } from "react-icons/ri";
+import { RiSendPlaneFill, RiLoader5Line, RiCheckboxCircleLine, RiErrorWarningLine, RiTerminalBoxLine } from "react-icons/ri";
 import Circles from "../Circles";
 import emailjs from "@emailjs/browser";
 import { contentEn as content } from "../../src/data";
+
 const Contact: React.FC = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [status, setStatus] = useState<{
@@ -18,6 +19,7 @@ const Contact: React.FC = () => {
     subject: "",
     message: "",
   });
+
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
@@ -26,6 +28,7 @@ const Contact: React.FC = () => {
       [e.target.name]: e.target.value,
     }));
   };
+
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsLoading(true);
@@ -51,7 +54,7 @@ const Contact: React.FC = () => {
         setStatus({
           type: "success",
           message:
-            "Message sent successfully! I will get back to you ASAP.",
+            "Message transmitted successfully. I will review and respond promptly.",
         });
         setFormData({
           name: "",
@@ -68,36 +71,64 @@ const Contact: React.FC = () => {
       setStatus({
         type: "error",
         message:
-          "Failed to send message. Please try again or email hassan.ahmed.2007.alex@gmail.com directly.",
+          "Transmission error. Please email directly at hassan.ahmed.2007.alex@gmail.com",
       });
     } finally {
       setIsLoading(false);
     }
   };
+
   return (
     <section id="contact" className="min-h-screen py-24 relative z-20 w-full pb-32 flex items-center justify-center">
       <Circles />
-      <div className="container mx-auto px-4 xl:px-0 relative z-10 w-full max-w-[750px]">
-        <div className="flex flex-col w-full text-center">
-          {/* Title */}
-          <motion.h2
-            variants={fadeIn("down", 0.2)}
-            initial="hidden"
-            whileInView="show" viewport={{ once: true, amount: 0.15 }}
-            exit="hidden"
-            className="h2 text-center mb-8"
-          >
-            {content.contact.title} <span className="text-accent">.</span>
-          </motion.h2>
-          {/* Form container */}
+      <div className="container mx-auto px-4 xl:px-0 relative z-10 w-full max-w-3xl">
+        <div className="flex flex-col w-full text-center items-center">
+          
+          {/* Header */}
+          <div className="mb-10 text-center">
+            <motion.h2
+              variants={fadeIn("down", 0.2)}
+              initial="hidden"
+              whileInView="show" 
+              viewport={{ once: true, amount: 0.15 }}
+              exit="hidden"
+              className="h2 mb-4"
+            >
+              Get in Touch & <span className="font-serif italic font-normal text-accent">Collaborate</span>
+            </motion.h2>
+            <motion.p
+              variants={fadeIn("down", 0.3)}
+              initial="hidden"
+              whileInView="show" 
+              viewport={{ once: true, amount: 0.15 }}
+              exit="hidden"
+              className="max-w-xl mx-auto text-white/70 text-sm md:text-base leading-relaxed font-sans font-normal"
+            >
+              Direct channel for research inquiries, foundational ML benchmark evaluations, and scientific AI initiatives.
+            </motion.p>
+          </div>
+
+          {/* Collaboration Terminal Wrapper */}
           <motion.div
             variants={fadeIn("up", 0.4)}
             initial="hidden"
-            whileInView="show" viewport={{ once: true, amount: 0.15 }}
+            whileInView="show" 
+            viewport={{ once: true, amount: 0.15 }}
             exit="hidden"
-            className="liquid-glass p-8 md:p-10 rounded-3xl border border-white/10 shadow-2xl relative overflow-hidden text-left "
+            className="w-full rounded-3xl border border-white/10 bg-gradient-to-b from-white/[0.03] to-white/[0.005] backdrop-blur-xl p-6 md:p-10 relative overflow-hidden text-left shadow-[0_8px_32px_rgba(0,0,0,0.3)]"
           >
-            <div className="absolute -top-16 -right-16 w-36 h-36 bg-accent/5 blur-3xl rounded-full" />
+            {/* Terminal Micro Header */}
+            <div className="flex items-center justify-between pb-6 mb-6 border-b border-white/10 text-xs font-mono text-white/50">
+              <div className="flex items-center gap-x-2">
+                <RiTerminalBoxLine className="text-accent text-base" />
+                <span className="text-white/80 font-medium">Research Dispatch Interface</span>
+              </div>
+              <div className="flex items-center gap-x-2">
+                <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+                <span className="text-white/70">Gateway Active</span>
+              </div>
+            </div>
+
             {/* Status alerts */}
             <AnimatePresence mode="wait">
               {status.type && (
@@ -105,102 +136,119 @@ const Contact: React.FC = () => {
                   initial={{ opacity: 0, y: -10 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -10 }}
-                  className={`mb-6 p-4 rounded-xl flex items-center gap-x-3 text-sm md:text-base border ${
+                  className={`mb-6 p-4 rounded-xl flex items-center gap-x-3 text-sm font-mono border ${
                     status.type === "success"
                       ? "bg-emerald-500/10 border-emerald-500/30 text-emerald-400"
                       : "bg-rose-500/10 border-rose-500/30 text-rose-400"
                   }`}
                 >
                   {status.type === "success" ? (
-                    <RiCheckboxCircleLine className="text-2xl shrink-0" />
+                    <RiCheckboxCircleLine className="text-xl shrink-0" />
                   ) : (
-                    <RiErrorWarningLine className="text-2xl shrink-0" />
+                    <RiErrorWarningLine className="text-xl shrink-0" />
                   )}
                   <span>{status.message}</span>
                 </motion.div>
               )}
             </AnimatePresence>
+
             <form onSubmit={handleSubmit} className="flex flex-col gap-5">
               {/* Row 1: Name and Email */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                 <div className="flex flex-col gap-1.5">
+                  <label className="text-[11px] font-mono uppercase tracking-wider text-white/40 font-semibold">
+                    Full Name
+                  </label>
                   <input
                     type="text"
                     name="name"
                     value={formData.name}
                     onChange={handleChange}
                     placeholder={content.contact.placeholders.name}
-                    className="input w-full"
+                    className="w-full px-4 py-3.5 rounded-xl bg-white/[0.03] border border-white/10 focus:border-accent/50 focus:bg-white/[0.06] text-white placeholder-white/30 text-sm font-sans outline-none transition-all"
                     required
                     disabled={isLoading}
                   />
                 </div>
                 <div className="flex flex-col gap-1.5">
+                  <label className="text-[11px] font-mono uppercase tracking-wider text-white/40 font-semibold">
+                    Email Address
+                  </label>
                   <input
                     type="email"
                     name="email"
                     value={formData.email}
                     onChange={handleChange}
                     placeholder={content.contact.placeholders.email}
-                    className="input w-full"
+                    className="w-full px-4 py-3.5 rounded-xl bg-white/[0.03] border border-white/10 focus:border-accent/50 focus:bg-white/[0.06] text-white placeholder-white/30 text-sm font-sans outline-none transition-all"
                     required
                     disabled={isLoading}
                   />
                 </div>
               </div>
+
               {/* Row 2: Phone and Subject */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                 <div className="flex flex-col gap-1.5">
+                  <label className="text-[11px] font-mono uppercase tracking-wider text-white/40 font-semibold">
+                    Phone Number (Optional)
+                  </label>
                   <input
                     type="tel"
                     name="phone"
                     value={formData.phone}
                     onChange={handleChange}
                     placeholder={content.contact.placeholders.phone}
-                    className="input w-full"
+                    className="w-full px-4 py-3.5 rounded-xl bg-white/[0.03] border border-white/10 focus:border-accent/50 focus:bg-white/[0.06] text-white placeholder-white/30 text-sm font-sans outline-none transition-all"
                     disabled={isLoading}
                   />
                 </div>
                 <div className="flex flex-col gap-1.5">
+                  <label className="text-[11px] font-mono uppercase tracking-wider text-white/40 font-semibold">
+                    Subject / Topic
+                  </label>
                   <input
                     type="text"
                     name="subject"
                     value={formData.subject}
                     onChange={handleChange}
                     placeholder={content.contact.placeholders.subject}
-                    className="input w-full"
+                    className="w-full px-4 py-3.5 rounded-xl bg-white/[0.03] border border-white/10 focus:border-accent/50 focus:bg-white/[0.06] text-white placeholder-white/30 text-sm font-sans outline-none transition-all"
                     disabled={isLoading}
                   />
                 </div>
               </div>
+
               {/* Message */}
               <div className="flex flex-col gap-1.5">
+                <label className="text-[11px] font-mono uppercase tracking-wider text-white/40 font-semibold">
+                  Proposal or Message
+                </label>
                 <textarea
                   name="message"
                   value={formData.message}
                   onChange={handleChange}
                   placeholder={content.contact.placeholders.message}
-                  className="textarea w-full h-[150px]"
+                  className="w-full px-4 py-3.5 rounded-xl bg-white/[0.03] border border-white/10 focus:border-accent/50 focus:bg-white/[0.06] text-white placeholder-white/30 text-sm font-sans outline-none transition-all h-[140px] resize-none"
                   required
                   disabled={isLoading}
                 />
               </div>
+
               {/* Submit Button */}
-              <div className="mt-4 flex justify-center md:justify-start">
+              <div className="mt-3 flex justify-start">
                 <button
                   type="submit"
                   disabled={isLoading}
-                  className="inline-flex items-center justify-center gap-x-2 px-8 py-3.5 rounded-full font-semibold text-white bg-accent hover:bg-red-400 hover:scale-105 shadow-[0_0_15px_rgba(241,48,36,0.4)] disabled:opacity-50 disabled:hover:scale-100 disabled:bg-accent transition-all duration-300 group min-w-[180px]"
+                  className="inline-flex items-center justify-center gap-x-2 px-8 py-3.5 rounded-xl font-bold font-sans text-sm text-primary bg-accent hover:bg-amber-300 shadow-[0_0_25px_rgba(251,191,36,0.35)] hover:shadow-[0_0_35px_rgba(251,191,36,0.6)] hover:scale-105 disabled:opacity-50 disabled:hover:scale-100 transition-all duration-300"
                 >
                   {isLoading ? (
                     <RiLoader5Line className="text-xl animate-spin" />
                   ) : (
-                    <RiSendPlaneFill className="text-lg transform group-hover:translate-x-1  transition duration-300" />
+                    <RiSendPlaneFill className="text-base" />
                   )}
                   <span>
-                    {isLoading
-                      ? "Sending..."
-                      : content.contact.btnSend}
+                    {isLoading ? "Transmitting..." : "Send Transmission"}
                   </span>
                 </button>
               </div>
@@ -211,4 +259,5 @@ const Contact: React.FC = () => {
     </section>
   );
 };
+
 export default Contact;

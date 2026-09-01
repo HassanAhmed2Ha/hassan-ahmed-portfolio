@@ -32,8 +32,9 @@ yarn-error.log*
 # logs
 *.log
 
-# Antigravity
+# Antigravity & Skills
 .agents/
+.claude/
 
 # vercel
 .vercel

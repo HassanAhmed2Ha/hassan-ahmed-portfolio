@@ -11,6 +11,7 @@ import Experience from "../components/sections/Experience";
 import Certifications from "../components/sections/Certifications";
 import Work from "../components/sections/Work";
 import Publications from "../components/sections/Publications";
+import OpenScience from "../components/sections/OpenScience";
 import Contact from "../components/sections/Contact";
 import { contentEn as content } from "../src/data";
 const Typewriter: React.FC<{ words: string[] }> = ({ words }) => {
@@ -42,7 +43,7 @@ const Typewriter: React.FC<{ words: string[] }> = ({ words }) => {
     return () => clearTimeout(timeout);
   }, [subIndex, index, reverse, words]);
   return (
-    <span className="text-accent inline-block" dir="auto">
+    <span className="text-accent inline-block font-serif italic font-normal" dir="auto">
       {words[index].substring(0, subIndex)}
       <span
         className={`inline-block w-[3px] h-[0.9em] mx-1 bg-accent align-middle transition-opacity ${blink ? "opacity-100" : "opacity-0"
@@ -54,7 +55,7 @@ const Typewriter: React.FC<{ words: string[] }> = ({ words }) => {
 const Home: React.FC = () => {
   return (
     <main className="w-full flex flex-col">
-      <section id="home" className="min-h-screen flex items-center justify-start relative overflow-hidden w-full bg-primary">
+      <section id="home" className="min-h-screen flex items-center justify-start relative overflow-hidden w-full bg-primary pt-24 pb-16 xl:py-0">
         {/* Layer 1: Background Explosion — fire-gold, Hero-only, no global bleed */}
         <div className="absolute inset-0 z-0 bg-explosion bg-cover bg-center bg-no-repeat mix-blend-screen opacity-60 saturate-150 brightness-110 translate-z-0" />
         
@@ -104,38 +105,43 @@ const Home: React.FC = () => {
         </motion.div>
 
         {/* Layer 4: Text Container (Foreground) */}
-        <div className="relative z-20 w-full xl:max-w-3xl flex flex-col justify-center text-center xl:text-left container px-4 xl:px-0 xl:pl-12 xl:pt-32">
-          {/* title */}
+        <div className="relative z-20 w-full xl:max-w-3xl flex flex-col justify-center text-center xl:text-left container px-4 xl:px-0 xl:pl-12">
+          {/* Title */}
           <motion.h1
             variants={fadeIn("down", 0.2)}
             initial="hidden"
-            whileInView="show" viewport={{ once: true, amount: 0.15 }}
+            whileInView="show" 
+            viewport={{ once: true, amount: 0.15 }}
             exit="hidden"
-            className="h1 mb-6 xl:mb-8 mt-24 xl:mt-0 xl:text-[50px] xl:leading-snug"
+            className="h1 mb-4 xl:mb-5 text-3xl sm:text-4xl md:text-5xl xl:text-[50px] xl:leading-[1.18] tracking-tight text-white font-heading"
           >
             {content.hero.titleLine1} <br />
-            <span className="whitespace-nowrap inline-block z-20">
-              {content.hero.titleLine2} <Typewriter words={content.hero.role} />
+            <span className="font-serif italic font-normal text-accent drop-shadow-[0_0_20px_rgba(251,191,36,0.35)]">
+              <Typewriter words={content.hero.role} />
             </span>
           </motion.h1>
-          {/* description */}
+
+          {/* Description */}
           <motion.p
             variants={fadeIn("down", 0.3)}
             initial="hidden"
-            whileInView="show" viewport={{ once: true, amount: 0.15 }}
+            whileInView="show" 
+            viewport={{ once: true, amount: 0.15 }}
             exit="hidden"
-            className="max-w-sm xl:max-w-2xl mx-auto xl:mx-0 mb-10 xl:mb-16 text-xl xl:text-2xl text-white/90 font-medium leading-relaxed"
+            className="max-w-sm sm:max-w-xl xl:max-w-2xl mx-auto xl:mx-0 mb-6 xl:mb-8 text-base sm:text-lg xl:text-xl text-white/95 font-sans font-medium leading-relaxed"
           >
             {content.hero.description}
           </motion.p>
-          {/* btn */}
-          <div className="flex justify-center xl:hidden relative z-20">
+
+          {/* Projects Button */}
+          <div className="flex justify-center xl:hidden relative z-20 mt-2">
             <ProjectsBtn />
           </div>
           <motion.div
             variants={fadeIn("down", 0.4)}
             initial="hidden"
-            whileInView="show" viewport={{ once: true, amount: 0.15 }}
+            whileInView="show" 
+            viewport={{ once: true, amount: 0.15 }}
             exit="hidden"
             className="hidden xl:flex z-20 relative"
           >
@@ -148,6 +154,7 @@ const Home: React.FC = () => {
       <Experience />
       <Certifications />
       <Work />
+      <OpenScience />
       <Publications />
       <Contact />
     </main>
