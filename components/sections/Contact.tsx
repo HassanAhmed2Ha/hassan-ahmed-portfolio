@@ -361,10 +361,10 @@ const Contact: React.FC = () => {
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 
                 {/* Field 01: Name */}
-                <div className="rounded-2xl border border-white/15 bg-white/[0.03] hover:border-white/30 focus-within:border-accent focus-within:bg-white/[0.06] focus-within:shadow-[0_0_20px_rgba(251,191,36,0.12)] p-4 transition-all duration-200 space-y-1">
-                  <label className="text-[11px] font-mono uppercase tracking-wider text-white/45 font-semibold flex items-center justify-between">
+                <div className="group rounded-2xl border border-white/10 bg-white/[0.02] hover:border-white/20 hover:bg-white/[0.035] focus-within:border-accent/80 focus-within:bg-white/[0.05] focus-within:shadow-[0_0_25px_rgba(251,191,36,0.12)] p-4 transition-all duration-300 space-y-1">
+                  <label className="text-[11px] font-mono uppercase tracking-wider text-white/40 group-focus-within:text-amber-200/90 font-semibold flex items-center justify-between transition-colors duration-200">
                     <span>Full Name / Entity *</span>
-                    <span className="text-accent text-[10px] font-bold">01</span>
+                    <span className="text-white/25 group-focus-within:text-accent font-bold text-[10px] transition-colors duration-200">01</span>
                   </label>
                   <input
                     type="text"
@@ -372,17 +372,17 @@ const Contact: React.FC = () => {
                     value={formData.name}
                     onChange={handleChange}
                     placeholder={content.contact.placeholders.name}
-                    className="w-full bg-transparent text-white placeholder-white/30 text-sm md:text-base font-sans outline-none"
+                    className="w-full bg-transparent text-white placeholder-white/25 text-sm md:text-base font-sans outline-none transition-colors"
                     required
                     disabled={isLoading}
                   />
                 </div>
 
                 {/* Field 02: Email */}
-                <div className="rounded-2xl border border-white/15 bg-white/[0.03] hover:border-white/30 focus-within:border-accent focus-within:bg-white/[0.06] focus-within:shadow-[0_0_20px_rgba(251,191,36,0.12)] p-4 transition-all duration-200 space-y-1">
-                  <label className="text-[11px] font-mono uppercase tracking-wider text-white/45 font-semibold flex items-center justify-between">
+                <div className="group rounded-2xl border border-white/10 bg-white/[0.02] hover:border-white/20 hover:bg-white/[0.035] focus-within:border-accent/80 focus-within:bg-white/[0.05] focus-within:shadow-[0_0_25px_rgba(251,191,36,0.12)] p-4 transition-all duration-300 space-y-1">
+                  <label className="text-[11px] font-mono uppercase tracking-wider text-white/40 group-focus-within:text-amber-200/90 font-semibold flex items-center justify-between transition-colors duration-200">
                     <span>Email Address *</span>
-                    <span className="text-accent text-[10px] font-bold">02</span>
+                    <span className="text-white/25 group-focus-within:text-accent font-bold text-[10px] transition-colors duration-200">02</span>
                   </label>
                   <input
                     type="email"
@@ -390,7 +390,7 @@ const Contact: React.FC = () => {
                     value={formData.email}
                     onChange={handleChange}
                     placeholder={content.contact.placeholders.email}
-                    className="w-full bg-transparent text-white placeholder-white/30 text-sm md:text-base font-sans outline-none"
+                    className="w-full bg-transparent text-white placeholder-white/25 text-sm md:text-base font-sans outline-none transition-colors"
                     required
                     disabled={isLoading}
                   />
@@ -398,10 +398,10 @@ const Contact: React.FC = () => {
               </div>
 
               {/* Field 03: Subject / Topic */}
-              <div className="rounded-2xl border border-white/15 bg-white/[0.03] hover:border-white/30 focus-within:border-accent focus-within:bg-white/[0.06] focus-within:shadow-[0_0_20px_rgba(251,191,36,0.12)] p-4 transition-all duration-200 space-y-1">
-                <label className="text-[11px] font-mono uppercase tracking-wider text-white/45 font-semibold flex items-center justify-between">
+              <div className="group rounded-2xl border border-white/10 bg-white/[0.02] hover:border-white/20 hover:bg-white/[0.035] focus-within:border-accent/80 focus-within:bg-white/[0.05] focus-within:shadow-[0_0_25px_rgba(251,191,36,0.12)] p-4 transition-all duration-300 space-y-1">
+                <label className="text-[11px] font-mono uppercase tracking-wider text-white/40 group-focus-within:text-amber-200/90 font-semibold flex items-center justify-between transition-colors duration-200">
                   <span>Collaboration Topic / Subject</span>
-                  <span className="text-accent text-[10px] font-bold">03</span>
+                  <span className="text-white/25 group-focus-within:text-accent font-bold text-[10px] transition-colors duration-200">03</span>
                 </label>
                 <input
                   type="text"
@@ -409,23 +409,23 @@ const Contact: React.FC = () => {
                   value={formData.subject}
                   onChange={handleChange}
                   placeholder={content.contact.placeholders.subject}
-                  className="w-full bg-transparent text-white placeholder-white/30 text-sm md:text-base font-sans outline-none"
+                  className="w-full bg-transparent text-white placeholder-white/25 text-sm md:text-base font-sans outline-none transition-colors"
                   disabled={isLoading}
                 />
               </div>
 
               {/* Field 04: Message / Proposal */}
-              <div className="rounded-2xl border border-white/15 bg-white/[0.03] hover:border-white/30 focus-within:border-accent focus-within:bg-white/[0.06] focus-within:shadow-[0_0_20px_rgba(251,191,36,0.12)] p-4 transition-all duration-200 space-y-1">
-                <label className="text-[11px] font-mono uppercase tracking-wider text-white/45 font-semibold flex items-center justify-between">
+              <div className="group rounded-2xl border border-white/10 bg-white/[0.02] hover:border-white/20 hover:bg-white/[0.035] focus-within:border-accent/80 focus-within:bg-white/[0.05] focus-within:shadow-[0_0_25px_rgba(251,191,36,0.12)] p-4 transition-all duration-300 space-y-1">
+                <label className="text-[11px] font-mono uppercase tracking-wider text-white/40 group-focus-within:text-amber-200/90 font-semibold flex items-center justify-between transition-colors duration-200">
                   <span>Project Vision or Proposal *</span>
-                  <span className="text-accent text-[10px] font-bold">04</span>
+                  <span className="text-white/25 group-focus-within:text-accent font-bold text-[10px] transition-colors duration-200">04</span>
                 </label>
                 <textarea
                   name="message"
                   value={formData.message}
                   onChange={handleChange}
                   placeholder={content.contact.placeholders.message}
-                  className="w-full bg-transparent text-white placeholder-white/30 text-sm md:text-base font-sans outline-none h-[110px] resize-none pt-1"
+                  className="w-full bg-transparent text-white placeholder-white/25 text-sm md:text-base font-sans outline-none h-[110px] resize-none pt-1 transition-colors"
                   required
                   disabled={isLoading}
                 />
