@@ -3,6 +3,7 @@ import Head from "next/head";
 import Header from "./Header";
 import Nav from "./Nav";
 import TopLeftImg from "./TopLeftImg";
+import ScrollProgress from "./ScrollProgress";
 import { contentEn as content } from "../src/data";
 
 // Setup High-Precision DeepTech Typography Stack
@@ -40,6 +41,9 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
     <div
       className={`relative min-h-screen w-full overflow-x-hidden bg-primary text-white font-sans ${inter.variable} ${plusJakarta.variable} ${jetbrainsMono.variable} ${newsreader.variable}`}
     >
+      {/* kinetic scroll progress indicator */}
+      <ScrollProgress />
+
       {/* metadata */}
       <Head>
         <title>{content.seo.title}</title>
@@ -51,7 +55,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
           name="keywords"
           content={content.seo.keywords.join(", ")}
         />
-        <meta name="author" content="Hassan Zaki" />
+        <meta name="author" content="Hassan Ahmed" />
         <meta name="theme-color" content="#FBBF24" />
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0" />
       </Head>

@@ -89,3 +89,37 @@
     border: 1px solid rgba(255, 255, 255, 0.2);
   }
 }
+
+/* ── Custom Dark Glassmorphic Scrollbar ── */
+::-webkit-scrollbar {
+  width: 7px;
+  height: 7px;
+}
+
+::-webkit-scrollbar-track {
+  background: #090e1a;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(251, 191, 36, 0.25);
+  border-radius: 9999px;
+  border: 1.5px solid #090e1a;
+  transition: all 0.25s ease-in-out;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(251, 191, 36, 0.65);
+  box-shadow: 0 0 10px rgba(251, 191, 36, 0.4);
+}
+
+::-webkit-scrollbar-thumb:active {
+  background: #fbbf24;
+  box-shadow: 0 0 14px rgba(251, 191, 36, 0.8);
+}
+
+/* Firefox Support */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(251, 191, 36, 0.3) #090e1a;
+}
+
