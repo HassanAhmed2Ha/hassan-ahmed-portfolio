@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
+import dynamic from "next/dynamic";
 import { motion } from "framer-motion";
 import { fadeIn } from "../variants";
 import ProjectsBtn from "../components/ProjectsBtn";
 import Avatar from "../components/Avatar";
-import ParticlesContainer from "../components/ParticlesContainer";
 import About from "../components/sections/About";
 import TechMarquee from "../components/sections/TechMarquee";
 import Experience from "../components/sections/Experience";
@@ -14,6 +14,9 @@ import Publications from "../components/sections/Publications";
 import OpenScience from "../components/sections/OpenScience";
 import Contact from "../components/sections/Contact";
 import { contentEn as content } from "../src/data";
+
+const ParticlesContainer = dynamic(() => import("../components/ParticlesContainer"), { ssr: false });
+
 const Typewriter: React.FC<{ words: string[] }> = ({ words }) => {
   const [index, setIndex] = useState(0);
   const [subIndex, setSubIndex] = useState(0);
@@ -113,31 +116,21 @@ const Home: React.FC = () => {
         {/* Layer 4: Text Container (Foreground) */}
         <div className="relative z-20 w-full xl:max-w-3xl flex flex-col justify-center text-center xl:text-left container px-4 xl:px-0 xl:pl-12">
           {/* Title */}
-          <motion.h1
-            variants={fadeIn("down", 0.2)}
-            initial="hidden"
-            whileInView="show" 
-            viewport={{ once: true, amount: 0.15 }}
-            exit="hidden"
+          <h1
             className="h1 mb-4 xl:mb-5 text-3xl sm:text-4xl md:text-5xl xl:text-[50px] xl:leading-[1.18] tracking-tight text-white font-heading"
           >
             {content.hero.titleLine1} <br />
             <span className="font-serif italic font-normal text-accent drop-shadow-[0_0_20px_rgba(251,191,36,0.35)]">
               <Typewriter words={content.hero.role} />
             </span>
-          </motion.h1>
+          </h1>
 
           {/* Description */}
-          <motion.p
-            variants={fadeIn("down", 0.3)}
-            initial="hidden"
-            whileInView="show" 
-            viewport={{ once: true, amount: 0.15 }}
-            exit="hidden"
+          <p
             className="max-w-sm sm:max-w-xl xl:max-w-2xl mx-auto xl:mx-0 mb-6 xl:mb-8 text-base sm:text-lg xl:text-xl text-white/95 font-sans font-medium leading-relaxed"
           >
             {content.hero.description}
-          </motion.p>
+          </p>
 
           {/* Projects Button */}
           <div className="flex justify-center xl:hidden relative z-20 mt-2">
