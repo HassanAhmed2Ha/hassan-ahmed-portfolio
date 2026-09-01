@@ -42,8 +42,12 @@ module.exports = {
           '50%': { opacity: '0.8', transform: 'scale(1.02)' },
         },
         marquee: {
-          '0%': { transform: 'translateX(0%)' },
-          '100%': { transform: 'translateX(-100%)' },
+          '0%': { transform: 'translate3d(0%, 0, 0)' },
+          '100%': { transform: 'translate3d(-100%, 0, 0)' },
+        },
+        'marquee-reverse': {
+          '0%': { transform: 'translate3d(-100%, 0, 0)' },
+          '100%': { transform: 'translate3d(0%, 0, 0)' },
         },
       },
       animation: {
@@ -51,6 +55,7 @@ module.exports = {
         'pulse-gold': 'pulse-gold 6s ease-in-out infinite',
         'pulse-gold-fast': 'pulse-gold 3s ease-in-out infinite',
         marquee: 'marquee 30s linear infinite',
+        'marquee-reverse': 'marquee-reverse 30s linear infinite',
       },
       fontFamily: {
         sans: ["var(--font-sans)", "sans-serif"],

@@ -7,10 +7,11 @@ import ProjectsBtn from "../components/ProjectsBtn";
 import Avatar from "../components/Avatar";
 import { contentEn as content } from "../src/data";
 
-// Dynamic Code-Splitting for Optimal Mobile Hydration & SEO
+import About from "../components/sections/About";
+import TechMarquee from "../components/sections/TechMarquee";
+
+// Dynamic Code-Splitting for Heavy Below-the-fold Sections
 const ParticlesContainer = dynamic(() => import("../components/ParticlesContainer"), { ssr: false });
-const About = dynamic(() => import("../components/sections/About"), { ssr: true });
-const TechMarquee = dynamic(() => import("../components/sections/TechMarquee"), { ssr: true });
 const Experience = dynamic(() => import("../components/sections/Experience"), { ssr: true });
 const Certifications = dynamic(() => import("../components/sections/Certifications"), { ssr: true });
 const Work = dynamic(() => import("../components/sections/Work"), { ssr: true });

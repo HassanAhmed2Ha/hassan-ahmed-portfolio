@@ -93,7 +93,7 @@ const TechMarquee: React.FC<TechMarqueeProps> = ({ data }) => {
       <div className="flex flex-col gap-4">
         {/* Track 1 (Left to Right) */}
         <div className="flex w-max">
-          <div className="flex items-center gap-3.5 pr-3.5 animate-marquee [animation-duration:30s]">
+          <div className="flex items-center gap-3.5 pr-3.5 animate-marquee [animation-duration:30s] will-change-transform">
             {data.map((item, idx) => (
               <div
                 key={`top-${item.name}-${idx}`}
@@ -110,7 +110,7 @@ const TechMarquee: React.FC<TechMarqueeProps> = ({ data }) => {
           </div>
 
           <div
-            className="flex items-center gap-3.5 pr-3.5 animate-marquee [animation-duration:30s]"
+            className="flex items-center gap-3.5 pr-3.5 animate-marquee [animation-duration:30s] will-change-transform"
             aria-hidden="true"
           >
             {data.map((item, idx) => (
@@ -131,7 +131,7 @@ const TechMarquee: React.FC<TechMarqueeProps> = ({ data }) => {
 
         {/* Track 2 (Right to Left) */}
         <div className="flex w-max">
-          <div className="flex items-center gap-3.5 pr-3.5 animate-marquee [animation-duration:30s] [animation-direction:reverse]">
+          <div className="flex items-center gap-3.5 pr-3.5 animate-marquee-reverse [animation-duration:30s] will-change-transform">
             {reversedData.map((item, idx) => (
               <div
                 key={`bottom-${item.name}-${idx}`}
@@ -148,7 +148,7 @@ const TechMarquee: React.FC<TechMarqueeProps> = ({ data }) => {
           </div>
 
           <div
-            className="flex items-center gap-3.5 pr-3.5 animate-marquee [animation-duration:30s] [animation-direction:reverse]"
+            className="flex items-center gap-3.5 pr-3.5 animate-marquee-reverse [animation-duration:30s] will-change-transform"
             aria-hidden="true"
           >
             {reversedData.map((item, idx) => (
