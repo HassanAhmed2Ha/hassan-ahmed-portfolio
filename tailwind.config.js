@@ -31,15 +31,15 @@ module.exports = {
         black: '#000000',
       },
       backgroundImage: {
-        explosion: 'url("/bg-explosion.png")',
+        explosion: 'url("/bg-explosion.webp")',
         circles: 'url("/bg-circles.png")',
         circleStar: 'url("/circle-star.svg")',
         site: 'url("/site-bg.svg")',
       },
       keyframes: {
         'pulse-gold': {
-          '0%, 100%': { opacity: 0.5, filter: 'drop-shadow(0 0 10px rgba(255, 193, 7, 0.4))' },
-          '50%': { opacity: 0.8, filter: 'drop-shadow(0 0 25px rgba(255, 193, 7, 0.9))' },
+          '0%, 100%': { opacity: '0.5', transform: 'scale(1)' },
+          '50%': { opacity: '0.8', transform: 'scale(1.02)' },
         },
         marquee: {
           '0%': { transform: 'translateX(0%)' },

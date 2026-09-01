@@ -20,11 +20,10 @@ const Experience: React.FC = () => {
           transition={{ duration: 15, repeat: Infinity, ease: "easeInOut" }}
         >
           <Image 
-            src="/tall_dna.png"
+            src="/tall_dna.webp"
             alt="Full Genomic Spine" 
             fill 
             className="object-cover object-top saturate-200 contrast-125 brightness-110 hue-rotate-[-5deg]" 
-            priority 
           />
         </motion.div>
       </div>

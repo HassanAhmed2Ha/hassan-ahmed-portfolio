@@ -1,0 +1,28 @@
+# Hassan Zaki — AI & Computational Biology Portfolio
+
+> Computational Biology Researcher & AI Systems Engineer building end-to-end deep learning architectures and data-centric solutions for life sciences and scientific discovery.
+
+## Core Competencies
+- Applied AI, Deep Learning & Graph Neural Networks (GNNs, AttentiveFP, PyTorch Geometric, TensorFlow)
+- Full-Stack Software & Distributed Backend Systems (FastAPI, React, TypeScript, Next.js, PostgreSQL, Redis)
+- Data Engineering & MLOps (Docker, CI/CD, Automated ETL, Linux, Open Science Reproducibility)
+- Cheminformatics & Bio-AI (RDKit, 3D Conformer Modeling, Molecular Descriptors, Ecotoxicology AI)
+
+## Featured Projects
+1. **AgroGraph-Tox AI**: Multi-Task Graph Neural Network predicting acute honeybee toxicity and environmental safety.
+2. **Sentinel-1 SAR Flood AI**: Cloud-native radar hydrology pipeline and interactive tactical flood intelligence system.
+3. **EchoGuard Biometric Edge AI**: Embedded ultra-low latency acoustic keyword spotting on ESP32 microcontrollers.
+4. **BioPhys Conformer Benchmark**: 3D molecular conformation modeling and coordinate standardization.
+5. **NeuroScan SHAP Diagnostic**: Deep convolutional neural network for automated breast neoplasm triage with SHAP explainability.
+6. **Smart IoT Bioreactor**: Real-time closed-loop environmental telemetry and fermentation monitoring.
+
+## Open Science & Publications
+- **AgroBench-3D**: 11,129 Curated 3D Molecular Conformer Benchmark on Hugging Face (Hassan2007/EcoAgro3D).
+- Peer-reviewed research papers and preprints indexed with DOIs and Open Access links.
+
+## Contact & Links
+- Website: https://hassan-ahmed-portfolio.vercel.app
+- GitHub: https://github.com/HassanAhmed2Ha
+- LinkedIn: https://www.linkedin.com/in/hassan-ahmed2007/
+- ORCID: https://orcid.org/0009-0005-0306-0898
+- Email: hassanahmed07.e9@gmail.com

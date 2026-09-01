@@ -85,7 +85,7 @@ const Home: React.FC = () => {
           }}
         >
           <Image
-            src="/nano-dna.png"
+            src="/nano-dna.webp"
             alt="DNA Hologram"
             fill
             className="object-cover object-[30%_50%] scale-110 grayscale invert-[0.10] sepia brightness-110 saturate-200"

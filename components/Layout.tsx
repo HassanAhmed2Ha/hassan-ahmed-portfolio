@@ -47,17 +47,11 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
       {/* metadata */}
       <Head>
         <title>{content.seo.title}</title>
-        <meta
-          name="description"
-          content={content.seo.description}
-        />
-        <meta
-          name="keywords"
-          content={content.seo.keywords.join(", ")}
-        />
-        <meta name="author" content="Hassan Ahmed" />
-        <meta name="theme-color" content="#FBBF24" />
-        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0" />
+        <meta name="description" content={content.seo.description} />
+        <meta name="keywords" content={content.seo.keywords.join(", ")} />
+        <meta name="author" content="Hassan Zaki" />
+        <meta name="theme-color" content="#0F172A" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
       <TopLeftImg />
       <Nav />

@@ -26,8 +26,8 @@ const Avatar: React.FC<AvatarProps> = ({
       {/* 2. The Image (Masked) */}
       <div className={`relative z-10 w-full h-full flex justify-center items-end ${maskClasses}`}>
         <Image
-          src="/avatar.png"
-          alt="avatar"
+          src="/avatar.webp"
+          alt="Hassan Zaki"
           width={width}
           height={height}
           className={className}

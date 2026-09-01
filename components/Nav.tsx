@@ -51,15 +51,18 @@ const Nav: React.FC = () => {
         {navData.map((link, i) => (
           <a
             className={`${
-              activeSection === link.id && "text-accent"
+              activeSection === link.id ? "text-accent" : ""
             } relative flex items-center group hover:text-accent transition-all duration-300 cursor-pointer`}
             href={link.path}
             key={i}
+            aria-label={link.name}
+            title={link.name}
           >
+            <span className="sr-only">{link.name}</span>
             {/* tooltip */}
             <div
               role="tooltip"
-              className="absolute pr-14 right-0    hidden xl:group-hover:flex"
+              className="absolute pr-14 right-0 hidden xl:group-hover:flex"
             >
               <div className="bg-white relative flex text-primary items-center p-[6px] rounded-[3px]">
                 <div className="text-[12px] leading-none font-semibold whitespace-nowrap">
@@ -68,15 +71,15 @@ const Nav: React.FC = () => {
 
                 {/* triangle */}
                 <div
-                  className="border-solid border-l-white border-l-8 border-y-transparent border-y-[6px] border-r-0 absolute -right-2     "
-                  aria-hidden
+                  className="border-solid border-l-white border-l-8 border-y-transparent border-y-[6px] border-r-0 absolute -right-2"
+                  aria-hidden="true"
                 />
               </div>
             </div>
 
             {/* icon */}
             <div>
-              <link.Icon aria-hidden />
+              <link.Icon aria-hidden="true" />
             </div>
           </a>
         ))}

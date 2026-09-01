@@ -75,9 +75,11 @@ const Certifications: React.FC = () => {
                       target="_blank"
                       rel="noreferrer noopener"
                       className="shrink-0 p-2.5 rounded-xl bg-white/[0.03] border border-white/10 group-hover:border-accent/40 group-hover:bg-accent/10 text-white/60 group-hover:text-accent transition-all duration-200"
-                      title={content.certifications.verifyLabel}
+                      title={`Verify ${cert.title} credential from ${cert.issuer}`}
+                      aria-label={`Verify ${cert.title} credential from ${cert.issuer}`}
                     >
-                      <RiArrowRightUpLine className="text-base" />
+                      <RiArrowRightUpLine className="text-base" aria-hidden="true" />
+                      <span className="sr-only">Verify {cert.title}</span>
                     </a>
                   )}
                 </motion.div>

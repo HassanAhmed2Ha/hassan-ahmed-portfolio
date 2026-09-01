@@ -33,51 +33,51 @@ const getTechVectorIcon = (name: string) => {
   switch (normalized) {
     case "python":
     case "py":
-      return <SiPython className="text-lg text-white/70 group-hover:text-accent transition-colors" />;
+      return <SiPython className="text-lg text-white/70 group-hover:text-accent transition-colors" aria-hidden="true" />;
     case "pytorch":
-      return <SiPytorch className="text-lg text-white/70 group-hover:text-accent transition-colors" />;
+      return <SiPytorch className="text-lg text-white/70 group-hover:text-accent transition-colors" aria-hidden="true" />;
     case "tensorflow":
-      return <SiTensorflow className="text-lg text-white/70 group-hover:text-accent transition-colors" />;
+      return <SiTensorflow className="text-lg text-white/70 group-hover:text-accent transition-colors" aria-hidden="true" />;
     case "scikitlearn":
-      return <SiScikitlearn className="text-lg text-white/70 group-hover:text-accent transition-colors" />;
+      return <SiScikitlearn className="text-lg text-white/70 group-hover:text-accent transition-colors" aria-hidden="true" />;
     case "fastapi":
-      return <SiFastapi className="text-lg text-white/70 group-hover:text-accent transition-colors" />;
+      return <SiFastapi className="text-lg text-white/70 group-hover:text-accent transition-colors" aria-hidden="true" />;
     case "docker":
-      return <SiDocker className="text-lg text-white/70 group-hover:text-accent transition-colors" />;
+      return <SiDocker className="text-lg text-white/70 group-hover:text-accent transition-colors" aria-hidden="true" />;
     case "kubernetes":
     case "kbernetes":
-      return <SiKubernetes className="text-lg text-white/70 group-hover:text-accent transition-colors" />;
+      return <SiKubernetes className="text-lg text-white/70 group-hover:text-accent transition-colors" aria-hidden="true" />;
     case "postgresql":
     case "postgres":
-      return <SiPostgresql className="text-lg text-white/70 group-hover:text-accent transition-colors" />;
+      return <SiPostgresql className="text-lg text-white/70 group-hover:text-accent transition-colors" aria-hidden="true" />;
     case "mongodb":
-      return <SiMongodb className="text-lg text-white/70 group-hover:text-accent transition-colors" />;
+      return <SiMongodb className="text-lg text-white/70 group-hover:text-accent transition-colors" aria-hidden="true" />;
     case "react":
-      return <SiReact className="text-lg text-white/70 group-hover:text-accent transition-colors" />;
+      return <SiReact className="text-lg text-white/70 group-hover:text-accent transition-colors" aria-hidden="true" />;
     case "nextjs":
     case "next":
-      return <SiNextdotjs className="text-lg text-white/70 group-hover:text-accent transition-colors" />;
+      return <SiNextdotjs className="text-lg text-white/70 group-hover:text-accent transition-colors" aria-hidden="true" />;
     case "typescript":
     case "ts":
-      return <SiTypescript className="text-lg text-white/70 group-hover:text-accent transition-colors" />;
+      return <SiTypescript className="text-lg text-white/70 group-hover:text-accent transition-colors" aria-hidden="true" />;
     case "javascript":
     case "js":
-      return <SiJavascript className="text-lg text-white/70 group-hover:text-accent transition-colors" />;
+      return <SiJavascript className="text-lg text-white/70 group-hover:text-accent transition-colors" aria-hidden="true" />;
     case "nodejs":
     case "node":
-      return <SiNodedotjs className="text-lg text-white/70 group-hover:text-accent transition-colors" />;
+      return <SiNodedotjs className="text-lg text-white/70 group-hover:text-accent transition-colors" aria-hidden="true" />;
     case "express":
-      return <SiExpress className="text-lg text-white/70 group-hover:text-accent transition-colors" />;
+      return <SiExpress className="text-lg text-white/70 group-hover:text-accent transition-colors" aria-hidden="true" />;
     case "githubactions":
-      return <SiGithubactions className="text-lg text-white/70 group-hover:text-accent transition-colors" />;
+      return <SiGithubactions className="text-lg text-white/70 group-hover:text-accent transition-colors" aria-hidden="true" />;
     case "linux":
-      return <SiLinux className="text-lg text-white/70 group-hover:text-accent transition-colors" />;
+      return <SiLinux className="text-lg text-white/70 group-hover:text-accent transition-colors" aria-hidden="true" />;
     case "git":
-      return <SiGit className="text-lg text-white/70 group-hover:text-accent transition-colors" />;
+      return <SiGit className="text-lg text-white/70 group-hover:text-accent transition-colors" aria-hidden="true" />;
     case "github":
-      return <SiGithub className="text-lg text-white/70 group-hover:text-accent transition-colors" />;
+      return <SiGithub className="text-lg text-white/70 group-hover:text-accent transition-colors" aria-hidden="true" />;
     default:
-      return <RiCodeSSlashLine className="text-lg text-white/70 group-hover:text-accent transition-colors" />;
+      return <RiCodeSSlashLine className="text-lg text-white/70 group-hover:text-accent transition-colors" aria-hidden="true" />;
   }
 };
 
