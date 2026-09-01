@@ -30,8 +30,11 @@ const About: React.FC = () => {
   const domains = about.competencyDomains;
 
   return (
-    <section id="about" className="py-16 md:py-20 relative z-20 w-full">
+    <section id="about" className="py-16 md:py-20 relative z-20 w-full overflow-hidden">
       <Circles />
+
+      {/* ── Top Ambient Continuity Glow from Hero ── */}
+      <div className="pointer-events-none absolute -top-24 left-1/2 -translate-x-1/2 w-[850px] h-[320px] bg-accent/[0.04] rounded-full blur-[140px] -z-10" />
 
       <div className="container mx-auto h-full flex flex-col items-center gap-y-8 relative z-10 px-4 xl:px-0">
         

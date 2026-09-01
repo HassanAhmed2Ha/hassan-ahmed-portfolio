@@ -148,6 +148,24 @@ const Home: React.FC = () => {
             <ProjectsBtn />
           </motion.div>
         </div>
+
+        {/* ── Seamless Bottom Atmospheric Gradient Bleed to About ── */}
+        <div className="absolute bottom-0 left-0 right-0 h-44 bg-gradient-to-b from-transparent via-primary/60 to-primary pointer-events-none z-10" />
+
+        {/* ── Kinetic Continuity Nexus Beacon ── */}
+        <motion.div 
+          initial={{ opacity: 0, y: -5 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 1.2, duration: 1 }}
+          className="absolute bottom-4 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center gap-1.5 pointer-events-none select-none opacity-50 hover:opacity-100 transition-opacity"
+        >
+          <span className="text-[10px] font-mono tracking-[0.25em] text-accent/70 uppercase">Discover</span>
+          <motion.div 
+            animate={{ y: [0, 6, 0] }}
+            transition={{ duration: 2.2, repeat: Infinity, ease: "easeInOut" }}
+            className="w-[1.5px] h-6 bg-gradient-to-b from-accent via-accent/40 to-transparent rounded-full shadow-[0_0_8px_rgba(251,191,36,0.6)]"
+          />
+        </motion.div>
       </section>
       <About />
       <TechMarquee data={content.techStackMarquee} />
