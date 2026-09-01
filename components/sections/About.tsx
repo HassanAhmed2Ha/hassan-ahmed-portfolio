@@ -121,9 +121,10 @@ const About: React.FC = () => {
                   {domain.competencies.map((comp, cIdx) => (
                     <motion.div
                       key={cIdx}
-                      whileHover={{ x: 4 }}
-                      transition={{ duration: 0.15 }}
-                      className="p-3.5 rounded-xl bg-white/[0.02] border border-white/[0.06] hover:border-accent/30 hover:bg-white/[0.04] transition-all flex items-center gap-x-3"
+                      whileHover={{ y: -2 }}
+                      whileTap={{ scale: 0.98 }}
+                      transition={{ duration: 0.2, ease: "easeOut" }}
+                      className="p-3.5 rounded-xl bg-white/[0.02] border border-white/[0.06] hover:border-accent/30 hover:bg-white/[0.04] hover:shadow-[0_4px_20px_rgba(0,0,0,0.25)] transition-all flex items-center gap-x-3 cursor-default"
                     >
                       <span className="w-1.5 h-1.5 rounded-full bg-accent shrink-0 shadow-[0_0_6px_rgba(251,191,36,0.8)]" />
                       <span className="text-xs md:text-sm font-sans text-white/90 leading-snug">
