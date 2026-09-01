@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import { 
@@ -179,9 +179,26 @@ const colorPalettes: Record<string, {
 const ProjectShowcase: React.FC<ProjectShowcaseProps> = ({ projects, labels }) => {
   const [expandedIndex, setExpandedIndex] = useState<number | null>(null);
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+  const itemRefs = useRef<(HTMLDivElement | null)[]>([]);
 
   const toggleProject = (index: number) => {
-    setExpandedIndex((prev) => (prev === index ? null : index));
+    const isExpanding = expandedIndex !== index;
+    setExpandedIndex(isExpanding ? index : null);
+
+    if (isExpanding) {
+      setTimeout(() => {
+        const el = itemRefs.current[index];
+        if (el) {
+          const rect = el.getBoundingClientRect();
+          const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+          const targetY = scrollTop + rect.top - 90;
+          window.scrollTo({
+            top: targetY,
+            behavior: "smooth",
+          });
+        }
+      }, 70);
+    }
   };
 
   return (
@@ -202,6 +219,9 @@ const ProjectShowcase: React.FC<ProjectShowcaseProps> = ({ projects, labels }) =
         return (
           <motion.div
             key={project.title}
+            ref={(el) => {
+              itemRefs.current[index] = el;
+            }}
             initial={{ opacity: 0, y: 25 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.2 }}

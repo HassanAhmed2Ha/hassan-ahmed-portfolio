@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { 
   RiFileCopyLine, 
@@ -74,6 +74,27 @@ const OpenScienceShowcase: React.FC = () => {
   const [isExpanded, setIsExpanded] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
   const [isCopied, setIsCopied] = useState(false);
+  const containerRef = useRef<HTMLDivElement | null>(null);
+
+  const handleToggle = () => {
+    const isExpanding = !isExpanded;
+    setIsExpanded(isExpanding);
+
+    if (isExpanding) {
+      setTimeout(() => {
+        const el = containerRef.current;
+        if (el) {
+          const rect = el.getBoundingClientRect();
+          const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+          const targetY = scrollTop + rect.top - 90;
+          window.scrollTo({
+            top: targetY,
+            behavior: "smooth",
+          });
+        }
+      }, 70);
+    }
+  };
 
   const handleCopyCitation = (e: React.MouseEvent) => {
     e.preventDefault();
@@ -86,6 +107,7 @@ const OpenScienceShowcase: React.FC = () => {
   return (
     <div className="w-full max-w-6xl mx-auto border-t border-white/10">
       <motion.div
+        ref={containerRef}
         layout="position"
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
@@ -114,7 +136,7 @@ const OpenScienceShowcase: React.FC = () => {
 
         {/* Main Horizon Row Header */}
         <div
-          onClick={() => setIsExpanded(!isExpanded)}
+          onClick={handleToggle}
           className="w-full flex items-start justify-between gap-6 cursor-pointer"
           role="button"
           tabIndex={0}
