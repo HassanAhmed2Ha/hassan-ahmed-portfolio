@@ -80,7 +80,7 @@ const Experience: React.FC = () => {
                     </span>
                     
                     <div className="space-y-1.5 flex-1">
-                      <h3 className="text-2xl md:text-3xl lg:text-[34px] font-serif italic font-normal tracking-tight text-white group-hover:text-amber-200 transition-colors">
+                      <h3 className="text-2xl md:text-3xl lg:text-[34px] font-serif italic font-normal tracking-tight text-white group-hover:text-amber-200 group-hover:drop-shadow-[0_0_14px_rgba(251,191,36,0.35)] transition-all duration-300">
                         {item.role}
                       </h3>
                       

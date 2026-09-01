@@ -100,7 +100,7 @@ const About: React.FC = () => {
                         {domain.number}
                       </span>
                       <span className="text-white/20">•</span>
-                      <h3 className="text-xl md:text-2xl lg:text-3xl font-serif italic font-normal tracking-tight text-white group-hover:text-amber-200 transition-colors">
+                      <h3 className="text-xl md:text-2xl lg:text-3xl font-serif italic font-normal tracking-tight text-white group-hover:text-amber-200 group-hover:drop-shadow-[0_0_14px_rgba(251,191,36,0.35)] transition-all duration-300">
                         {domain.title}
                       </h3>
                     </div>
