@@ -202,7 +202,7 @@ const ProjectShowcase: React.FC<ProjectShowcaseProps> = ({ projects, labels }) =
   };
 
   return (
-    <div className="w-full max-w-5xl mx-auto flex flex-col text-left relative select-none">
+    <div className="w-full max-w-5xl mx-auto flex flex-col text-left relative">
       
       {/* Top Horizon Line */}
       <div className="w-full h-[1px] bg-white/10 relative">
@@ -335,7 +335,7 @@ const ProjectShowcase: React.FC<ProjectShowcaseProps> = ({ projects, labels }) =
                   backgroundColor: isExpanded ? `${theme.accentHex}20` : (isHovered ? `${theme.accentHex}10` : "transparent"),
                   boxShadow: isExpanded ? `0 0 15px ${theme.glow}` : (isHovered ? `0 0 10px ${theme.glow}` : "none"),
                 }}
-                className="w-11 h-11 md:w-12 md:h-12 rounded-full border flex items-center justify-center shrink-0 mt-1 transition-all duration-300"
+                className="w-11 h-11 md:w-12 md:h-12 rounded-full border flex items-center justify-center shrink-0 mt-1 transition-all duration-300 select-none"
               >
                 <motion.div
                   animate={{ rotate: isExpanded ? 45 : 0 }}
