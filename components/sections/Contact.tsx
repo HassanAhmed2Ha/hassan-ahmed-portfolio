@@ -6,15 +6,9 @@ import {
   RiLoader5Line, 
   RiCheckboxCircleLine, 
   RiErrorWarningLine, 
-  RiMailLine,
-  RiMapPinLine,
-  RiTimeLine,
   RiFileCopyLine,
   RiCheckLine,
-  RiGithubLine,
-  RiLinkedinBoxLine,
-  RiTerminalBoxLine,
-  RiExternalLinkLine
+  RiArrowRightUpLine
 } from "react-icons/ri";
 import Circles from "../Circles";
 import emailjs from "@emailjs/browser";
@@ -77,7 +71,7 @@ const Contact: React.FC = () => {
         setStatus({
           type: "success",
           message:
-            "Transmission received successfully. I will review your inquiry and respond within 24 hours.",
+            "Message transmitted successfully. I will review your proposal and respond promptly.",
         });
         setFormData({
           name: "",
@@ -106,12 +100,12 @@ const Contact: React.FC = () => {
       <Circles />
 
       {/* Ambient Radial Backlight */}
-      <div className="pointer-events-none absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[500px] bg-accent/[0.04] rounded-full blur-[140px] -z-10" />
+      <div className="pointer-events-none absolute top-1/2 left-1/3 -translate-x-1/2 -translate-y-1/2 w-[650px] h-[450px] bg-accent/[0.03] rounded-full blur-[140px] -z-10" />
 
       <div className="container mx-auto px-4 xl:px-0 relative z-10 w-full max-w-6xl">
         
         {/* Section Header */}
-        <div className="text-center flex flex-col items-center mb-14 md:mb-16">
+        <div className="text-center flex flex-col items-center mb-16 md:mb-20">
           <motion.h2
             variants={fadeIn("down", 0.2)}
             initial="hidden"
@@ -132,153 +126,141 @@ const Contact: React.FC = () => {
           </motion.p>
         </div>
 
-        {/* 2-Column Responsive Layout */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 md:gap-12 items-start">
+        {/* Top Horizon Line */}
+        <div className="w-full h-[1px] bg-white/10 relative mb-12">
+          <div className="absolute inset-0 bg-gradient-to-r from-transparent via-accent/30 to-transparent" />
+        </div>
+
+        {/* Cardless Editorial Horizon Grid */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start text-left">
           
-          {/* Left Column: Direct Telemetry & Scientific Connection */}
+          {/* Left Column: Direct Connection Streams (Cardless) */}
           <motion.div
             variants={fadeIn("right", 0.3)}
             initial="hidden"
             whileInView="show"
             viewport={{ once: true, amount: 0.15 }}
-            className="lg:col-span-5 space-y-6 text-left"
+            className="lg:col-span-5 space-y-10"
           >
-            {/* Direct Email Horizon Card */}
-            <div className="p-6 md:p-8 rounded-3xl border border-white/10 bg-white/[0.02] backdrop-blur-xl space-y-5 relative overflow-hidden group hover:border-accent/30 transition-all duration-300">
-              <div className="flex items-center justify-between">
-                <div className="flex items-center gap-x-3 text-accent font-mono text-xs font-semibold uppercase tracking-wider">
-                  <RiMailLine className="text-lg" />
-                  <span>Direct Transmission</span>
-                </div>
+            {/* Stream 01: Direct Email Transmission */}
+            <div className="space-y-3">
+              <div className="flex items-baseline gap-3">
+                <span className="font-mono text-xs font-bold text-accent tracking-widest">01</span>
+                <span className="font-mono text-xs uppercase tracking-widest text-white/40 font-semibold">Direct Channel</span>
+              </div>
+              
+              <div className="pt-1">
+                <a
+                  href={`mailto:${content.contact.directEmail}`}
+                  className="text-xl md:text-2xl font-serif italic text-white hover:text-amber-200 transition-colors block break-all font-normal"
+                >
+                  {content.contact.directEmail}
+                </a>
+              </div>
+
+              <div className="flex items-center gap-x-3 pt-1">
                 <button
                   onClick={handleCopyEmail}
-                  className="flex items-center gap-x-1.5 px-3 py-1 rounded-full bg-white/[0.05] border border-white/10 hover:border-accent/40 text-[11px] font-mono text-white/70 hover:text-accent transition-all"
-                  title="Copy email to clipboard"
+                  className="inline-flex items-center gap-x-1.5 px-3 py-1 rounded-full bg-white/[0.04] border border-white/10 hover:border-accent/40 text-xs font-mono text-white/70 hover:text-accent transition-colors"
                 >
                   {copied ? (
                     <>
                       <RiCheckLine className="text-emerald-400" />
-                      <span className="text-emerald-400">Copied</span>
+                      <span className="text-emerald-400">Copied to Clipboard</span>
                     </>
                   ) : (
                     <>
                       <RiFileCopyLine />
-                      <span>Copy</span>
+                      <span>Copy Email Address</span>
                     </>
                   )}
                 </button>
               </div>
+            </div>
 
-              <div className="space-y-1">
-                <a
-                  href={`mailto:${content.contact.directEmail}`}
-                  className="text-lg md:text-xl font-mono font-medium text-white hover:text-accent transition-colors block break-all"
-                >
-                  {content.contact.directEmail}
-                </a>
-                <p className="text-xs text-white/50 font-sans">
-                  Click to open default mail client or use the interactive dispatch portal.
+            {/* Stream 02: Operational Telemetry & Timezone */}
+            <div className="space-y-3 pt-6 border-t border-white/10">
+              <div className="flex items-baseline gap-3">
+                <span className="font-mono text-xs font-bold text-accent tracking-widest">02</span>
+                <span className="font-mono text-xs uppercase tracking-widest text-white/40 font-semibold">Operational Telemetry</span>
+              </div>
+
+              <div className="space-y-2 text-sm font-sans text-white/80">
+                <p className="flex items-center gap-x-2">
+                  <span className="text-white/40 font-mono text-xs">Location:</span>
+                  <span className="text-white/90 font-medium">{content.contact.location || "Alexandria, Egypt (UTC+2)"}</span>
+                </p>
+                <p className="flex items-center gap-x-2">
+                  <span className="text-white/40 font-mono text-xs">Response SLA:</span>
+                  <span className="inline-flex items-center gap-x-1.5 text-emerald-400 font-mono text-xs font-medium">
+                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                    <span>{content.contact.responseTime || "< 24 Hours Response"}</span>
+                  </span>
+                </p>
+                <p className="flex items-center gap-x-2">
+                  <span className="text-white/40 font-mono text-xs">Status:</span>
+                  <span className="text-white/75">{content.contact.availability || "Open for Scientific AI Collaborations"}</span>
                 </p>
               </div>
             </div>
 
-            {/* Operational Telemetry Cards */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              
-              {/* Location & Timezone */}
-              <div className="p-5 rounded-2xl border border-white/10 bg-white/[0.02] backdrop-blur-xl space-y-2">
-                <div className="flex items-center gap-x-2 text-white/40 font-mono text-[11px] uppercase tracking-wider font-semibold">
-                  <RiMapPinLine className="text-accent text-sm" />
-                  <span>Location</span>
-                </div>
-                <div className="text-sm font-medium text-white/90">
-                  {content.contact.location || "Alexandria, Egypt (UTC+2)"}
-                </div>
+            {/* Stream 03: Verified Research & Engineering Links */}
+            <div className="space-y-3 pt-6 border-t border-white/10">
+              <div className="flex items-baseline gap-3">
+                <span className="font-mono text-xs font-bold text-accent tracking-widest">03</span>
+                <span className="font-mono text-xs uppercase tracking-widest text-white/40 font-semibold">Research Profiles</span>
               </div>
 
-              {/* Response Horizon */}
-              <div className="p-5 rounded-2xl border border-white/10 bg-white/[0.02] backdrop-blur-xl space-y-2">
-                <div className="flex items-center gap-x-2 text-white/40 font-mono text-[11px] uppercase tracking-wider font-semibold">
-                  <RiTimeLine className="text-emerald-400 text-sm" />
-                  <span>Response SLA</span>
-                </div>
-                <div className="text-sm font-medium text-emerald-400 flex items-center gap-x-1.5">
-                  <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-                  <span>{content.contact.responseTime || "< 24 Hours"}</span>
-                </div>
-              </div>
-            </div>
-
-            {/* Scientific Profiles & Networks */}
-            <div className="p-6 rounded-3xl border border-white/10 bg-white/[0.02] backdrop-blur-xl space-y-4">
-              <div className="text-[11px] font-mono uppercase tracking-widest text-white/40 font-semibold">
-                Verified Research & Engineering Profiles
-              </div>
-              <div className="flex flex-wrap items-center gap-3">
+              <div className="flex flex-wrap items-center gap-x-6 gap-y-3 pt-1 text-sm font-mono">
                 <a
                   href="https://github.com/HassanAhmed2Ha"
                   target="_blank"
                   rel="noreferrer noopener"
-                  className="inline-flex items-center gap-x-2 px-3.5 py-2 rounded-xl bg-white/[0.04] border border-white/10 hover:border-accent/40 text-xs font-mono text-white/80 hover:text-accent transition-all group"
+                  className="text-white/75 hover:text-accent flex items-center gap-x-1.5 transition-colors group"
                 >
-                  <RiGithubLine className="text-base text-white/60 group-hover:text-accent" />
                   <span>GitHub</span>
-                  <RiExternalLinkLine className="text-xs text-white/30 group-hover:text-accent" />
+                  <RiArrowRightUpLine className="text-white/40 group-hover:text-accent transition-colors" />
                 </a>
 
                 <a
                   href="https://www.linkedin.com/in/hassan-ahmed2007/"
                   target="_blank"
                   rel="noreferrer noopener"
-                  className="inline-flex items-center gap-x-2 px-3.5 py-2 rounded-xl bg-white/[0.04] border border-white/10 hover:border-accent/40 text-xs font-mono text-white/80 hover:text-accent transition-all group"
+                  className="text-white/75 hover:text-accent flex items-center gap-x-1.5 transition-colors group"
                 >
-                  <RiLinkedinBoxLine className="text-base text-white/60 group-hover:text-accent" />
                   <span>LinkedIn</span>
-                  <RiExternalLinkLine className="text-xs text-white/30 group-hover:text-accent" />
+                  <RiArrowRightUpLine className="text-white/40 group-hover:text-accent transition-colors" />
                 </a>
 
                 <a
                   href="https://orcid.org/0009-0005-0306-0898"
                   target="_blank"
                   rel="noreferrer noopener"
-                  className="inline-flex items-center gap-x-2 px-3.5 py-2 rounded-xl bg-white/[0.04] border border-white/10 hover:border-accent/40 text-xs font-mono text-white/80 hover:text-accent transition-all group"
+                  className="text-white/75 hover:text-accent flex items-center gap-x-1.5 transition-colors group"
                 >
-                  <span className="w-2 h-2 rounded-full bg-emerald-400" />
-                  <span>ORCID ID</span>
-                  <RiExternalLinkLine className="text-xs text-white/30 group-hover:text-accent" />
+                  <span>ORCID</span>
+                  <RiArrowRightUpLine className="text-white/40 group-hover:text-accent transition-colors" />
                 </a>
               </div>
             </div>
           </motion.div>
 
-          {/* Right Column: High-End Dispatch Form */}
+          {/* Right Column: Cardless Open Dispatch Form */}
           <motion.div
             variants={fadeIn("left", 0.3)}
             initial="hidden"
             whileInView="show"
             viewport={{ once: true, amount: 0.15 }}
-            className="lg:col-span-7 rounded-3xl border border-white/10 bg-gradient-to-b from-white/[0.03] to-white/[0.005] backdrop-blur-2xl p-6 sm:p-8 md:p-10 relative overflow-hidden text-left shadow-[0_8px_32px_rgba(0,0,0,0.3)]"
+            className="lg:col-span-7 space-y-8"
           >
-            {/* Top Gateway Pill */}
-            <div className="flex items-center justify-between pb-6 mb-6 border-b border-white/10 text-xs font-mono text-white/50">
-              <div className="flex items-center gap-x-2">
-                <RiTerminalBoxLine className="text-accent text-base" />
-                <span className="text-white/80 font-medium">Research Dispatch Interface</span>
-              </div>
-              <div className="flex items-center gap-x-2">
-                <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-                <span className="text-white/70">Gateway Active</span>
-              </div>
-            </div>
-
             {/* Status alerts */}
             <AnimatePresence mode="wait">
               {status.type && (
                 <motion.div
-                  initial={{ opacity: 0, y: -10 }}
+                  initial={{ opacity: 0, y: -8 }}
                   animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -10 }}
-                  className={`mb-6 p-4 rounded-xl flex items-center gap-x-3 text-sm font-mono border ${
+                  exit={{ opacity: 0, y: -8 }}
+                  className={`p-4 rounded-xl flex items-center gap-x-3 text-sm font-mono border ${
                     status.type === "success"
                       ? "bg-emerald-500/10 border-emerald-500/30 text-emerald-400"
                       : "bg-rose-500/10 border-rose-500/30 text-rose-400"
@@ -294,97 +276,86 @@ const Contact: React.FC = () => {
               )}
             </AnimatePresence>
 
-            <form onSubmit={handleSubmit} className="flex flex-col gap-5">
-              {/* Row 1: Name and Email */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-                <div className="flex flex-col gap-1.5">
-                  <label className="text-[11px] font-mono uppercase tracking-wider text-white/40 font-semibold">
-                    Full Name / Entity
-                  </label>
-                  <input
-                    type="text"
-                    name="name"
-                    value={formData.name}
-                    onChange={handleChange}
-                    placeholder={content.contact.placeholders.name}
-                    className="w-full px-4 py-3.5 rounded-xl bg-white/[0.03] border border-white/10 focus:border-accent focus:bg-white/[0.06] text-white placeholder-white/25 text-sm font-sans outline-none transition-all duration-200"
-                    required
-                    disabled={isLoading}
-                  />
-                </div>
-                <div className="flex flex-col gap-1.5">
-                  <label className="text-[11px] font-mono uppercase tracking-wider text-white/40 font-semibold">
-                    Email Address
-                  </label>
-                  <input
-                    type="email"
-                    name="email"
-                    value={formData.email}
-                    onChange={handleChange}
-                    placeholder={content.contact.placeholders.email}
-                    className="w-full px-4 py-3.5 rounded-xl bg-white/[0.03] border border-white/10 focus:border-accent focus:bg-white/[0.06] text-white placeholder-white/25 text-sm font-sans outline-none transition-all duration-200"
-                    required
-                    disabled={isLoading}
-                  />
-                </div>
+            <form onSubmit={handleSubmit} className="space-y-6">
+              
+              {/* Field 01: Name */}
+              <div className="space-y-1.5 group border-b border-white/15 focus-within:border-accent pb-3 transition-colors">
+                <label className="text-[11px] font-mono uppercase tracking-widest text-white/40 font-semibold flex items-center gap-x-2">
+                  <span className="text-accent">01</span>
+                  <span>Your Name or Institution *</span>
+                </label>
+                <input
+                  type="text"
+                  name="name"
+                  value={formData.name}
+                  onChange={handleChange}
+                  placeholder={content.contact.placeholders.name}
+                  className="w-full bg-transparent text-white placeholder-white/20 text-base md:text-lg font-sans outline-none transition-colors"
+                  required
+                  disabled={isLoading}
+                />
               </div>
 
-              {/* Row 2: Phone and Subject */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-                <div className="flex flex-col gap-1.5">
-                  <label className="text-[11px] font-mono uppercase tracking-wider text-white/40 font-semibold">
-                    Phone Number (Optional)
-                  </label>
-                  <input
-                    type="tel"
-                    name="phone"
-                    value={formData.phone}
-                    onChange={handleChange}
-                    placeholder={content.contact.placeholders.phone}
-                    className="w-full px-4 py-3.5 rounded-xl bg-white/[0.03] border border-white/10 focus:border-accent focus:bg-white/[0.06] text-white placeholder-white/25 text-sm font-sans outline-none transition-all duration-200"
-                    disabled={isLoading}
-                  />
-                </div>
-                <div className="flex flex-col gap-1.5">
-                  <label className="text-[11px] font-mono uppercase tracking-wider text-white/40 font-semibold">
-                    Collaboration Scope / Subject
-                  </label>
-                  <input
-                    type="text"
-                    name="subject"
-                    value={formData.subject}
-                    onChange={handleChange}
-                    placeholder={content.contact.placeholders.subject}
-                    className="w-full px-4 py-3.5 rounded-xl bg-white/[0.03] border border-white/10 focus:border-accent focus:bg-white/[0.06] text-white placeholder-white/25 text-sm font-sans outline-none transition-all duration-200"
-                    disabled={isLoading}
-                  />
-                </div>
+              {/* Field 02: Email */}
+              <div className="space-y-1.5 group border-b border-white/15 focus-within:border-accent pb-3 transition-colors">
+                <label className="text-[11px] font-mono uppercase tracking-widest text-white/40 font-semibold flex items-center gap-x-2">
+                  <span className="text-accent">02</span>
+                  <span>Email Address *</span>
+                </label>
+                <input
+                  type="email"
+                  name="email"
+                  value={formData.email}
+                  onChange={handleChange}
+                  placeholder={content.contact.placeholders.email}
+                  className="w-full bg-transparent text-white placeholder-white/20 text-base md:text-lg font-sans outline-none transition-colors"
+                  required
+                  disabled={isLoading}
+                />
               </div>
 
-              {/* Message */}
-              <div className="flex flex-col gap-1.5">
-                <label className="text-[11px] font-mono uppercase tracking-wider text-white/40 font-semibold">
-                  Proposal or Message
+              {/* Field 03: Subject / Topic */}
+              <div className="space-y-1.5 group border-b border-white/15 focus-within:border-accent pb-3 transition-colors">
+                <label className="text-[11px] font-mono uppercase tracking-widest text-white/40 font-semibold flex items-center gap-x-2">
+                  <span className="text-accent">03</span>
+                  <span>Collaboration Topic / Scope</span>
+                </label>
+                <input
+                  type="text"
+                  name="subject"
+                  value={formData.subject}
+                  onChange={handleChange}
+                  placeholder={content.contact.placeholders.subject}
+                  className="w-full bg-transparent text-white placeholder-white/20 text-base md:text-lg font-sans outline-none transition-colors"
+                  disabled={isLoading}
+                />
+              </div>
+
+              {/* Field 04: Message / Proposal */}
+              <div className="space-y-1.5 group border-b border-white/15 focus-within:border-accent pb-3 transition-colors">
+                <label className="text-[11px] font-mono uppercase tracking-widest text-white/40 font-semibold flex items-center gap-x-2">
+                  <span className="text-accent">04</span>
+                  <span>Project Vision or Proposal *</span>
                 </label>
                 <textarea
                   name="message"
                   value={formData.message}
                   onChange={handleChange}
                   placeholder={content.contact.placeholders.message}
-                  className="w-full px-4 py-3.5 rounded-xl bg-white/[0.03] border border-white/10 focus:border-accent focus:bg-white/[0.06] text-white placeholder-white/25 text-sm font-sans outline-none transition-all duration-200 h-[130px] resize-none"
+                  className="w-full bg-transparent text-white placeholder-white/20 text-base md:text-lg font-sans outline-none transition-colors h-[110px] resize-none"
                   required
                   disabled={isLoading}
                 />
               </div>
 
-              {/* Submit Button */}
-              <div className="pt-2 flex justify-start">
+              {/* Submit Kinetic Trigger */}
+              <div className="pt-4 flex items-center justify-between">
                 <motion.button
                   type="submit"
                   disabled={isLoading}
-                  whileHover={{ scale: 1.02 }}
+                  whileHover={{ scale: 1.03, x: 2 }}
                   whileTap={{ scale: 0.98 }}
-                  className="inline-flex items-center justify-center gap-x-2 px-8 py-3.5 rounded-xl font-bold font-sans text-sm text-primary bg-accent hover:bg-amber-300 shadow-[0_0_25px_rgba(251,191,36,0.35)] hover:shadow-[0_0_35px_rgba(251,191,36,0.6)] disabled:opacity-50 disabled:hover:scale-100 transition-all duration-300"
+                  className="inline-flex items-center gap-x-2.5 px-8 py-3.5 rounded-full font-bold font-sans text-sm text-primary bg-accent hover:bg-amber-300 shadow-[0_0_25px_rgba(251,191,36,0.35)] hover:shadow-[0_0_35px_rgba(251,191,36,0.6)] disabled:opacity-50 transition-all duration-300"
                 >
                   {isLoading ? (
                     <RiLoader5Line className="text-xl animate-spin" />
@@ -395,6 +366,10 @@ const Contact: React.FC = () => {
                     {isLoading ? "Transmitting..." : content.contact.btnSend || "Send Transmission"}
                   </span>
                 </motion.button>
+
+                <span className="text-xs font-mono text-white/40 hidden sm:inline">
+                  Direct encrypted transmission
+                </span>
               </div>
             </form>
           </motion.div>
