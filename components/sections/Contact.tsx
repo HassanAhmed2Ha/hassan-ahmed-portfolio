@@ -40,7 +40,7 @@ const Contact: React.FC = () => {
   };
 
   const handleCopyPhone = () => {
-    const rawNumber = content.contact.phone || "+201220926538";
+    const rawNumber = content.contact.phone || "+201229826538";
     navigator.clipboard.writeText(rawNumber);
     setCopiedPhone(true);
     setTimeout(() => setCopiedPhone(false), 2500);
@@ -196,19 +196,19 @@ const Contact: React.FC = () => {
                 </span>
                 
                 <a
-                  href={content.contact.whatsappUrl || "https://wa.me/201220926538"}
+                  href={content.contact.whatsappUrl || "https://wa.me/201229826538"}
                   target="_blank"
                   rel="noreferrer noopener"
                   className="text-lg md:text-xl font-mono text-white hover:text-emerald-300 transition-colors block font-medium group"
                 >
                   <span className="group-hover:underline decoration-emerald-400/50 underline-offset-4">
-                    {content.contact.whatsapp || "+20 122 092 6538"}
+                    {content.contact.whatsapp || "+20 122 982 6538"}
                   </span>
                 </a>
 
                 <div className="flex items-center gap-x-3 pt-0.5">
                   <a
-                    href={content.contact.whatsappUrl || "https://wa.me/201220926538"}
+                    href={content.contact.whatsappUrl || "https://wa.me/201229826538"}
                     target="_blank"
                     rel="noreferrer noopener"
                     className="inline-flex items-center gap-x-1.5 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/30 hover:border-emerald-400 text-xs font-mono text-emerald-400 hover:text-emerald-300 transition-colors"
@@ -302,7 +302,7 @@ const Contact: React.FC = () => {
                 </a>
 
                 <a
-                  href={content.contact.whatsappUrl || "https://wa.me/201220926538"}
+                  href={content.contact.whatsappUrl || "https://wa.me/201229826538"}
                   target="_blank"
                   rel="noreferrer noopener"
                   className="text-emerald-400/90 hover:text-emerald-300 flex items-center gap-x-1.5 transition-colors group font-semibold"
