@@ -85,66 +85,94 @@ const colorPalettes: Record<string, {
   borderGlow: string;
   icon: string;
   peekDescription: string;
+  btnBg: string;
+  btnHoverBg: string;
+  btnText: string;
+  btnShadow: string;
 }> = {
-  cyan: {
-    accent: "text-cyan-400",
-    accentBg: "bg-cyan-400",
-    accentHex: "#22d3ee",
-    glow: "rgba(34, 211, 238, 0.15)",
-    textGlow: "drop-shadow-[0_0_15px_rgba(34,211,238,0.5)]",
-    borderGlow: "from-cyan-500/60 via-cyan-400/20 to-transparent",
-    icon: "🛰️",
-    peekDescription: "Sentinel-1/2 SAR Flood Detection & 3D Tactical HUD",
-  },
   emerald: {
     accent: "text-emerald-400",
     accentBg: "bg-emerald-400",
     accentHex: "#34d399",
-    glow: "rgba(52, 211, 153, 0.15)",
+    glow: "rgba(52, 211, 153, 0.25)",
     textGlow: "drop-shadow-[0_0_15px_rgba(52,211,153,0.5)]",
     borderGlow: "from-emerald-500/60 via-emerald-400/20 to-transparent",
     icon: "🧬",
-    peekDescription: "OpenMM GPU Molecular Dynamics & Conformation Refinement",
+    peekDescription: "AttentiveFP Molecular GNN & In Silico Pollinator Toxicity Screening",
+    btnBg: "bg-emerald-400",
+    btnHoverBg: "hover:bg-emerald-300",
+    btnText: "text-slate-950",
+    btnShadow: "shadow-[0_0_20px_rgba(52,211,153,0.35)] hover:shadow-[0_0_30px_rgba(52,211,153,0.6)]",
   },
-  amber: {
-    accent: "text-amber-400",
-    accentBg: "bg-amber-400",
-    accentHex: "#fbbf24",
-    glow: "rgba(251, 191, 36, 0.15)",
-    textGlow: "drop-shadow-[0_0_15px_rgba(251,191,36,0.5)]",
-    borderGlow: "from-amber-500/60 via-amber-400/20 to-transparent",
-    icon: "🧠",
-    peekDescription: "Clinical Breast Tumor Classification & SHAP Explainability",
+  cyan: {
+    accent: "text-cyan-400",
+    accentBg: "bg-cyan-400",
+    accentHex: "#22d3ee",
+    glow: "rgba(34, 211, 238, 0.25)",
+    textGlow: "drop-shadow-[0_0_15px_rgba(34,211,238,0.5)]",
+    borderGlow: "from-cyan-500/60 via-cyan-400/20 to-transparent",
+    icon: "🛰️",
+    peekDescription: "Sentinel-1/2 SAR Flood Detection & 3D Tactical HUD",
+    btnBg: "bg-cyan-400",
+    btnHoverBg: "hover:bg-cyan-300",
+    btnText: "text-slate-950",
+    btnShadow: "shadow-[0_0_20px_rgba(34,211,238,0.35)] hover:shadow-[0_0_30px_rgba(34,211,238,0.6)]",
   },
   violet: {
     accent: "text-purple-400",
     accentBg: "bg-purple-400",
     accentHex: "#c084fc",
-    glow: "rgba(192, 132, 252, 0.15)",
+    glow: "rgba(192, 132, 252, 0.25)",
     textGlow: "drop-shadow-[0_0_15px_rgba(192,132,252,0.5)]",
     borderGlow: "from-purple-500/60 via-purple-400/20 to-transparent",
     icon: "🎙️",
     peekDescription: "Air-Gapped Whisper & SVM Biometric Voice AI for ESP32 Edge IoT",
+    btnBg: "bg-purple-400",
+    btnHoverBg: "hover:bg-purple-300",
+    btnText: "text-slate-950",
+    btnShadow: "shadow-[0_0_20px_rgba(192,132,252,0.35)] hover:shadow-[0_0_30px_rgba(192,132,252,0.6)]",
   },
   purple: {
     accent: "text-purple-400",
     accentBg: "bg-purple-400",
     accentHex: "#c084fc",
-    glow: "rgba(192, 132, 252, 0.15)",
+    glow: "rgba(192, 132, 252, 0.25)",
     textGlow: "drop-shadow-[0_0_15px_rgba(192,132,252,0.5)]",
     borderGlow: "from-purple-500/60 via-purple-400/20 to-transparent",
     icon: "🎙️",
     peekDescription: "Air-Gapped Whisper & SVM Biometric Voice AI for ESP32 Edge IoT",
+    btnBg: "bg-purple-400",
+    btnHoverBg: "hover:bg-purple-300",
+    btnText: "text-slate-950",
+    btnShadow: "shadow-[0_0_20px_rgba(192,132,252,0.35)] hover:shadow-[0_0_30px_rgba(192,132,252,0.6)]",
+  },
+  amber: {
+    accent: "text-amber-400",
+    accentBg: "bg-amber-400",
+    accentHex: "#fbbf24",
+    glow: "rgba(251, 191, 36, 0.25)",
+    textGlow: "drop-shadow-[0_0_15px_rgba(251,191,36,0.5)]",
+    borderGlow: "from-amber-500/60 via-amber-400/20 to-transparent",
+    icon: "🧠",
+    peekDescription: "Clinical Breast Tumor Classification & SHAP Explainability",
+    btnBg: "bg-amber-400",
+    btnHoverBg: "hover:bg-amber-300",
+    btnText: "text-slate-950",
+    btnShadow: "shadow-[0_0_20px_rgba(251,191,36,0.35)] hover:shadow-[0_0_30px_rgba(251,191,36,0.6)]",
   },
   blue: {
     accent: "text-sky-400",
     accentBg: "bg-sky-400",
     accentHex: "#38bdf8",
-    glow: "rgba(56, 189, 248, 0.15)",
+    glow: "rgba(56, 189, 248, 0.25)",
     textGlow: "drop-shadow-[0_0_15px_rgba(56,189,248,0.5)]",
     borderGlow: "from-sky-500/60 via-sky-400/20 to-transparent",
     icon: "💻",
     peekDescription: "Open-Source Next.js & React Developer Portfolio Template",
+    btnBg: "bg-sky-400",
+    btnHoverBg: "hover:bg-sky-300",
+    btnText: "text-slate-950",
+    btnShadow: "shadow-[0_0_20px_rgba(56,189,248,0.35)] hover:shadow-[0_0_30px_rgba(56,189,248,0.6)]",
   },
 };
 
@@ -167,6 +195,7 @@ const ProjectShowcase: React.FC<ProjectShowcaseProps> = ({ projects, labels }) =
       {projects.map((project, index) => {
         const isExpanded = expandedIndex === index;
         const isHovered = hoveredIndex === index;
+        const isActive = isExpanded || isHovered;
         const projectNum = (index + 1).toString().padStart(2, "0");
         const theme = colorPalettes[project.accentColor || "amber"] || colorPalettes.amber;
 
@@ -183,7 +212,7 @@ const ProjectShowcase: React.FC<ProjectShowcaseProps> = ({ projects, labels }) =
           >
             {/* ── Ambient Radial Follow Glow ── */}
             <AnimatePresence>
-              {(isExpanded || isHovered) && (
+              {isActive && (
                 <motion.div
                   initial={{ opacity: 0, scale: 0.8 }}
                   animate={{ opacity: 1, scale: 1 }}
@@ -198,7 +227,7 @@ const ProjectShowcase: React.FC<ProjectShowcaseProps> = ({ projects, labels }) =
             {/* ── Animated Hover Laser Line ── */}
             <motion.div
               initial={{ scaleX: 0 }}
-              animate={{ scaleX: isHovered || isExpanded ? 1 : 0 }}
+              animate={{ scaleX: isActive ? 1 : 0 }}
               transition={{ duration: 0.4, ease: "easeOut" }}
               className={`absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r ${theme.borderGlow} origin-left pointer-events-none`}
             />
@@ -214,10 +243,10 @@ const ProjectShowcase: React.FC<ProjectShowcaseProps> = ({ projects, labels }) =
               {/* Left Column: Number + Title + Subtitle */}
               <div className="flex flex-col md:flex-row md:items-baseline gap-3 md:gap-8 flex-1">
                 
-                {/* Number with floating motion */}
+                {/* Number with dynamic theme color */}
                 <motion.span 
                   animate={{ 
-                    color: isExpanded ? theme.accentHex : isHovered ? theme.accentHex : "#ffffff60",
+                    color: isActive ? theme.accentHex : "rgba(255, 255, 255, 0.4)",
                     x: isHovered ? 4 : 0
                   }}
                   transition={{ duration: 0.2 }}
@@ -231,12 +260,11 @@ const ProjectShowcase: React.FC<ProjectShowcaseProps> = ({ projects, labels }) =
                     <motion.h3 
                       animate={{
                         x: isHovered ? 6 : 0,
+                        color: isActive ? theme.accentHex : "#ffffff"
                       }}
                       transition={{ duration: 0.25, ease: "easeOut" }}
                       className={`text-2xl md:text-4xl lg:text-[44px] font-serif italic font-normal tracking-tight transition-all duration-300 ${
-                        isExpanded 
-                          ? `${theme.accent} ${theme.textGlow}` 
-                          : "text-white group-hover:text-amber-200"
+                        isActive ? theme.textGlow : ""
                       }`}
                     >
                       {project.title}
@@ -248,8 +276,8 @@ const ProjectShowcase: React.FC<ProjectShowcaseProps> = ({ projects, labels }) =
                     <span className="text-white/80 font-medium">{project.type}</span>
                     <span className="text-white/20">•</span>
                     {project.status && (
-                      <span className="inline-flex items-center gap-x-1.5 text-emerald-400">
-                        <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                      <span className="inline-flex items-center gap-x-1.5 font-medium" style={{ color: theme.accentHex }}>
+                        <span className={`w-1.5 h-1.5 rounded-full ${theme.accentBg} animate-pulse`} />
                         <span>{project.status}</span>
                       </span>
                     )}
@@ -282,11 +310,13 @@ const ProjectShowcase: React.FC<ProjectShowcaseProps> = ({ projects, labels }) =
                 whileHover={{ scale: 1.15, rotate: isExpanded ? -90 : 90 }}
                 whileTap={{ scale: 0.9 }}
                 transition={{ type: "spring", stiffness: 400, damping: 20 }}
-                className={`w-11 h-11 md:w-12 md:h-12 rounded-full border flex items-center justify-center shrink-0 mt-1 transition-colors duration-300 ${
-                  isExpanded 
-                    ? "border-accent bg-accent/10 text-accent shadow-[0_0_15px_rgba(251,191,36,0.3)]" 
-                    : "border-white/20 text-white/70 group-hover:border-accent group-hover:text-accent"
-                }`}
+                style={{
+                  borderColor: isActive ? theme.accentHex : "rgba(255, 255, 255, 0.2)",
+                  color: isActive ? theme.accentHex : "rgba(255, 255, 255, 0.7)",
+                  backgroundColor: isExpanded ? `${theme.accentHex}20` : (isHovered ? `${theme.accentHex}10` : "transparent"),
+                  boxShadow: isExpanded ? `0 0 15px ${theme.glow}` : (isHovered ? `0 0 10px ${theme.glow}` : "none"),
+                }}
+                className="w-11 h-11 md:w-12 md:h-12 rounded-full border flex items-center justify-center shrink-0 mt-1 transition-all duration-300"
               >
                 {isExpanded ? (
                   <RiSubtractLine className="text-xl md:text-2xl" />
@@ -444,7 +474,7 @@ const ProjectShowcase: React.FC<ProjectShowcaseProps> = ({ projects, labels }) =
                       <span className="text-white/35 uppercase tracking-wider font-semibold">Stack:</span>
                       {project.tags.map((tag, tIdx) => (
                         <span key={tag} className="flex items-center gap-x-3">
-                          <span className="text-white/85 hover:text-accent transition-colors font-medium">
+                          <span className="text-white/85 transition-colors font-medium">
                             {tag}
                           </span>
                           {tIdx < project.tags.length - 1 && <span className="text-white/20">/</span>}
@@ -468,7 +498,7 @@ const ProjectShowcase: React.FC<ProjectShowcaseProps> = ({ projects, labels }) =
                           whileHover={{ scale: 1.05, x: 2 }}
                           whileTap={{ scale: 0.97 }}
                           transition={{ type: "spring", stiffness: 400, damping: 25 }}
-                          className={`inline-flex items-center gap-x-2 px-6 py-3 rounded-xl bg-accent text-primary font-bold text-sm shadow-[0_0_20px_rgba(251,191,36,0.3)] hover:shadow-[0_0_30px_rgba(251,191,36,0.6)] hover:bg-amber-300 transition-all`}
+                          className={`inline-flex items-center gap-x-2 px-6 py-3 rounded-xl ${theme.btnBg} ${theme.btnHoverBg} ${theme.btnText} font-bold text-sm ${theme.btnShadow} transition-all`}
                         >
                           <span>{labels.demo} Live Sandbox</span>
                           <RiArrowRightUpLine className="text-lg" />
