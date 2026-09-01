@@ -5,17 +5,18 @@ import { motion } from "framer-motion";
 import { fadeIn } from "../variants";
 import ProjectsBtn from "../components/ProjectsBtn";
 import Avatar from "../components/Avatar";
-import About from "../components/sections/About";
-import TechMarquee from "../components/sections/TechMarquee";
-import Experience from "../components/sections/Experience";
-import Certifications from "../components/sections/Certifications";
-import Work from "../components/sections/Work";
-import Publications from "../components/sections/Publications";
-import OpenScience from "../components/sections/OpenScience";
-import Contact from "../components/sections/Contact";
 import { contentEn as content } from "../src/data";
 
+// Dynamic Code-Splitting for Optimal Mobile Hydration & SEO
 const ParticlesContainer = dynamic(() => import("../components/ParticlesContainer"), { ssr: false });
+const About = dynamic(() => import("../components/sections/About"), { ssr: true });
+const TechMarquee = dynamic(() => import("../components/sections/TechMarquee"), { ssr: true });
+const Experience = dynamic(() => import("../components/sections/Experience"), { ssr: true });
+const Certifications = dynamic(() => import("../components/sections/Certifications"), { ssr: true });
+const Work = dynamic(() => import("../components/sections/Work"), { ssr: true });
+const OpenScience = dynamic(() => import("../components/sections/OpenScience"), { ssr: true });
+const Publications = dynamic(() => import("../components/sections/Publications"), { ssr: true });
+const Contact = dynamic(() => import("../components/sections/Contact"), { ssr: true });
 
 const Typewriter: React.FC<{ words: string[] }> = ({ words }) => {
   const [index, setIndex] = useState(0);
@@ -92,7 +93,6 @@ const Home: React.FC = () => {
             alt="DNA Hologram"
             fill
             className="object-cover object-[30%_50%] scale-110 grayscale invert-[0.10] sepia brightness-110 saturate-200"
-            priority
           />
         </motion.div>
         
