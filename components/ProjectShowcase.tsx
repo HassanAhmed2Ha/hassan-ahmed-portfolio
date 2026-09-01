@@ -307,9 +307,8 @@ const ProjectShowcase: React.FC<ProjectShowcaseProps> = ({ projects, labels }) =
 
               {/* Right Column: Interactive Circular Toggle Button */}
               <motion.div
-                whileHover={{ scale: 1.15, rotate: isExpanded ? -90 : 90 }}
-                whileTap={{ scale: 0.9 }}
-                transition={{ type: "spring", stiffness: 400, damping: 20 }}
+                whileHover={{ scale: 1.08 }}
+                whileTap={{ scale: 0.92 }}
                 style={{
                   borderColor: isActive ? theme.accentHex : "rgba(255, 255, 255, 0.2)",
                   color: isActive ? theme.accentHex : "rgba(255, 255, 255, 0.7)",
@@ -318,11 +317,13 @@ const ProjectShowcase: React.FC<ProjectShowcaseProps> = ({ projects, labels }) =
                 }}
                 className="w-11 h-11 md:w-12 md:h-12 rounded-full border flex items-center justify-center shrink-0 mt-1 transition-all duration-300"
               >
-                {isExpanded ? (
-                  <RiSubtractLine className="text-xl md:text-2xl" />
-                ) : (
+                <motion.div
+                  animate={{ rotate: isExpanded ? 45 : 0 }}
+                  transition={{ type: "spring", stiffness: 350, damping: 22 }}
+                  className="flex items-center justify-center"
+                >
                   <RiAddLine className="text-xl md:text-2xl" />
-                )}
+                </motion.div>
               </motion.div>
             </div>
 

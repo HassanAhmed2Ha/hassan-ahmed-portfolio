@@ -188,20 +188,21 @@ const OpenScienceShowcase: React.FC = () => {
 
           {/* Right Column: Interactive Circular Toggle Button */}
           <motion.div
-            whileHover={{ scale: 1.15, rotate: isExpanded ? -90 : 90 }}
-            whileTap={{ scale: 0.9 }}
-            transition={{ type: "spring", stiffness: 400, damping: 20 }}
-            className={`w-11 h-11 md:w-12 md:h-12 rounded-full border flex items-center justify-center shrink-0 mt-1 transition-colors duration-300 ${
+            whileHover={{ scale: 1.08 }}
+            whileTap={{ scale: 0.92 }}
+            className={`w-11 h-11 md:w-12 md:h-12 rounded-full border flex items-center justify-center shrink-0 mt-1 transition-all duration-300 ${
               isExpanded 
                 ? "border-accent bg-accent/10 text-accent shadow-[0_0_15px_rgba(251,191,36,0.3)]" 
                 : "border-white/20 text-white/70 group-hover:border-accent group-hover:text-accent"
             }`}
           >
-            {isExpanded ? (
-              <RiSubtractLine className="text-xl md:text-2xl" />
-            ) : (
+            <motion.div
+              animate={{ rotate: isExpanded ? 45 : 0 }}
+              transition={{ type: "spring", stiffness: 350, damping: 22 }}
+              className="flex items-center justify-center"
+            >
               <RiAddLine className="text-xl md:text-2xl" />
-            )}
+            </motion.div>
           </motion.div>
         </div>
 
