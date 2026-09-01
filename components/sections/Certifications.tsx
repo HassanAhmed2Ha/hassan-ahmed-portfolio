@@ -7,12 +7,12 @@ import { contentEn as content } from "../../src/data";
 
 const Certifications: React.FC = () => {
   return (
-    <section id="certifications" className="min-h-screen py-24 relative z-20 w-full pb-32">
+    <section id="certifications" className="py-16 md:py-20 relative z-20 w-full">
       <Circles />
       <div className="container mx-auto px-4 xl:px-0 relative z-10">
         
         {/* Title */}
-        <div className="text-center flex w-full flex-col items-center mb-16">
+        <div className="text-center flex w-full flex-col items-center mb-10">
           <motion.h2
             variants={fadeIn("down", 0.2)}
             initial="hidden"

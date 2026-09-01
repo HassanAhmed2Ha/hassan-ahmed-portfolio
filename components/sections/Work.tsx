@@ -7,10 +7,10 @@ import { fadeIn } from "../../variants";
 import { contentEn as content } from "../../src/data";
 const Work: React.FC = () => {
   return (
-    <section id="work" className="min-h-screen py-24 relative z-20 w-full pb-32 flex items-center">
+    <section id="work" className="py-16 md:py-20 relative z-20 w-full">
       <Circles />
       <div className="container mx-auto px-4 xl:px-0 relative z-10">
-        <div className="flex flex-col gap-y-10 items-center">
+        <div className="flex flex-col gap-y-8 items-center">
           {/* Text Top Column */}
           <div className="text-center flex w-full flex-col items-center mb-6">
             <motion.h2

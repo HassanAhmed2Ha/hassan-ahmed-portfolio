@@ -30,10 +30,10 @@ const About: React.FC = () => {
   const domains = about.competencyDomains;
 
   return (
-    <section id="about" className="min-h-screen py-24 relative z-20 w-full">
+    <section id="about" className="py-16 md:py-20 relative z-20 w-full">
       <Circles />
 
-      <div className="container mx-auto h-full flex flex-col items-center gap-y-12 relative z-10 px-4 xl:px-0">
+      <div className="container mx-auto h-full flex flex-col items-center gap-y-8 relative z-10 px-4 xl:px-0">
         
         {/* Section Header */}
         <div className="w-full flex flex-col justify-center items-center text-center max-w-4xl">
@@ -42,7 +42,7 @@ const About: React.FC = () => {
             initial="hidden" 
             whileInView="show" 
             viewport={{ once: true, amount: 0.15 }}
-            className="h2 mb-4"
+            className="h2 mb-3"
           >
             Scientific Identity & <span className="font-serif italic font-normal text-accent">Core Competencies</span>
           </motion.h2>
@@ -52,7 +52,7 @@ const About: React.FC = () => {
             initial="hidden" 
             whileInView="show" 
             viewport={{ once: true, amount: 0.15 }}
-            className="text-lg md:text-xl text-white/90 font-sans font-medium leading-relaxed mb-4 max-w-3xl"
+            className="text-lg md:text-xl text-white/90 font-sans font-medium leading-relaxed mb-3 max-w-3xl"
           >
             {about.tagline}
           </motion.p>
@@ -80,7 +80,7 @@ const About: React.FC = () => {
               initial="hidden"
               whileInView="show"
               viewport={{ once: true, amount: 0.1 }}
-              className="py-10 md:py-12 border-b border-white/10 relative group transition-colors duration-300"
+              className="py-8 md:py-10 border-b border-white/10 relative group transition-colors duration-300"
             >
               {/* Ambient Hover Backlight Glow */}
               <div className="pointer-events-none absolute -top-8 left-1/3 w-96 h-64 bg-accent/5 rounded-full blur-[100px] opacity-0 group-hover:opacity-100 transition-opacity duration-500" />

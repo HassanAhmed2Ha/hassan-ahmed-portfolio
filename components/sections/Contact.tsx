@@ -105,7 +105,7 @@ const Contact: React.FC = () => {
   };
 
   return (
-    <section id="contact" className="min-h-screen py-24 relative z-20 w-full pb-32 flex items-center justify-center">
+    <section id="contact" className="py-16 md:py-20 relative z-20 w-full flex items-center justify-center">
       <Circles />
 
       {/* Ambient Radial Backlight */}
@@ -114,13 +114,13 @@ const Contact: React.FC = () => {
       <div className="container mx-auto px-4 xl:px-0 relative z-10 w-full max-w-6xl">
         
         {/* Section Header */}
-        <div className="text-center flex flex-col items-center mb-16 md:mb-20">
+        <div className="text-center flex flex-col items-center mb-10 md:mb-12">
           <motion.h2
             variants={fadeIn("down", 0.2)}
             initial="hidden"
             whileInView="show" 
             viewport={{ once: true, amount: 0.15 }}
-            className="h2 mb-4"
+            className="h2 mb-3"
           >
             Get in Touch & <span className="font-serif italic font-normal text-accent">Collaborate</span>
           </motion.h2>

@@ -10,10 +10,10 @@ const Publications: React.FC = () => {
   const { publications } = content;
 
   return (
-    <section id="publications" className="min-h-screen py-24 relative z-20 w-full pb-32 flex items-center">
+    <section id="publications" className="py-16 md:py-20 relative z-20 w-full">
       <Circles />
       <div className="container mx-auto px-4 xl:px-0 relative z-10">
-        <div className="flex flex-col gap-y-12 items-center">
+        <div className="flex flex-col gap-y-8 items-center">
           {/* Text Top Column */}
           <div className="text-center flex w-full flex-col items-center mb-8">
             <motion.h2

@@ -8,7 +8,7 @@ import { RiBriefcaseLine, RiBuilding4Line, RiCalendarLine, RiMapPinLine } from "
 
 const Experience: React.FC = () => {
   return (
-    <section id="experience" className="relative w-full overflow-hidden min-h-screen py-24 pb-32 z-20">
+    <section id="experience" className="relative w-full overflow-hidden py-16 md:py-20 z-20">
       <Circles />
       
       {/* Seamless Continuous DNA Backbone */}
@@ -31,7 +31,7 @@ const Experience: React.FC = () => {
 
       <div className="container mx-auto px-4 xl:px-0 relative z-10">
         {/* Title */}
-        <div className="text-center flex w-full flex-col items-center mb-16">
+        <div className="text-center flex w-full flex-col items-center mb-10">
           <motion.h2
             variants={fadeIn("down", 0.2)}
             initial="hidden"
@@ -65,7 +65,7 @@ const Experience: React.FC = () => {
                 initial="hidden"
                 whileInView="show"
                 viewport={{ once: true, amount: 0.1 }}
-                className="py-10 md:py-14 border-b border-white/10 relative group transition-colors duration-300"
+                className="py-8 md:py-10 border-b border-white/10 relative group transition-colors duration-300"
               >
                 {/* Ambient Backlight on Hover */}
                 <div className="pointer-events-none absolute -top-8 left-1/4 w-96 h-64 bg-accent/5 rounded-full blur-[90px] opacity-0 group-hover:opacity-100 transition-opacity duration-500" />

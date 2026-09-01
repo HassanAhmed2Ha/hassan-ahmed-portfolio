@@ -9,10 +9,10 @@ const OpenScience: React.FC = () => {
   const { openScience } = contentEn;
 
   return (
-    <section id="open-science" className="min-h-screen py-24 relative z-20 w-full pb-32 flex items-center">
+    <section id="open-science" className="py-16 md:py-20 relative z-20 w-full">
       <Circles />
       <div className="container mx-auto px-4 xl:px-0 relative z-10">
-        <div className="flex flex-col gap-y-12 items-center">
+        <div className="flex flex-col gap-y-8 items-center">
           {/* Section Header */}
           <div className="text-center flex w-full flex-col items-center mb-6">
             <motion.h2
