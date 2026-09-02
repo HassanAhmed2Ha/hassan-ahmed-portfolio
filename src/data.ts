@@ -39,18 +39,18 @@ export const contentEn: Content = {
       {
         id: "ai-core",
         number: "01",
-        title: "Applied AI, Machine Learning & Deep Learning",
-        subtitle: "Multi-Task Architectures • Graph Neural Networks • Representation Learning",
+        title: "Applied AI, Generative AI & Deep Learning",
+        subtitle: "Generative AI & Diffusion Models • Graph Neural Networks • Representation Learning",
         iconType: "brain",
         competencies: [
+          "Generative AI & Denoising Diffusion Probabilistic Models (DDPMs)",
           "End-to-End Deep Neural Network Architectures",
-          "Graph Neural Networks (GNNs) & Spatial Graphs",
+          "Graph Neural Networks (GNNs) & Spatial Molecular Graphs",
           "Multi-Task Learning & Joint Loss Optimization",
-          "Predictive Modeling & Feature Engineering",
-          "Computer Vision & Multimodal Ensembles",
+          "Latent Representation Learning & Predictive Modeling",
           "Rigorous Cross-Validation & Metric Auditing"
         ],
-        tools: ["Python", "PyTorch", "TensorFlow", "Scikit-Learn", "Hugging Face", "NumPy / Pandas"]
+        tools: ["Python", "PyTorch", "TensorFlow", "Hugging Face / Diffusers", "Scikit-Learn", "NumPy / Pandas"]
       },
       {
         id: "software-eng",
@@ -87,18 +87,18 @@ export const contentEn: Content = {
       {
         id: "bio-cheminformatics",
         number: "04",
-        title: "Domain Intelligence: Computational Science & Bio-AI",
-        subtitle: "Cheminformatics • 3D Conformer Modeling • Precision Agriculture",
+        title: "Domain Intelligence: Computational Biophysics & Bio-AI",
+        subtitle: "Structural Biology & Molecular Dynamics • Peptide Toxicity • 3D Conformer Modeling",
         iconType: "flask",
         competencies: [
+          "Structural Biology & 3D Macromolecular Architecture (PDB / AlphaFold)",
+          "Molecular Dynamics Simulation Pipelines & Force Fields (GROMACS / OpenMM)",
+          "Peptide Toxicity & Ecotoxicological AI Benchmark Modeling",
           "RDKit Cheminformatics & Molecular Descriptors",
           "3D Conformer Modeling (ETKDGv3 / MMFF94s)",
-          "Ecotoxicological AI & Agricultural Safety Benchmarks",
-          "Genomic Sequence & Biological Data Analysis",
-          "Open Science Dataset Engineering & Standardization",
-          "Scientific Peer-Review & Literature Synthesis"
+          "Open Science Dataset Engineering & FAIR Data Standards"
         ],
-        tools: ["RDKit", "BioPython", "DeepChem", "SDF / PDB Formats", "NCBI / ChEMBL", "Zenodo"]
+        tools: ["RDKit", "BioPython", "DeepChem", "OpenMM / GROMACS", "PDB / AlphaFold", "Zenodo / ChEMBL"]
       }
     ]
   },
