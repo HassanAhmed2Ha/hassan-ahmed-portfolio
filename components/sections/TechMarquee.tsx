@@ -19,7 +19,14 @@ import {
   SiGithub,
   SiJavascript,
   SiScikitlearn,
-  SiKubernetes
+  SiKubernetes,
+  SiNumpy,
+  SiPandas,
+  SiTailwindcss,
+  SiRedis,
+  SiGraphql,
+  SiCplusplus,
+  SiOpenai
 } from "react-icons/si";
 import { RiCodeSSlashLine } from "react-icons/ri";
 
@@ -40,6 +47,10 @@ const getTechVectorIcon = (name: string) => {
       return <SiTensorflow className="text-lg text-white/70 group-hover:text-accent transition-colors" aria-hidden="true" />;
     case "scikitlearn":
       return <SiScikitlearn className="text-lg text-white/70 group-hover:text-accent transition-colors" aria-hidden="true" />;
+    case "numpy":
+      return <SiNumpy className="text-lg text-white/70 group-hover:text-accent transition-colors" aria-hidden="true" />;
+    case "pandas":
+      return <SiPandas className="text-lg text-white/70 group-hover:text-accent transition-colors" aria-hidden="true" />;
     case "fastapi":
       return <SiFastapi className="text-lg text-white/70 group-hover:text-accent transition-colors" aria-hidden="true" />;
     case "docker":
@@ -52,11 +63,18 @@ const getTechVectorIcon = (name: string) => {
       return <SiPostgresql className="text-lg text-white/70 group-hover:text-accent transition-colors" aria-hidden="true" />;
     case "mongodb":
       return <SiMongodb className="text-lg text-white/70 group-hover:text-accent transition-colors" aria-hidden="true" />;
+    case "redis":
+      return <SiRedis className="text-lg text-white/70 group-hover:text-accent transition-colors" aria-hidden="true" />;
+    case "graphql":
+      return <SiGraphql className="text-lg text-white/70 group-hover:text-accent transition-colors" aria-hidden="true" />;
     case "react":
       return <SiReact className="text-lg text-white/70 group-hover:text-accent transition-colors" aria-hidden="true" />;
     case "nextjs":
     case "next":
       return <SiNextdotjs className="text-lg text-white/70 group-hover:text-accent transition-colors" aria-hidden="true" />;
+    case "tailwindcss":
+    case "tailwind":
+      return <SiTailwindcss className="text-lg text-white/70 group-hover:text-accent transition-colors" aria-hidden="true" />;
     case "typescript":
     case "ts":
       return <SiTypescript className="text-lg text-white/70 group-hover:text-accent transition-colors" aria-hidden="true" />;
@@ -76,6 +94,12 @@ const getTechVectorIcon = (name: string) => {
       return <SiGit className="text-lg text-white/70 group-hover:text-accent transition-colors" aria-hidden="true" />;
     case "github":
       return <SiGithub className="text-lg text-white/70 group-hover:text-accent transition-colors" aria-hidden="true" />;
+    case "cplusplus":
+    case "cpp":
+    case "c":
+      return <SiCplusplus className="text-lg text-white/70 group-hover:text-accent transition-colors" aria-hidden="true" />;
+    case "openai":
+      return <SiOpenai className="text-lg text-white/70 group-hover:text-accent transition-colors" aria-hidden="true" />;
     default:
       return <RiCodeSSlashLine className="text-lg text-white/70 group-hover:text-accent transition-colors" aria-hidden="true" />;
   }
@@ -129,7 +153,7 @@ const TechMarquee: React.FC<TechMarqueeProps> = ({ data }) => {
           </div>
         </div>
 
-        {/* Track 2 (Right to Left) */}
+        {/* Track 2 (Right to Left / Continuous Infinite Stream) */}
         <div className="flex w-max animate-marquee-reverse [animation-duration:20s] will-change-transform">
           <div className="flex items-center gap-3.5 pr-3.5">
             {reversedData.map((item, idx) => (
@@ -153,7 +177,26 @@ const TechMarquee: React.FC<TechMarqueeProps> = ({ data }) => {
           >
             {reversedData.map((item, idx) => (
               <div
-                key={`bottom-dup-${item.name}-${idx}`}
+                key={`bottom-dup1-${item.name}-${idx}`}
+                className="flex items-center gap-x-2.5 px-4 py-2.5 rounded-xl bg-white/[0.03] border border-white/10 hover:border-accent/80 hover:bg-accent/15 hover:shadow-[0_0_20px_rgba(251,191,36,0.2)] hover:scale-105 transition-all duration-150 group cursor-default shrink-0 shadow-sm"
+              >
+                <div className="flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform duration-150">
+                  {getTechVectorIcon(item.name)}
+                </div>
+                <span className="text-white/80 group-hover:text-accent font-mono text-xs font-medium transition-colors duration-150">
+                  {item.name}
+                </span>
+              </div>
+            ))}
+          </div>
+
+          <div
+            className="flex items-center gap-3.5 pr-3.5"
+            aria-hidden="true"
+          >
+            {reversedData.map((item, idx) => (
+              <div
+                key={`bottom-dup2-${item.name}-${idx}`}
                 className="flex items-center gap-x-2.5 px-4 py-2.5 rounded-xl bg-white/[0.03] border border-white/10 hover:border-accent/80 hover:bg-accent/15 hover:shadow-[0_0_20px_rgba(251,191,36,0.2)] hover:scale-105 transition-all duration-150 group cursor-default shrink-0 shadow-sm"
               >
                 <div className="flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform duration-150">
