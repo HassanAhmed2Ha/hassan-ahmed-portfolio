@@ -103,11 +103,11 @@ const Home: React.FC = () => {
 
         {/* Layer 3: Avatar Container */}
         <motion.div
-          variants={fadeIn("up", 0.5)}
+          variants={fadeIn("up", 0.2)}
           initial="hidden"
           animate="show"
           exit="hidden"
-          transition={{ duration: 1, ease: "easeInOut" }}
+          transition={{ duration: 0.45, ease: "easeOut" }}
           className="hidden xl:block absolute bottom-0 right-[5%] xl:right-[8%] w-[450px] h-[600px] z-30 pointer-events-none"
         >
           <Avatar width={737} height={678} applyMask={true} />
@@ -137,10 +137,10 @@ const Home: React.FC = () => {
             <ProjectsBtn />
           </div>
           <motion.div
-            variants={fadeIn("down", 0.4)}
+            variants={fadeIn("down", 0.2)}
             initial="hidden"
             whileInView="show" 
-            viewport={{ once: true, amount: 0.15 }}
+            viewport={{ once: true, amount: 0, margin: "100px 0px 0px 0px" }}
             exit="hidden"
             className="hidden xl:flex z-20 relative"
           >

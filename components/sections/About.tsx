@@ -41,20 +41,20 @@ const About: React.FC = () => {
         {/* Section Header */}
         <div className="w-full flex flex-col justify-center items-center text-center max-w-4xl">
           <motion.h2 
-            variants={fadeIn("down", 0.2)} 
+            variants={fadeIn("down", 0.1)} 
             initial="hidden" 
             whileInView="show" 
-            viewport={{ once: true, amount: 0.15 }}
+            viewport={{ once: true, amount: 0, margin: "120px 0px 0px 0px" }}
             className="h2 mb-3"
           >
             Scientific Identity & <span className="font-serif italic font-normal text-accent">Core Competencies</span>
           </motion.h2>
           
           <motion.p 
-            variants={fadeIn("down", 0.3)} 
+            variants={fadeIn("down", 0.15)} 
             initial="hidden" 
             whileInView="show" 
-            viewport={{ once: true, amount: 0.15 }}
+            viewport={{ once: true, amount: 0, margin: "120px 0px 0px 0px" }}
             className="text-lg md:text-xl text-white/90 font-sans font-medium leading-relaxed mb-3 max-w-3xl"
           >
             {about.tagline}
@@ -63,10 +63,10 @@ const About: React.FC = () => {
           {about.description && about.description.map((para, pIdx) => (
             <motion.p 
               key={pIdx}
-              variants={fadeIn("down", 0.4)} 
+              variants={fadeIn("down", 0.2)} 
               initial="hidden" 
               whileInView="show" 
-              viewport={{ once: true, amount: 0.15 }}
+              viewport={{ once: true, amount: 0, margin: "120px 0px 0px 0px" }}
               className="text-sm md:text-base text-white/70 font-sans font-normal leading-relaxed max-w-2xl"
             >
               {para}
@@ -79,10 +79,10 @@ const About: React.FC = () => {
           {domains.map((domain, idx) => (
             <motion.div
               key={domain.id}
-              variants={fadeIn("up", 0.15 * idx)}
+              variants={fadeIn("up", 0.04 * idx)}
               initial="hidden"
               whileInView="show"
-              viewport={{ once: true, amount: 0.1 }}
+              viewport={{ once: true, amount: 0, margin: "120px 0px 0px 0px" }}
               className="py-8 md:py-10 border-b border-white/10 relative group transition-colors duration-300"
             >
               {/* Ambient Hover Backlight Glow */}

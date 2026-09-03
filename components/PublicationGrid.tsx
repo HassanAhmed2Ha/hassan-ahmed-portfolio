@@ -13,10 +13,10 @@ const PublicationGrid: React.FC = () => {
 
       {/* Monumental Philosophical Statement */}
       <motion.blockquote
-        initial={{ opacity: 0, y: 20 }}
+        initial={{ opacity: 0, y: 14 }}
         whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, amount: 0.2 }}
-        transition={{ duration: 0.5, delay: 0.1 }}
+        viewport={{ once: true, amount: 0, margin: "120px 0px 0px 0px" }}
+        transition={{ duration: 0.28, delay: 0.05 }}
         className="text-2xl sm:text-4xl md:text-5xl lg:text-[44px] font-serif italic text-white leading-[1.35] tracking-tight font-normal max-w-4xl relative z-10"
       >
         &ldquo;{publications.quote}&rdquo;
@@ -24,10 +24,10 @@ const PublicationGrid: React.FC = () => {
 
       {/* Explanatory Synthesis Subtext */}
       <motion.p
-        initial={{ opacity: 0, y: 20 }}
+        initial={{ opacity: 0, y: 14 }}
         whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, amount: 0.2 }}
-        transition={{ duration: 0.5, delay: 0.2 }}
+        viewport={{ once: true, amount: 0, margin: "120px 0px 0px 0px" }}
+        transition={{ duration: 0.28, delay: 0.08 }}
         className="text-sm md:text-base text-white/70 font-sans leading-relaxed max-w-2xl mt-8 font-normal relative z-10"
       >
         {publications.subtext}
@@ -35,10 +35,10 @@ const PublicationGrid: React.FC = () => {
 
       {/* Early Access Action Button */}
       <motion.div
-        initial={{ opacity: 0, y: 20 }}
+        initial={{ opacity: 0, y: 14 }}
         whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, amount: 0.2 }}
-        transition={{ duration: 0.5, delay: 0.3 }}
+        viewport={{ once: true, amount: 0, margin: "120px 0px 0px 0px" }}
+        transition={{ duration: 0.28, delay: 0.1 }}
         className="mt-10 relative z-10 flex flex-col sm:flex-row items-center gap-4"
       >
         <a

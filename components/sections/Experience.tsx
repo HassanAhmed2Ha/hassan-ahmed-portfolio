@@ -32,20 +32,20 @@ const Experience: React.FC = () => {
         {/* Title */}
         <div className="text-center flex w-full flex-col items-center mb-10">
           <motion.h2
-            variants={fadeIn("down", 0.2)}
+            variants={fadeIn("down", 0.1)}
             initial="hidden"
             whileInView="show" 
-            viewport={{ once: true, amount: 0.15 }}
+            viewport={{ once: true, amount: 0, margin: "120px 0px 0px 0px" }}
             exit="hidden"
             className="h2 text-center"
           >
             Trajectory & <span className="font-serif italic font-normal text-accent">Career Milestones</span>
           </motion.h2>
           <motion.p
-            variants={fadeIn("down", 0.3)}
+            variants={fadeIn("down", 0.15)}
             initial="hidden"
             whileInView="show" 
-            viewport={{ once: true, amount: 0.15 }}
+            viewport={{ once: true, amount: 0, margin: "120px 0px 0px 0px" }}
             exit="hidden"
             className="max-w-2xl mx-auto text-white/70 text-sm md:text-base leading-relaxed text-center font-sans font-normal"
           >
@@ -60,10 +60,10 @@ const Experience: React.FC = () => {
             return (
               <motion.div
                 key={idx}
-                variants={fadeIn("up", 0.15 * idx)}
+                variants={fadeIn("up", 0.04 * idx)}
                 initial="hidden"
                 whileInView="show"
-                viewport={{ once: true, amount: 0.1 }}
+                viewport={{ once: true, amount: 0, margin: "120px 0px 0px 0px" }}
                 className="py-8 md:py-10 border-b border-white/10 relative group transition-colors duration-300"
               >
                 {/* Ambient Backlight on Hover */}

@@ -115,18 +115,18 @@ const TechMarquee: React.FC<TechMarqueeProps> = ({ data }) => {
       <div className="absolute inset-y-0 right-0 w-24 md:w-48 bg-gradient-to-l from-primary to-transparent z-10 pointer-events-none" />
 
       <div className="flex flex-col gap-4">
-        {/* Track 1 (Left to Right) */}
-        <div className="flex w-max animate-marquee [animation-duration:20s] will-change-transform">
-          <div className="flex items-center gap-3.5 pr-3.5">
+        {/* Track 1 (Left to Right) - Continuous Motion with Hover Glow */}
+        <div className="flex w-max animate-marquee [animation-duration:25s] will-change-transform select-none">
+          <div className="flex items-center gap-3.5 pr-3.5 shrink-0">
             {data.map((item, idx) => (
               <div
                 key={`top-${item.name}-${idx}`}
-                className="flex items-center gap-x-2.5 px-4 py-2.5 rounded-xl bg-white/[0.03] border border-white/10 hover:border-accent/80 hover:bg-accent/15 hover:shadow-[0_0_20px_rgba(251,191,36,0.2)] hover:scale-105 transition-all duration-150 group cursor-default shrink-0 shadow-sm"
+                className="flex items-center gap-x-2.5 px-4 py-2.5 rounded-xl bg-white/[0.03] border border-white/10 hover:border-accent hover:bg-accent/[0.12] hover:shadow-[0_0_25px_rgba(251,191,36,0.45)] hover:scale-[1.03] transition-all duration-200 group cursor-pointer shrink-0 shadow-sm transform-gpu"
               >
-                <div className="flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform duration-150">
+                <div className="flex items-center justify-center shrink-0 group-hover:scale-110 group-hover:drop-shadow-[0_0_10px_rgba(251,191,36,0.6)] transition-all duration-200">
                   {getTechVectorIcon(item.name)}
                 </div>
-                <span className="text-white/80 group-hover:text-accent font-mono text-xs font-medium transition-colors duration-150">
+                <span className="text-white/80 group-hover:text-accent font-mono text-xs font-medium group-hover:drop-shadow-[0_0_8px_rgba(251,191,36,0.5)] transition-colors duration-200">
                   {item.name}
                 </span>
               </div>
@@ -134,18 +134,18 @@ const TechMarquee: React.FC<TechMarqueeProps> = ({ data }) => {
           </div>
 
           <div
-            className="flex items-center gap-3.5 pr-3.5"
+            className="flex items-center gap-3.5 pr-3.5 shrink-0"
             aria-hidden="true"
           >
             {data.map((item, idx) => (
               <div
                 key={`top-dup-${item.name}-${idx}`}
-                className="flex items-center gap-x-2.5 px-4 py-2.5 rounded-xl bg-white/[0.03] border border-white/10 hover:border-accent/80 hover:bg-accent/15 hover:shadow-[0_0_20px_rgba(251,191,36,0.2)] hover:scale-105 transition-all duration-150 group cursor-default shrink-0 shadow-sm"
+                className="flex items-center gap-x-2.5 px-4 py-2.5 rounded-xl bg-white/[0.03] border border-white/10 hover:border-accent hover:bg-accent/[0.12] hover:shadow-[0_0_25px_rgba(251,191,36,0.45)] hover:scale-[1.03] transition-all duration-200 group cursor-pointer shrink-0 shadow-sm transform-gpu"
               >
-                <div className="flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform duration-150">
+                <div className="flex items-center justify-center shrink-0 group-hover:scale-110 group-hover:drop-shadow-[0_0_10px_rgba(251,191,36,0.6)] transition-all duration-200">
                   {getTechVectorIcon(item.name)}
                 </div>
-                <span className="text-white/80 group-hover:text-accent font-mono text-xs font-medium transition-colors duration-150">
+                <span className="text-white/80 group-hover:text-accent font-mono text-xs font-medium group-hover:drop-shadow-[0_0_8px_rgba(251,191,36,0.5)] transition-colors duration-200">
                   {item.name}
                 </span>
               </div>
@@ -153,18 +153,18 @@ const TechMarquee: React.FC<TechMarqueeProps> = ({ data }) => {
           </div>
         </div>
 
-        {/* Track 2 (Right to Left / Continuous Infinite Stream) */}
-        <div className="flex w-max animate-marquee-reverse [animation-duration:20s] will-change-transform">
-          <div className="flex items-center gap-3.5 pr-3.5">
+        {/* Track 2 (Right to Left) - Continuous Motion with Symmetrical Seamless 2-Copy Loop & Hover Glow */}
+        <div className="flex w-max animate-marquee-reverse [animation-duration:25s] will-change-transform select-none">
+          <div className="flex items-center gap-3.5 pr-3.5 shrink-0">
             {reversedData.map((item, idx) => (
               <div
                 key={`bottom-${item.name}-${idx}`}
-                className="flex items-center gap-x-2.5 px-4 py-2.5 rounded-xl bg-white/[0.03] border border-white/10 hover:border-accent/80 hover:bg-accent/15 hover:shadow-[0_0_20px_rgba(251,191,36,0.2)] hover:scale-105 transition-all duration-150 group cursor-default shrink-0 shadow-sm"
+                className="flex items-center gap-x-2.5 px-4 py-2.5 rounded-xl bg-white/[0.03] border border-white/10 hover:border-accent hover:bg-accent/[0.12] hover:shadow-[0_0_25px_rgba(251,191,36,0.45)] hover:scale-[1.03] transition-all duration-200 group cursor-pointer shrink-0 shadow-sm transform-gpu"
               >
-                <div className="flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform duration-150">
+                <div className="flex items-center justify-center shrink-0 group-hover:scale-110 group-hover:drop-shadow-[0_0_10px_rgba(251,191,36,0.6)] transition-all duration-200">
                   {getTechVectorIcon(item.name)}
                 </div>
-                <span className="text-white/80 group-hover:text-accent font-mono text-xs font-medium transition-colors duration-150">
+                <span className="text-white/80 group-hover:text-accent font-mono text-xs font-medium group-hover:drop-shadow-[0_0_8px_rgba(251,191,36,0.5)] transition-colors duration-200">
                   {item.name}
                 </span>
               </div>
@@ -172,37 +172,18 @@ const TechMarquee: React.FC<TechMarqueeProps> = ({ data }) => {
           </div>
 
           <div
-            className="flex items-center gap-3.5 pr-3.5"
+            className="flex items-center gap-3.5 pr-3.5 shrink-0"
             aria-hidden="true"
           >
             {reversedData.map((item, idx) => (
               <div
-                key={`bottom-dup1-${item.name}-${idx}`}
-                className="flex items-center gap-x-2.5 px-4 py-2.5 rounded-xl bg-white/[0.03] border border-white/10 hover:border-accent/80 hover:bg-accent/15 hover:shadow-[0_0_20px_rgba(251,191,36,0.2)] hover:scale-105 transition-all duration-150 group cursor-default shrink-0 shadow-sm"
+                key={`bottom-dup-${item.name}-${idx}`}
+                className="flex items-center gap-x-2.5 px-4 py-2.5 rounded-xl bg-white/[0.03] border border-white/10 hover:border-accent hover:bg-accent/[0.12] hover:shadow-[0_0_25px_rgba(251,191,36,0.45)] hover:scale-[1.03] transition-all duration-200 group cursor-pointer shrink-0 shadow-sm transform-gpu"
               >
-                <div className="flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform duration-150">
+                <div className="flex items-center justify-center shrink-0 group-hover:scale-110 group-hover:drop-shadow-[0_0_10px_rgba(251,191,36,0.6)] transition-all duration-200">
                   {getTechVectorIcon(item.name)}
                 </div>
-                <span className="text-white/80 group-hover:text-accent font-mono text-xs font-medium transition-colors duration-150">
-                  {item.name}
-                </span>
-              </div>
-            ))}
-          </div>
-
-          <div
-            className="flex items-center gap-3.5 pr-3.5"
-            aria-hidden="true"
-          >
-            {reversedData.map((item, idx) => (
-              <div
-                key={`bottom-dup2-${item.name}-${idx}`}
-                className="flex items-center gap-x-2.5 px-4 py-2.5 rounded-xl bg-white/[0.03] border border-white/10 hover:border-accent/80 hover:bg-accent/15 hover:shadow-[0_0_20px_rgba(251,191,36,0.2)] hover:scale-105 transition-all duration-150 group cursor-default shrink-0 shadow-sm"
-              >
-                <div className="flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform duration-150">
-                  {getTechVectorIcon(item.name)}
-                </div>
-                <span className="text-white/80 group-hover:text-accent font-mono text-xs font-medium transition-colors duration-150">
+                <span className="text-white/80 group-hover:text-accent font-mono text-xs font-medium group-hover:drop-shadow-[0_0_8px_rgba(251,191,36,0.5)] transition-colors duration-200">
                   {item.name}
                 </span>
               </div>

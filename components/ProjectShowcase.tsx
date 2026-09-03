@@ -222,10 +222,10 @@ const ProjectShowcase: React.FC<ProjectShowcaseProps> = ({ projects, labels }) =
             ref={(el) => {
               itemRefs.current[index] = el;
             }}
-            initial={{ opacity: 0, y: 25 }}
+            initial={{ opacity: 0, y: 14 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.2 }}
-            transition={{ duration: 0.6, delay: index * 0.15, ease: [0.16, 1, 0.3, 1] }}
+            viewport={{ once: true, amount: 0, margin: "120px 0px 0px 0px" }}
+            transition={{ duration: 0.28, delay: Math.min(index * 0.03, 0.08), ease: [0.22, 1, 0.36, 1] }}
             onMouseEnter={() => setHoveredIndex(index)}
             onMouseLeave={() => setHoveredIndex(null)}
             className="group relative py-8 md:py-12 border-b border-white/10 transition-colors"

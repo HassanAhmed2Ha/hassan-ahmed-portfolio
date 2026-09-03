@@ -17,18 +17,20 @@ const Publications: React.FC = () => {
           {/* Text Top Column */}
           <div className="text-center flex w-full flex-col items-center mb-8">
             <motion.h2
-              variants={fadeIn("up", 0.2)}
+              variants={fadeIn("up", 0.1)}
               initial="hidden"
-              whileInView="show" viewport={{ once: true, amount: 0.15 }}
+              whileInView="show" 
+              viewport={{ once: true, amount: 0, margin: "120px 0px 0px 0px" }}
               exit="hidden"
               className="h2"
             >
               Peer-Reviewed Science & <span className="font-serif italic font-normal text-accent">Preprint Archive</span>
             </motion.h2>
             <motion.p
-              variants={fadeIn("up", 0.3)}
+              variants={fadeIn("up", 0.15)}
               initial="hidden"
-              whileInView="show" viewport={{ once: true, amount: 0.15 }}
+              whileInView="show" 
+              viewport={{ once: true, amount: 0, margin: "120px 0px 0px 0px" }}
               exit="hidden"
               className="max-w-[750px] mx-auto text-white/70 text-sm md:text-base leading-relaxed text-center font-sans font-normal"
             >
@@ -37,9 +39,10 @@ const Publications: React.FC = () => {
           </div>
           {/* Grid Bottom Column */}
           <motion.div
-            variants={fadeIn("up", 0.6)}
+            variants={fadeIn("up", 0.1)}
             initial="hidden"
-            whileInView="show" viewport={{ once: true, amount: 0.15 }}
+            whileInView="show" 
+            viewport={{ once: true, amount: 0, margin: "120px 0px 0px 0px" }}
             exit="hidden"
             className="w-full"
           >

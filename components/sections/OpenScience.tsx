@@ -16,20 +16,20 @@ const OpenScience: React.FC = () => {
           {/* Section Header */}
           <div className="text-center flex w-full flex-col items-center mb-6">
             <motion.h2
-              variants={fadeIn("up", 0.2)}
+              variants={fadeIn("up", 0.1)}
               initial="hidden"
               whileInView="show" 
-              viewport={{ once: true, amount: 0.15 }}
+              viewport={{ once: true, amount: 0, margin: "120px 0px 0px 0px" }}
               exit="hidden"
               className="h2"
             >
               Open Science & <span className="font-serif italic font-normal text-accent">Data-Centric Infrastructure</span>
             </motion.h2>
             <motion.p
-              variants={fadeIn("up", 0.3)}
+              variants={fadeIn("up", 0.15)}
               initial="hidden"
               whileInView="show" 
-              viewport={{ once: true, amount: 0.15 }}
+              viewport={{ once: true, amount: 0, margin: "120px 0px 0px 0px" }}
               exit="hidden"
               className="max-w-[750px] mx-auto text-white/70 text-sm md:text-base leading-relaxed text-center font-sans font-normal"
             >
@@ -39,10 +39,10 @@ const OpenScience: React.FC = () => {
 
           {/* Interactive Open Science Showcase */}
           <motion.div
-            variants={fadeIn("up", 0.4)}
+            variants={fadeIn("up", 0.1)}
             initial="hidden"
             whileInView="show" 
-            viewport={{ once: true, amount: 0.15 }}
+            viewport={{ once: true, amount: 0, margin: "120px 0px 0px 0px" }}
             exit="hidden"
             className="w-full"
           >
