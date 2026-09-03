@@ -41,21 +41,21 @@ module.exports = {
           '0%, 100%': { opacity: '0.5', transform: 'scale(1)' },
           '50%': { opacity: '0.8', transform: 'scale(1.02)' },
         },
-        marquee: {
-          '0%': { transform: 'translate3d(0%, 0, 0)' },
+        'marquee-left': {
+          '0%': { transform: 'translate3d(0, 0, 0)' },
           '100%': { transform: 'translate3d(-50%, 0, 0)' },
         },
-        'marquee-reverse': {
+        'marquee-right': {
           '0%': { transform: 'translate3d(-50%, 0, 0)' },
-          '100%': { transform: 'translate3d(0%, 0, 0)' },
+          '100%': { transform: 'translate3d(0, 0, 0)' },
         },
       },
       animation: {
         "spin-slow": "spin 6s linear infinite",
         'pulse-gold': 'pulse-gold 6s ease-in-out infinite',
         'pulse-gold-fast': 'pulse-gold 3s ease-in-out infinite',
-        marquee: 'marquee 30s linear infinite',
-        'marquee-reverse': 'marquee-reverse 30s linear infinite',
+        'marquee-left': 'marquee-left 32s linear infinite',
+        'marquee-right': 'marquee-right 32s linear infinite',
       },
       fontFamily: {
         sans: ["var(--font-sans)", "sans-serif"],

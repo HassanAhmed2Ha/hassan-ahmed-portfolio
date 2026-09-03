@@ -88,6 +88,35 @@
     background: linear-gradient(135deg, rgba(255, 255, 255, 0.12) 0%, rgba(255, 255, 255, 0.05) 100%);
     border: 1px solid rgba(255, 255, 255, 0.2);
   }
+
+  /* ── Ultra-Smooth Synchronized Dual Marquee ── */
+  @keyframes marquee-track-left {
+    0% {
+      transform: translate3d(0, 0, 0);
+    }
+    100% {
+      transform: translate3d(-50%, 0, 0);
+    }
+  }
+
+  @keyframes marquee-track-right {
+    0% {
+      transform: translate3d(-50%, 0, 0);
+    }
+    100% {
+      transform: translate3d(0, 0, 0);
+    }
+  }
+
+  .animate-marquee-left {
+    animation: marquee-track-left 32s linear infinite !important;
+    will-change: transform;
+  }
+
+  .animate-marquee-right {
+    animation: marquee-track-right 32s linear infinite !important;
+    will-change: transform;
+  }
 }
 
 /* ── Custom Dark Glassmorphic Scrollbar ── */
