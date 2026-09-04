@@ -10,6 +10,8 @@ const TopLeftImg: React.FC = () => {
         width={400}
         height={400}
         priority
+        loading="eager"
+        sizes="(max-width: 1200px) 200px, 400px"
       />
     </div>
   );

@@ -22,11 +22,7 @@ const Typewriter: React.FC<{ words: string[] }> = ({ words }) => {
   const [index, setIndex] = useState(0);
   const [subIndex, setSubIndex] = useState(0);
   const [reverse, setReverse] = useState(false);
-  const [blink, setBlink] = useState(true);
-  useEffect(() => {
-    const timeout = setTimeout(() => setBlink((prev) => !prev), 500);
-    return () => clearTimeout(timeout);
-  }, [blink]);
+
   useEffect(() => {
     if (index >= words.length) return;
     const typeSpeed = 100;
@@ -46,17 +42,35 @@ const Typewriter: React.FC<{ words: string[] }> = ({ words }) => {
     }, reverse ? deleteSpeed : typeSpeed);
     return () => clearTimeout(timeout);
   }, [subIndex, index, reverse, words]);
+
   return (
     <span className="text-accent inline-block font-serif italic font-normal" dir="auto">
       {words[index].substring(0, subIndex)}
       <span
-        className={`inline-block w-[3px] h-[0.9em] mx-1 bg-accent align-middle transition-opacity ${blink ? "opacity-100" : "opacity-0"
-          }`}
+        className="inline-block w-[3px] h-[0.9em] mx-1 bg-accent align-middle animate-cursor-blink"
       />
     </span>
   );
 };
+
 const Home: React.FC = () => {
+  const [showParticles, setShowParticles] = useState(false);
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      if ("requestIdleCallback" in window) {
+        const handle = (window as any).requestIdleCallback(
+          () => setShowParticles(true),
+          { timeout: 1500 }
+        );
+        return () => (window as any).cancelIdleCallback(handle);
+      } else {
+        const timer = setTimeout(() => setShowParticles(true), 800);
+        return () => clearTimeout(timer);
+      }
+    }
+  }, []);
+
   return (
     <main className="w-full flex flex-col">
       <section id="home" className="min-h-screen flex items-center justify-start relative overflow-hidden w-full bg-primary pt-24 pb-16 xl:py-0">
@@ -82,7 +96,7 @@ const Home: React.FC = () => {
             repeat: Infinity, 
             ease: "easeInOut" 
           }}
-          className="hidden md:block absolute inset-0 z-0 pointer-events-none mix-blend-color-dodge opacity-60 transition-all duration-300 animate-pulse-gold-fast"
+          className="hidden md:block absolute inset-0 z-0 pointer-events-none mix-blend-color-dodge opacity-60 will-change-transform"
           style={{
             maskImage: 'radial-gradient(ellipse at 30% 45%, black 25%, transparent 65%)',
             WebkitMaskImage: 'radial-gradient(ellipse at 30% 45%, black 25%, transparent 65%)'
@@ -92,14 +106,17 @@ const Home: React.FC = () => {
             src="/nano-dna.webp"
             alt="DNA Hologram"
             fill
+            sizes="(max-width: 768px) 0vw, 100vw"
             className="object-cover object-[30%_50%] scale-110 grayscale invert-[0.10] sepia brightness-110 saturate-200"
           />
         </motion.div>
         
-        {/* Layer 2: Particles Container */}
-        <div className="hidden md:block absolute inset-0 z-1 pointer-events-none">
-          <ParticlesContainer />
-        </div>
+        {/* Layer 2: Particles Container (Deferred to Idle state to completely unblock TBT & FCP) */}
+        {showParticles && (
+          <div className="hidden md:block absolute inset-0 z-1 pointer-events-none transition-opacity duration-700 opacity-100">
+            <ParticlesContainer />
+          </div>
+        )}
 
         {/* Layer 3: Avatar Container */}
         <motion.div
@@ -110,7 +127,7 @@ const Home: React.FC = () => {
           transition={{ duration: 0.45, ease: "easeOut" }}
           className="hidden xl:block absolute bottom-0 right-[5%] xl:right-[8%] w-[450px] h-[600px] z-30 pointer-events-none"
         >
-          <Avatar width={737} height={678} applyMask={true} />
+          <Avatar width={450} height={414} applyMask={true} />
         </motion.div>
 
         {/* Layer 4: Text Container (Foreground) */}

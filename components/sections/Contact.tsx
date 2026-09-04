@@ -12,7 +12,6 @@ import {
   RiWhatsappLine
 } from "react-icons/ri";
 import Circles from "../Circles";
-import emailjs from "@emailjs/browser";
 import { contentEn as content } from "../../src/data";
 
 const Contact: React.FC = () => {
@@ -70,6 +69,7 @@ const Contact: React.FC = () => {
       message: formData.message,
     };
     try {
+      const emailjs = (await import("@emailjs/browser")).default;
       const response = await emailjs.send(
         SERVICE_ID,
         TEMPLATE_ID,
@@ -105,7 +105,7 @@ const Contact: React.FC = () => {
   };
 
   return (
-    <section id="contact" className="py-16 md:py-20 relative z-20 w-full flex items-center justify-center">
+    <section id="contact" className="content-auto py-16 md:py-20 relative z-20 w-full flex items-center justify-center">
       <Circles />
 
       {/* Ambient Radial Backlight */}

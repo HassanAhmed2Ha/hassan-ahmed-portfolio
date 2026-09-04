@@ -8,14 +8,14 @@ import { RiBriefcaseLine, RiBuilding4Line, RiCalendarLine, RiMapPinLine } from "
 
 const Experience: React.FC = () => {
   return (
-    <section id="experience" className="relative w-full overflow-hidden py-16 md:py-20 z-20">
+    <section id="experience" className="content-auto relative w-full overflow-hidden py-16 md:py-20 z-20">
       <Circles />
       
       {/* Seamless Continuous DNA Backbone */}
       <div className="absolute inset-y-0 left-1/2 -translate-x-1/2 z-0 pointer-events-none opacity-[0.45] mix-blend-screen overflow-hidden w-[800px] max-w-full">
         <div className="absolute inset-0 z-10 bg-gradient-to-t from-primary via-transparent to-primary opacity-80" />
         <motion.div 
-          className="relative w-full h-full"
+          className="relative w-full h-full will-change-transform"
           animate={{ y: [0, -15, 0] }}
           transition={{ duration: 15, repeat: Infinity, ease: "easeInOut" }}
         >
@@ -23,6 +23,7 @@ const Experience: React.FC = () => {
             src="/tall_dna.webp"
             alt="Full Genomic Spine" 
             fill 
+            sizes="(max-width: 768px) 100vw, 800px"
             className="object-cover object-top saturate-200 contrast-125 brightness-110 hue-rotate-[-5deg]" 
           />
         </motion.div>

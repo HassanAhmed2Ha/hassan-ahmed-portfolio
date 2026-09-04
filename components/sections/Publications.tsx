@@ -10,7 +10,7 @@ const Publications: React.FC = () => {
   const { publications } = content;
 
   return (
-    <section id="publications" className="py-16 md:py-20 relative z-20 w-full">
+    <section id="publications" className="content-auto py-16 md:py-20 relative z-20 w-full">
       <Circles />
       <div className="container mx-auto px-4 xl:px-0 relative z-10">
         <div className="flex flex-col gap-y-8 items-center">

@@ -9,8 +9,8 @@ interface AvatarProps {
 }
 
 const Avatar: React.FC<AvatarProps> = ({ 
-  width = 737, 
-  height = 678, 
+  width = 450, 
+  height = 414, 
   className = "w-full h-full object-contain translate-z-0",
   applyMask = false
 }) => {
@@ -30,8 +30,10 @@ const Avatar: React.FC<AvatarProps> = ({
           alt="Hassan Zaki"
           width={width}
           height={height}
+          sizes="(min-width: 1200px) 450px, 0vw"
           className={className}
           priority
+          quality={80}
         />
       </div>
     </div>

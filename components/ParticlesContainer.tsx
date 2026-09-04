@@ -23,7 +23,7 @@ const ParticlesContainer: React.FC = () => {
             value: "",
           },
         },
-        fpsLimit: 120,
+        fpsLimit: 60,
         interactivity: {
           events: {
             onClick: {
@@ -38,10 +38,10 @@ const ParticlesContainer: React.FC = () => {
           },
           modes: {
             push: {
-              quantity: 90,
+              quantity: 50,
             },
             repulse: {
-              distance: 200,
+              distance: 180,
               duration: 0.4,
             },
           },
@@ -52,13 +52,13 @@ const ParticlesContainer: React.FC = () => {
           },
           links: {
             color: "#FBBF24",
-            distance: 150,
+            distance: 140,
             enable: true,
-            opacity: 0.4,
+            opacity: 0.35,
             width: 1,
           },
           collisions: {
-            enable: true,
+            enable: false,
           },
           move: {
             direction: "none",
@@ -67,7 +67,7 @@ const ParticlesContainer: React.FC = () => {
               default: "bounce",
             },
             random: false,
-            speed: 1,
+            speed: 0.9,
             straight: false,
           },
           number: {
@@ -75,7 +75,7 @@ const ParticlesContainer: React.FC = () => {
               enable: true,
               area: 800,
             },
-            value: 80,
+            value: 40,
           },
           opacity: {
             value: 0.5,

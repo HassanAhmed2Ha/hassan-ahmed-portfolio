@@ -7,7 +7,7 @@ import { contentEn as content } from "../../src/data";
 
 const Certifications: React.FC = () => {
   return (
-    <section id="certifications" className="py-16 md:py-20 relative z-20 w-full">
+    <section id="certifications" className="content-auto py-16 md:py-20 relative z-20 w-full">
       <Circles />
       <div className="container mx-auto px-4 xl:px-0 relative z-10">
         
