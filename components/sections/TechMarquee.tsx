@@ -149,41 +149,29 @@ const TechBadge: React.FC<{ item: TechLogo }> = ({ item }) => (
   </div>
 );
 
-interface MarqueeRowProps {
+interface MarqueeTrackProps {
   items: TechLogo[];
-  reverse?: boolean;
-  duration?: string;
+  direction: "left" | "right";
 }
 
-const MarqueeRow: React.FC<MarqueeRowProps> = ({
-  items,
-  reverse = false,
-  duration = "45s",
-}) => {
+const MarqueeTrack: React.FC<MarqueeTrackProps> = ({ items, direction }) => {
+  const animClass = direction === "left" ? "animate-marquee-left" : "animate-marquee-right";
+
   return (
-    <div
-      className="flex overflow-hidden select-none"
-      style={{
-        gap: "var(--gap, 1.25rem)",
-        ["--gap" as any]: "1.25rem",
-        ["--duration" as any]: duration,
-      }}
-    >
-      {Array.from({ length: 4 }).map((_, i) => (
-        <div
-          key={i}
-          className="flex shrink-0 items-center justify-around animate-marquee"
-          style={{
-            gap: "var(--gap, 1.25rem)",
-            animationDirection: reverse ? "reverse" : "normal",
-          }}
-          aria-hidden={i > 0}
-        >
-          {items.map((item, idx) => (
-            <TechBadge key={`${i}-${item.name}-${idx}`} item={item} />
-          ))}
-        </div>
-      ))}
+    <div className="flex overflow-hidden select-none w-full">
+      <div className={`flex w-max shrink-0 items-center ${animClass}`}>
+        {Array.from({ length: 4 }).map((_, blockIdx) => (
+          <div
+            key={blockIdx}
+            className="flex shrink-0 items-center gap-4 pr-4"
+            aria-hidden={blockIdx > 0}
+          >
+            {items.map((item, idx) => (
+              <TechBadge key={`b${blockIdx}-${item.name}-${idx}`} item={item} />
+            ))}
+          </div>
+        ))}
+      </div>
     </div>
   );
 };
@@ -216,10 +204,10 @@ const TechMarquee: React.FC<TechMarqueeProps> = ({ data }) => {
         }}
       >
         {/* Row 1: AI, Deep Learning & High-Performance Systems (Moves Left) */}
-        <MarqueeRow items={track1Items} duration="44s" />
+        <MarqueeTrack items={track1Items} direction="left" />
 
         {/* Row 2: Full-Stack Engineering, Distributed Systems & DevOps (Moves Right) */}
-        <MarqueeRow items={track2Items} reverse={true} duration="48s" />
+        <MarqueeTrack items={track2Items} direction="right" />
       </div>
     </section>
   );

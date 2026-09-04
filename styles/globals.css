@@ -89,23 +89,38 @@
     border: 1px solid rgba(255, 255, 255, 0.2);
   }
 
-  /* ── Mathematically Flawless Seamless Infinite Marquee ── */
-  @keyframes marquee {
-    from {
-      transform: translateX(0);
+  /* ── Ultra-Smooth Bulletproof 4-Block Infinite Marquee ── */
+  @keyframes marquee-left {
+    0% {
+      transform: translate3d(0, 0, 0);
     }
-    to {
-      transform: translateX(calc(-100% - var(--gap, 1.25rem)));
+    100% {
+      transform: translate3d(-25%, 0, 0);
     }
   }
 
-  .animate-marquee {
-    animation: marquee var(--duration, 45s) linear infinite;
+  @keyframes marquee-right {
+    0% {
+      transform: translate3d(-25%, 0, 0);
+    }
+    100% {
+      transform: translate3d(0, 0, 0);
+    }
+  }
+
+  .animate-marquee-left {
+    animation: marquee-left 42s linear infinite;
+    will-change: transform;
+  }
+
+  .animate-marquee-right {
+    animation: marquee-right 46s linear infinite;
     will-change: transform;
   }
 
   @media (prefers-reduced-motion: reduce) {
-    .animate-marquee {
+    .animate-marquee-left,
+    .animate-marquee-right {
       animation-play-state: paused;
     }
   }
