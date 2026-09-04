@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import Marquee from "react-fast-marquee";
 import { TechLogo } from "../../src/types";
 import {
   SiPython,
@@ -149,33 +150,13 @@ const TechBadge: React.FC<{ item: TechLogo }> = ({ item }) => (
   </div>
 );
 
-interface MarqueeTrackProps {
-  items: TechLogo[];
-  direction: "left" | "right";
-}
+const TechMarquee: React.FC<TechMarqueeProps> = () => {
+  const [mounted, setMounted] = useState(false);
 
-const MarqueeTrack: React.FC<MarqueeTrackProps> = ({ items, direction }) => {
-  // Double the items so each track block is ~4000px wide, covering any screen seamlessly
-  const trackData = [...items, ...items];
-  const animClass = direction === "left" ? "animate-marquee-left" : "animate-marquee-right";
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
-  return (
-    <div className="flex overflow-hidden select-none w-full">
-      <div className={`flex shrink-0 items-center gap-4 pr-4 ${animClass}`}>
-        {trackData.map((item, idx) => (
-          <TechBadge key={`t1-${item.name}-${idx}`} item={item} />
-        ))}
-      </div>
-      <div className={`flex shrink-0 items-center gap-4 pr-4 ${animClass}`} aria-hidden="true">
-        {trackData.map((item, idx) => (
-          <TechBadge key={`t2-${item.name}-${idx}`} item={item} />
-        ))}
-      </div>
-    </div>
-  );
-};
-
-const TechMarquee: React.FC<TechMarqueeProps> = ({ data }) => {
   // Curated dual tracks: AI & Systems for Track 1, Full-Stack & DevOps for Track 2
   const track1Items = defaultTrack1;
   const track2Items = defaultTrack2;
@@ -202,11 +183,41 @@ const TechMarquee: React.FC<TechMarqueeProps> = ({ data }) => {
           WebkitMaskImage: "linear-gradient(to right, transparent, black 8%, black 92%, transparent)",
         }}
       >
-        {/* Row 1: AI, Deep Learning & High-Performance Systems (Moves Left) */}
-        <MarqueeTrack items={track1Items} direction="left" />
+        {mounted ? (
+          <>
+            {/* Row 1: Moves Left */}
+            <Marquee
+              direction="left"
+              speed={40}
+              pauseOnHover={false}
+              autoFill={true}
+              className="overflow-hidden select-none py-1"
+            >
+              <div className="flex items-center gap-4 pr-4">
+                {track1Items.map((item, idx) => (
+                  <TechBadge key={`t1-${item.name}-${idx}`} item={item} />
+                ))}
+              </div>
+            </Marquee>
 
-        {/* Row 2: Full-Stack Engineering, Distributed Systems & DevOps (Moves Right) */}
-        <MarqueeTrack items={track2Items} direction="right" />
+            {/* Row 2: Moves Right */}
+            <Marquee
+              direction="right"
+              speed={40}
+              pauseOnHover={false}
+              autoFill={true}
+              className="overflow-hidden select-none py-1"
+            >
+              <div className="flex items-center gap-4 pr-4">
+                {track2Items.map((item, idx) => (
+                  <TechBadge key={`t2-${item.name}-${idx}`} item={item} />
+                ))}
+              </div>
+            </Marquee>
+          </>
+        ) : (
+          <div className="min-h-[140px]" />
+        )}
       </div>
     </section>
   );
