@@ -89,19 +89,19 @@
     border: 1px solid rgba(255, 255, 255, 0.2);
   }
 
-  /* ── Ultra-Smooth Bulletproof 4-Block Infinite Marquee ── */
+  /* ── Pure Clean Infinite Marquee (Left & Right) ── */
   @keyframes marquee-left {
     0% {
       transform: translate3d(0, 0, 0);
     }
     100% {
-      transform: translate3d(-25%, 0, 0);
+      transform: translate3d(-100%, 0, 0);
     }
   }
 
   @keyframes marquee-right {
     0% {
-      transform: translate3d(-25%, 0, 0);
+      transform: translate3d(-100%, 0, 0);
     }
     100% {
       transform: translate3d(0, 0, 0);
@@ -109,12 +109,12 @@
   }
 
   .animate-marquee-left {
-    animation: marquee-left 42s linear infinite;
+    animation: marquee-left 40s linear infinite;
     will-change: transform;
   }
 
   .animate-marquee-right {
-    animation: marquee-right 46s linear infinite;
+    animation: marquee-right 40s linear infinite;
     will-change: transform;
   }
 

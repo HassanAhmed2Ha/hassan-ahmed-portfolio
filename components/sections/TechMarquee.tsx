@@ -139,11 +139,11 @@ const defaultTrack2: TechLogo[] = [
 ];
 
 const TechBadge: React.FC<{ item: TechLogo }> = ({ item }) => (
-  <div className="flex items-center gap-x-2.5 px-4 py-2.5 rounded-xl bg-white/[0.03] border border-white/10 hover:border-accent/80 hover:bg-accent/[0.12] hover:shadow-[0_0_22px_rgba(251,191,36,0.35)] transition-all duration-300 group cursor-pointer shrink-0">
-    <div className="flex items-center justify-center shrink-0 group-hover:scale-110 group-hover:drop-shadow-[0_0_10px_rgba(251,191,36,0.6)] transition-all duration-300">
+  <div className="flex items-center gap-x-2.5 px-4 py-2.5 rounded-xl bg-white/[0.03] border border-white/10 hover:border-accent hover:bg-accent/10 hover:shadow-[0_0_20px_rgba(251,191,36,0.35)] transition-all duration-200 group cursor-pointer shrink-0">
+    <div className="flex items-center justify-center shrink-0 group-hover:text-accent transition-colors duration-200">
       {getTechVectorIcon(item.name)}
     </div>
-    <span className="text-white/80 group-hover:text-accent font-mono text-xs font-medium group-hover:drop-shadow-[0_0_8px_rgba(251,191,36,0.5)] transition-colors duration-300">
+    <span className="text-white/80 group-hover:text-accent font-mono text-xs font-medium transition-colors duration-200">
       {item.name}
     </span>
   </div>
@@ -155,21 +155,20 @@ interface MarqueeTrackProps {
 }
 
 const MarqueeTrack: React.FC<MarqueeTrackProps> = ({ items, direction }) => {
+  // Double the items so each track block is ~4000px wide, covering any screen seamlessly
+  const trackData = [...items, ...items];
   const animClass = direction === "left" ? "animate-marquee-left" : "animate-marquee-right";
 
   return (
     <div className="flex overflow-hidden select-none w-full">
-      <div className={`flex w-max shrink-0 items-center ${animClass}`}>
-        {Array.from({ length: 4 }).map((_, blockIdx) => (
-          <div
-            key={blockIdx}
-            className="flex shrink-0 items-center gap-4 pr-4"
-            aria-hidden={blockIdx > 0}
-          >
-            {items.map((item, idx) => (
-              <TechBadge key={`b${blockIdx}-${item.name}-${idx}`} item={item} />
-            ))}
-          </div>
+      <div className={`flex shrink-0 items-center gap-4 pr-4 ${animClass}`}>
+        {trackData.map((item, idx) => (
+          <TechBadge key={`t1-${item.name}-${idx}`} item={item} />
+        ))}
+      </div>
+      <div className={`flex shrink-0 items-center gap-4 pr-4 ${animClass}`} aria-hidden="true">
+        {trackData.map((item, idx) => (
+          <TechBadge key={`t2-${item.name}-${idx}`} item={item} />
         ))}
       </div>
     </div>

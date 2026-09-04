@@ -43,10 +43,10 @@ module.exports = {
         },
         'marquee-left': {
           '0%': { transform: 'translate3d(0, 0, 0)' },
-          '100%': { transform: 'translate3d(-25%, 0, 0)' },
+          '100%': { transform: 'translate3d(-100%, 0, 0)' },
         },
         'marquee-right': {
-          '0%': { transform: 'translate3d(-25%, 0, 0)' },
+          '0%': { transform: 'translate3d(-100%, 0, 0)' },
           '100%': { transform: 'translate3d(0, 0, 0)' },
         },
       },
@@ -54,8 +54,8 @@ module.exports = {
         "spin-slow": "spin 6s linear infinite",
         'pulse-gold': 'pulse-gold 6s ease-in-out infinite',
         'pulse-gold-fast': 'pulse-gold 3s ease-in-out infinite',
-        'marquee-left': 'marquee-left 42s linear infinite',
-        'marquee-right': 'marquee-right 46s linear infinite',
+        'marquee-left': 'marquee-left 40s linear infinite',
+        'marquee-right': 'marquee-right 40s linear infinite',
       },
       fontFamily: {
         sans: ["var(--font-sans)", "sans-serif"],
